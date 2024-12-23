@@ -1,5 +1,6 @@
 CC = gcc
 CFLAG = -Wall -Wextra -Werror
+LFLAG = -lreadline
 NAME = minishell
 SRCS = *.c
 # OBJS = $(SRCS:.c=.o)
@@ -7,10 +8,10 @@ SRCS = *.c
 all: $(NAME)
 
 $(NAME):
-	$(CC) $(CFLAG) -o $(NAME) $(SRCS)
+	$(CC) $(CFLAG) -o $(NAME) $(SRCS) $(LFLAG)
 
 # $(NAME): $(OBJS)
-# 	$(CC) $(CFLAG) -o $(NAME) $(OBJS)
+# 	$(CC) $(LFLAG) -o $(NAME) $(OBJS)
 
 # %.o: %.c
 # 	$(CC) $(CFLAG) -c $< -o $@
