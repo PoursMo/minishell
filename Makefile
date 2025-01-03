@@ -1,25 +1,34 @@
 CC = gcc
-CFLAG = -Wall -Wextra -Werror
+SRC = minishell.c
+OBJ = $(OBJSDIR)/minishell.o
+HEADERS = headers
 LFLAG = -lreadline
+CFLAGS = -Wall -Wextra -Werror -I$(HEADERS)
 NAME = minishell
-SRCS = *.c
-# OBJS = $(SRCS:.c=.o)
+OBJSDIR = objects
+OBJS = $(OBJSDIR)/*.o
 
 all: $(NAME)
 
-$(NAME):
-	$(CC) $(CFLAG) -o $(NAME) $(SRCS) $(LFLAG)
+$(OBJS): $(OBJSDIR) $(SRC)
+	$(CC) $(CFLAGS) -c $(SRC) -o $(OBJ)
+# make -C test_module
+# make -C folder2
+# make -C folder3
 
-# $(NAME): $(OBJS)
-# 	$(CC) $(LFLAG) -o $(NAME) $(OBJS)
+$(OBJSDIR):
+	mkdir $(OBJSDIR)
 
-# %.o: %.c
-# 	$(CC) $(CFLAG) -c $< -o $@
+$(NAME): $(OBJS)
+	$(CC) $(LFLAG) -o $(NAME) $(OBJS)
 
 clean:
-	rm -f $(OBJS)
+	rm -rf $(OBJSDIR)
 
 fclean: clean
-	rm -rf $(NAME)
+	rm -f $(NAME)
+
+test: all
+	./$(NAME)
 
 re: fclean all
