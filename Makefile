@@ -1,17 +1,19 @@
 CC = gcc
-SRC = minishell.c
-OBJ = $(OBJSDIR)/minishell.o
-HEADERS = headers
-LFLAG = -lreadline
-CFLAGS = -Wall -Wextra -Werror -I$(HEADERS)
+MAINSRC = minishell.c
+MAINOBJ = $(OBJSDIR)/minishell.o
+LFLAGS = -lreadline
+CFLAGS = -Wall -Wextra -Werror -Iheaders -Ilibft
 NAME = minishell
 OBJSDIR = objects
 OBJS = $(OBJSDIR)/*.o
+LIBFT = libft/libft.a
 
 all: $(NAME)
 
-$(OBJS): $(OBJSDIR) $(SRC)
-	$(CC) $(CFLAGS) -c $(SRC) -o $(OBJ)
+$(MAINOBJ): $(MAINSRC)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJS): $(OBJSDIR)
 # make -C test_module
 # make -C folder2
 # make -C folder3
@@ -19,13 +21,17 @@ $(OBJS): $(OBJSDIR) $(SRC)
 $(OBJSDIR):
 	mkdir $(OBJSDIR)
 
-$(NAME): $(OBJS)
-	$(CC) $(LFLAG) -o $(NAME) $(OBJS)
+$(LIBFT):
+	make -C libft
+
+$(NAME): $(LIBFT) $(OBJS) $(MAINOBJ) 
+	$(CC) $(LFLAGS) -o $(NAME) $(OBJS) $(LIBFT)
 
 clean:
 	rm -rf $(OBJSDIR)
 
 fclean: clean
+	make -C libft fclean
 	rm -f $(NAME)
 
 test: all

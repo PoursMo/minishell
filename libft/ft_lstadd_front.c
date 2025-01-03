@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/03 19:53:33 by aloubry          ###   ########.fr       */
+/*   Created: 2024/10/03 11:21:09 by aloubry           #+#    #+#             */
+/*   Updated: 2024/10/03 11:21:55 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main()
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	ft_putstr_fd("test", 1);
-	return (0);
+	new->next = *lst;
+	*lst = new;
 }

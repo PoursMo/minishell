@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/03 19:53:33 by aloubry          ###   ########.fr       */
+/*   Created: 2024/10/01 11:18:03 by aloubry           #+#    #+#             */
+/*   Updated: 2024/10/03 11:23:17 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main()
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	ft_putstr_fd("test", 1);
-	return (0);
+	size_t	srclen;
+	size_t	i;
+
+	srclen = ft_strlen(src);
+	if (!size)
+		return (srclen);
+	i = size;
+	while (--i && *src)
+		*dst++ = *src++;
+	*dst = '\0';
+	return (srclen);
 }

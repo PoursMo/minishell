@@ -9,8 +9,3 @@ all: $(OBJS)
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $(OBJSDIR)/$@
-
-clean:
-	rm -f $(OBJS)
-
-re: clean all

@@ -1,19 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/03 19:53:33 by aloubry          ###   ########.fr       */
+/*   Created: 2024/10/03 11:20:54 by aloubry           #+#    #+#             */
+/*   Updated: 2024/10/03 11:21:55 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main()
+int	ft_atoi(const char *nptr)
 {
-	ft_putstr_fd("test", 1);
-	return (0);
+	int	mult;
+	int	num;
+
+	mult = 1;
+	while (*nptr && ft_isspace(*nptr))
+		nptr++;
+	if (*nptr == '+' || *nptr == '-')
+	{
+		if (*nptr == '-')
+			mult = -1;
+		nptr++;
+	}
+	num = 0;
+	while (*nptr && ft_isdigit(*nptr))
+	{
+		num = num * 10 + (*nptr - 48);
+		nptr++;
+	}
+	return (num * mult);
 }

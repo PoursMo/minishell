@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/03 19:53:33 by aloubry          ###   ########.fr       */
+/*   Created: 2024/10/03 11:21:34 by aloubry           #+#    #+#             */
+/*   Updated: 2024/10/03 11:25:27 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main()
+char	*ft_strdup(const char *s)
 {
-	ft_putstr_fd("test", 1);
-	return (0);
+	char	*dup;
+	size_t	slen;
+
+	slen = ft_strlen(s);
+	dup = malloc(sizeof(char) * (slen + 1));
+	if (!dup)
+		return (NULL);
+	ft_strlcpy(dup, s, slen + 1);
+	return (dup);
 }
