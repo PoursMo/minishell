@@ -1,7 +1,6 @@
 CC = gcc
-SRCS = *.c
-HEADERS = ../headers
-CFLAGS = -Wall -Wextra -Werror -I$(HEADERS)
+SRCS = *.c #explicitely name every source
+CFLAGS = -Wall -Wextra -Werror -I../headers -I../libft
 OBJSDIR = ../objects
 OBJS = $(SRCS:.c=.o)
 
