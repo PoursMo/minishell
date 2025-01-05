@@ -14,9 +14,7 @@ $(MAINOBJ): $(MAINSRC)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJS): $(OBJSDIR)
-# make -C test_module
-# make -C folder2
-# make -C folder3
+	make -C parsing
 
 $(OBJSDIR):
 	mkdir $(OBJSDIR)

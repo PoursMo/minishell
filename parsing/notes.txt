@@ -1,0 +1,9 @@
+instructions = blocs de strings sans les pipes
+apres avoir separe les pipes, il faut verifier les redirections, qui vont "override" les redirections des pipes
+
+instructions struct details:
+command: array of strings to be passed as parameters for execve
+in_redirect_mode: -1 for no input redirection, 0 for simple redirection, 1 for delimiter redirection
+in_redirect_param: Parameter for the input redirection, NULL if mode is -1 ⚠️ Malloc'd if not NULL ⚠️
+out_redirect_mode: -1 for no output redirection, 0 for simple redirection, 1 for append mode
+out_redirect_param: Parameter for the output redirection, NULL if mode is -1 ⚠️ Malloc'd if not NULL ⚠️
