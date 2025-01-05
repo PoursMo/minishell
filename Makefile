@@ -10,22 +10,20 @@ LIBFT = libft/libft.a
 
 all: $(NAME)
 
-$(MAINOBJ): $(MAINSRC)
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(OBJS): $(OBJSDIR)
-# make -C test_module
-# make -C folder2
-# make -C folder3
-
-$(OBJSDIR):
-	mkdir $(OBJSDIR)
+$(NAME): $(LIBFT) $(MAINOBJ) $(OBJS)
+	$(CC) $(LFLAGS) -o $(NAME) $(OBJS) $(LIBFT)
 
 $(LIBFT):
 	make -C libft
 
-$(NAME): $(LIBFT) $(OBJS) $(MAINOBJ) 
-	$(CC) $(LFLAGS) -o $(NAME) $(OBJS) $(LIBFT)
+$(MAINOBJ): $(MAINSRC) $(OBJSDIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJS): $(OBJSDIR)
+# make -C parsing
+
+$(OBJSDIR):
+	mkdir $(OBJSDIR)
 
 clean:
 	rm -rf $(OBJSDIR)
