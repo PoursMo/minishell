@@ -6,37 +6,37 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 14:13:26 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/05 14:51:18 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/05 15:48:55 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int handle_redirect_mode(t_instruction_data *instruction_data, char ***string)
+static int handle_redirect_mode(t_instruction_data *instruction_data, char **string)
 {
-	int in_or_out;
-
-	in_or_out = 0;
-	if(**string == '<' && *(*string + 1) == '<')
+	if(**string == '<')
 	{
-		instruction_data->in_redirect_mode = 1;
-		*string++;
-	}
-	else if(**string == '<')
 		instruction_data->in_redirect_mode = 0;
-	else
+		*string += 1;
+		if(**string == '<')
+		{
+			instruction_data->in_redirect_mode = 1;
+			*string += 1;
+		}
+		return (1);
+	}
+	else if (**string == '>')
 	{
-		in_or_out = 1;
-		if(**string == '>' && *(*string + 1) == '>')
+		instruction_data->out_redirect_mode = 0;
+		*string += 1;
+		if(**string == '>')
 		{
 			instruction_data->out_redirect_mode = 1;
-			*string++;
+			*string += 1;
 		}
-		else if(**string == '>')
-			instruction_data->out_redirect_mode = 0;
+		return (2);
 	}
-	*string++;
-	return (in_or_out);
+	return (0);
 }
 
 static int get_size_of_redirect_param(char *string)
@@ -46,9 +46,11 @@ static int get_size_of_redirect_param(char *string)
 	int is_in_single_quote;
 	int is_in_double_quote;
 
+	is_in_single_quote = 0;
+	is_in_double_quote = 0;
 	size = 0;
 	tmp = string;
-	while(*tmp && (!ft_isspace(*tmp) || !is_in_single_quote || !is_in_double_quote))
+	while(*tmp && (!ft_isspace(*tmp) || is_in_single_quote || is_in_double_quote))
 	{
 		if (!toggle_quotes(&is_in_single_quote, &is_in_double_quote, *tmp))
 			size++;
@@ -76,7 +78,7 @@ void set_redirect_data(t_instruction_data *instruction_data, char *string)
 		tmp++;
 	param = malloc(sizeof(char) * (get_size_of_redirect_param(string) + 1));
 	param_index = 0;
-	while(*tmp && (!ft_isspace(*tmp) || !is_in_single_quote || !is_in_double_quote))
+	while(*tmp && (!ft_isspace(*tmp) || is_in_single_quote || is_in_double_quote))
 	{
 		if (!toggle_quotes(&is_in_single_quote, &is_in_double_quote, *tmp))
 		{
@@ -85,10 +87,11 @@ void set_redirect_data(t_instruction_data *instruction_data, char *string)
 		}
 		tmp++;
 	}
+	param[param_index] = '\0';
 	if(!*tmp && (is_in_single_quote || is_in_double_quote))
-		ft_strlcpy(param, string, ft_strlen(string));
-	if(in_or_out == 0)
+		ft_strlcpy(param, string, ft_strlen(string) + 1);
+	if(in_or_out == 1)
 		instruction_data->in_redirect_param = param;
-	else if(in_or_out == 1)
+	else if(in_or_out == 2)
 		instruction_data->out_redirect_param = param;
 }

@@ -10,7 +10,13 @@ LIBFT = libft/libft.a
 
 all: $(NAME)
 
-$(MAINOBJ): $(MAINSRC)
+$(NAME): $(LIBFT) $(MAINOBJ) $(OBJS)
+	$(CC) $(LFLAGS) -o $(NAME) $(OBJS) $(LIBFT)
+
+$(LIBFT):
+	make -C libft
+
+$(MAINOBJ): $(MAINSRC) $(OBJSDIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJS): $(OBJSDIR)
@@ -18,12 +24,6 @@ $(OBJS): $(OBJSDIR)
 
 $(OBJSDIR):
 	mkdir $(OBJSDIR)
-
-$(LIBFT):
-	make -C libft
-
-$(NAME): $(LIBFT) $(OBJS) $(MAINOBJ) 
-	$(CC) $(LFLAGS) -o $(NAME) $(OBJS) $(LIBFT)
 
 clean:
 	rm -rf $(OBJSDIR)

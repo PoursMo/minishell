@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 13:04:17 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/05 14:57:02 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/05 15:34:44 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,15 @@ static t_instruction_data parse_instruction(char *instruction)
 	instruction_data.in_redirect_param = NULL;
 	instruction_data.out_redirect_mode = -1;
 	instruction_data.out_redirect_param = NULL;
-	while(*instruction)
-	{
+	// while(*instruction)
+	// {
 		if(*instruction == '<' || *instruction == '>')
 		{
 			set_redirect_data(&instruction_data, instruction);
+			// skip to end of redirect param
 		}
-		instruction++;
-	}
+		// instruction++;
+	// }
 	return (instruction_data);
 }
 
@@ -56,9 +57,9 @@ void	parse_input(char *input)
 	{
 		t_instruction_data data = parse_instruction(*instructions);
 		// Print the parsed instruction data
-		printf("Command: ");
-		for (int i = 0; data.command && data.command[i]; i++)
-			printf("%s ", data.command[i]);
+		// printf("Command: ");
+		// for (int i = 0; data.command && data.command[i]; i++)
+		// 	printf("%s ", data.command[i]);
 		printf("\nIn Redirect Mode: %d\n", data.in_redirect_mode);
 		printf("In Redirect Param: %s\n", data.in_redirect_param);
 		printf("Out Redirect Mode: %d\n", data.out_redirect_mode);

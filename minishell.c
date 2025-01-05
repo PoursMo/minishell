@@ -6,14 +6,13 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/03 19:53:33 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/05 15:09:12 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main()
+int main(int argc, char **argv)
 {
-	ft_putstr_fd("test", 1);
-	return (0);
+	parse_input(argv[argc - 1]);
 }
