@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 14:13:26 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/05 15:48:55 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/06 15:41:33 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,10 @@ void set_redirect_data(t_instruction_data *instruction_data, char *string)
 		{
 			param[param_index] = *tmp;
 			param_index++;
+		}
+		if(*tmp == '$' && !is_in_single_quote && !(instruction_data->in_redirect_mode == 1))
+		{
+
 		}
 		tmp++;
 	}
