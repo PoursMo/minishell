@@ -1,5 +1,6 @@
 CC = gcc
 SRCS = minishell.c	\
+		history/init_history.c
 
 OBJSDIR = objects
 OBJS = $(SRCS:%.c=$(OBJSDIR)/%.o)
@@ -30,6 +31,10 @@ fclean: clean
 	rm -f $(NAME)
 
 test: all
+	./$(NAME)
+
+test_wsl: $(LIBFT) $(OBJS)
+	$(CC) -o $(NAME) $(OBJS) $(LIBFT) $(LFLAGS)
 	./$(NAME)
 
 re: fclean all
