@@ -2,7 +2,7 @@ CC = gcc
 SRCS = minishell.c	\
 
 OBJSDIR = objects
-OBJS = $(patsubst %.c,$(OBJSDIR)/%.o,$(SRCS))
+OBJS = $(SRCS:%.c=$(OBJSDIR)/%.o)
 LFLAGS = -lreadline
 CFLAGS = -Wall -Wextra -Werror -Iheaders -Ilibft
 NAME = minishell
@@ -11,6 +11,7 @@ LIBFT = libft/libft.a
 all: $(NAME)
 
 $(OBJSDIR)/%.o : %.c
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(LIBFT) $(OBJS)
@@ -21,10 +22,8 @@ $(LIBFT):
 	@echo "\033[32mLIBFT COMPILED\033[0m"
 	@echo ""
 
-$(OBJS): $(OBJSDIR)
-
 clean:
-	rm -f $(OBJS)
+	rm -rf $(OBJSDIR)
 
 fclean: clean
 	make -C libft fclean
