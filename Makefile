@@ -1,29 +1,27 @@
 CC = gcc
-MAINSRC = minishell.c
-MAINOBJ = $(OBJSDIR)/minishell.o
+SRCS = minishell.c	\
+parsing/parsing.c parsing/redirection.c \
+
+OBJSDIR = objects
+OBJS = $(SRCS:%.c=$(OBJSDIR)/%.o)
 LFLAGS = -lreadline
 CFLAGS = -Wall -Wextra -Werror -Iheaders -Ilibft
 NAME = minishell
-OBJSDIR = objects
-OBJS = $(OBJSDIR)/*.o
 LIBFT = libft/libft.a
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(MAINOBJ) $(OBJS)
+$(OBJSDIR)/%.o : %.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(NAME): $(LIBFT) $(OBJS)
 	$(CC) $(LFLAGS) -o $(NAME) $(OBJS) $(LIBFT)
 
 $(LIBFT):
 	make -C libft
-
-$(MAINOBJ): $(MAINSRC) $(OBJSDIR)
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(OBJS): $(OBJSDIR)
-	make -C parsing
-
-$(OBJSDIR):
-	mkdir $(OBJSDIR)
+	@echo "\033[32mLIBFT COMPILED\033[0m"
+	@echo ""
 
 clean:
 	rm -rf $(OBJSDIR)
