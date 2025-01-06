@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   init_history.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/06 18:08:51 by lbaecher         ###   ########.fr       */
+/*   Created: 2025/01/06 15:53:05 by lbaecher          #+#    #+#             */
+/*   Updated: 2025/01/06 18:08:55 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main()
+void	add_to_history(char *str)
 {
-	//Starting minishell:
-	char	*line;
-
-	while(1)
-	{
-		line = readline("minishell>");
-		//parsing(line);
-		add_to_history(line);
-		free(line);
-	}
-	return (0);
+	add_history(str);
 }
