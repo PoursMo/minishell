@@ -1,0 +1,44 @@
+
+- Parameter and Variable Expansion
+Bash replaces variables ($VAR) or special parameters ($?, $#, etc.) with their values
+
+
+- Tokenization
+Bash splits the input into tokens using whitespace as a delimiter. However, special characters (like $, |, >, <, &, and quotes) are identified as potential operators or delimiters during this phase. Tokens are categorized into:
+    Commands: Strings that might represent executables or shell functions.
+    Operators: Symbols like |, >, <, and &&.
+    Arguments: Strings following commands or options.
+
+
+- Syntax Parsing
+Bash analyzes the tokens for syntactic correctness and organizes them into a structure for execution. This includes:
+    Identifying pipelines (|) and compound commands (&&, ||, { }, etc.).
+    Recognizing redirections (>, <, 2>, etc.).
+    Handling control structures (e.g., if, for, while).
+    Validating correct usage of quotes, braces, or parentheses.
+	A pipe (|) with no command on one side.
+If there's a syntax error, Bash displays an error message and aborts further processing.
+
+
+- Quote Removal
+After all expansions, Bash removes quotes (', ", ```) from the tokens while preserving whitespace or special characters enclosed within the quotes.
+
+
+- Command Lookup
+Bash determines how to execute the command:
+    Functions: Checks if it's a shell function.
+    Built-ins: Checks if it's a Bash built-in (e.g., cd, echo).
+    Executables: Searches for the command in directories listed in the PATH environment variable.
+
+
+- Redirection Setup
+If the command involves redirection (>, <, >>, 2>, etc.), Bash sets up the necessary file descriptors.
+
+
+- Execution
+Bash executes the command:
+    For built-ins and functions, it runs them directly.
+    For external commands, Bash creates a child process and uses exec() to execute the program.
+
+
+- Wait for Completion

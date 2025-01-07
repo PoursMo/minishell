@@ -1,18 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   variable_expansion.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/04 12:54:58 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/07 18:53:49 by aloubry          ###   ########.fr       */
+/*   Created: 2025/01/07 16:21:13 by aloubry           #+#    #+#             */
+/*   Updated: 2025/01/07 16:21:19 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
-
-void tokenize_input(char *input);
-
-#endif
+#include "minishell.h"
