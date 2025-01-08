@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 16:18:23 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/08 13:30:34 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/08 13:48:12 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,31 +17,15 @@ static int	is_operator(int c)
 	return (c == '>' || c == '<' || c == '|');
 }
 
-static void	init_quotes(int *single_quote, int *double_quote, char *token_start)
-{
-	int	i;
-
-	*single_quote = 0;
-	*double_quote = 0;
-	toggle_quotes(single_quote, double_quote, *token_start);
-	i = 1;
-	while (token_start[i])
-	{
-		if (*single_quote && token_start[i] == '\'')
-			break ;
-		if (*double_quote && token_start[i] == '"')
-			break ;
-		i++;
-	}
-	if (!token_start[i])
-		toggle_quotes(single_quote, double_quote, *token_start);
-}
-
-static int	get_token_size(char *token_start, int is_in_single_quote, int is_in_double_quote)
+static int	get_token_size(char *token_start)
 {
 	int	size;
+	int	is_in_single_quote;
+	int	is_in_double_quote;
 
 	size = 0;
+	is_in_single_quote = 0;
+	is_in_double_quote = 0;
 	if (is_operator(*token_start) && !is_in_single_quote && !is_in_double_quote)
 	{
 		size++;
@@ -51,6 +35,7 @@ static int	get_token_size(char *token_start, int is_in_single_quote, int is_in_d
 	while (*token_start && ((!ft_isspace(*token_start)) || is_in_single_quote || is_in_double_quote)
 		&& ((!is_operator(*token_start)) || is_in_single_quote || is_in_double_quote))
 	{
+		minishell_toggle_quote(&is_in_single_quote, &is_in_double_quote, token_start);
 		size++;
 		token_start++;
 	}
@@ -64,11 +49,12 @@ static char	*make_token(char *token_start)
 	int		is_in_double_quote;
 	int		i;
 
-	init_quotes(&is_in_single_quote, &is_in_double_quote, token_start);
-	token = malloc(sizeof(char) * (get_token_size(token_start, is_in_single_quote, is_in_double_quote) + 1));
+	is_in_single_quote = 0;
+	is_in_double_quote = 0;
+	token = malloc(sizeof(char) * (get_token_size(token_start) + 1));
 	// protect malloc
 	i = 0;
-	if (is_operator(*token_start) && !is_in_single_quote && !is_in_double_quote)
+	if (is_operator(*token_start))
 	{
 		token[i++] = *token_start;
 		if (*token_start == *(token_start + 1) && (*(token_start + 1) == '<' || *(token_start + 1) == '>'))
@@ -77,6 +63,7 @@ static char	*make_token(char *token_start)
 	while (*token_start && ((!ft_isspace(*token_start)) || is_in_single_quote || is_in_double_quote)
 		&& ((!is_operator(*token_start)) || is_in_single_quote || is_in_double_quote))
 	{
+		minishell_toggle_quote(&is_in_single_quote, &is_in_double_quote, token_start);
 		token[i++] = *token_start;
 		token_start++;
 	}
@@ -108,6 +95,5 @@ void	tokenize_input(char *input)
 	}
 	// end of debug
 }
-
 
 // echo "Hello" >| file ?????
