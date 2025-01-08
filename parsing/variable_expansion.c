@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 16:21:13 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/08 17:17:09 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/08 17:52:31 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int get_var_name_size(char *var_start)
 	return (size);
 }
 
-char *get_var_name(char *var_start)
+static char *get_var_name(char *var_start)
 {
 	char *var_name;
 	int i;
@@ -39,15 +39,15 @@ char *get_var_name(char *var_start)
 	return (var_name);
 }
 
-char *expand_variables_of_input(char *input)
+static int get_expanded_size(char *input)
 {
-	// char *new_input;
-	int is_in_single_quote;
+	int size;
 	char *var_name;
-	
-	// malloc new_input
-	// protect malloc
+	char *var_value;
+	int is_in_single_quote;
+
 	is_in_single_quote = 0;
+	size = 0;
 	while(*input)
 	{
 		if(*input == '\'')
@@ -57,11 +57,59 @@ char *expand_variables_of_input(char *input)
 			if(ft_isalpha(*(input + 1)) || *(input + 1) == '_')
 			{
 				var_name = get_var_name(input + 1);
-				printf("name: %s\n", getenv(var_name));
+				var_value = getenv(var_name);
+				if(var_value)
+					size += ft_strlen(var_value);
+				input += get_var_name_size(input + 1);
 				free(var_name);
 			}
 		}
+		else
+			size++;
 		input++;
 	}
-	return NULL;
+	return (size);
+}
+
+char *expand_variables_of_input(char *input)
+{
+	char *new_input;
+	int is_in_single_quote;
+	char *var_name;
+	char *var_value;
+	int new_input_len;
+	int i;
+
+	new_input_len = get_expanded_size(input) + 1;
+	new_input = malloc(sizeof(char) * new_input_len);
+	// protect malloc
+	is_in_single_quote = 0;
+	i = 0;
+	while(*input)
+	{
+		if(*input == '\'')
+			minishell_toggle_quote(&is_in_single_quote, input);
+		if(*input == '$' && !is_in_single_quote)
+		{
+			if(ft_isalpha(*(input + 1)) || *(input + 1) == '_')
+			{
+				var_name = get_var_name(input + 1);
+				var_value = getenv(var_name);
+				if(var_value)
+				{
+					ft_memcpy(&new_input[i], var_value, ft_strlen(var_value));
+					i += ft_strlen(var_value);
+				}
+				free(var_name);
+				input += get_var_name_size(input + 1);
+			}
+			else
+				input++;
+		}
+		else
+			new_input[i++] = *input;
+		input++;
+	}
+	new_input[i] = '\0';
+	return (new_input);
 }
