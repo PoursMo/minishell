@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 16:18:23 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/08 17:18:07 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/08 18:00:25 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,11 @@ static char	*make_token(char *token_start)
 	return (token);
 }
 
-void	tokenize_input(char *input)
+t_list	*tokenize_input(char *input)
 {
 	t_list	*tokens;
-	int		tokens_index;
 
-	tokens_index = 0;
+	tokens = NULL;
 	while (*input)
 	{
 		while (ft_isspace(*input))
@@ -90,16 +89,8 @@ void	tokenize_input(char *input)
 		ft_lstadd_back(&tokens, ft_lstnew(make_token(input)));
 		//protect mallocs
 		input += ft_strlen(ft_lstlast(tokens)->content);
-		tokens_index++;
 	}
-	// debug
-	t_list *current = tokens;
-	while (current)
-	{
-		printf("Token: %s\n", (char *)current->content);
-		current = current->next;
-	}
-	// end of debug
+	return (tokens);
 }
 
 // echo "Hello" >| file ?????
