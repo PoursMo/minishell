@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   signals_key.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/08 10:27:57 by lbaecher         ###   ########.fr       */
+/*   Created: 2025/01/08 10:14:24 by lbaecher          #+#    #+#             */
+/*   Updated: 2025/01/08 10:15:39 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef SIGNALS_KEY_H
+# define SIGNALS_KEY_H
 
-int	main()
-{
-	ft_putstr_fd("test", 1);
-	while(1)
-	{
-		
-	}
-	add_key_signals();
-	return (0);
-}
+void	add_key_signals(void);
+
+#endif

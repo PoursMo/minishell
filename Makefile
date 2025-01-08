@@ -1,5 +1,6 @@
 CC = gcc
 SRCS = minishell.c	\
+		signals/signals.c	\
 
 OBJSDIR = objects
 OBJS = $(SRCS:%.c=$(OBJSDIR)/%.o)
