@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 16:18:23 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/08 13:48:12 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/08 14:09:13 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ static int	get_token_size(char *token_start)
 	while (*token_start && ((!ft_isspace(*token_start)) || is_in_single_quote || is_in_double_quote)
 		&& ((!is_operator(*token_start)) || is_in_single_quote || is_in_double_quote))
 	{
-		minishell_toggle_quote(&is_in_single_quote, &is_in_double_quote, token_start);
+		if(*token_start == '"' || *token_start == '\'')
+			minishell_toggle_quotes(&is_in_single_quote, &is_in_double_quote, token_start);
 		size++;
 		token_start++;
 	}
@@ -63,7 +64,8 @@ static char	*make_token(char *token_start)
 	while (*token_start && ((!ft_isspace(*token_start)) || is_in_single_quote || is_in_double_quote)
 		&& ((!is_operator(*token_start)) || is_in_single_quote || is_in_double_quote))
 	{
-		minishell_toggle_quote(&is_in_single_quote, &is_in_double_quote, token_start);
+		if(*token_start == '"' || *token_start == '\'')
+			minishell_toggle_quotes(&is_in_single_quote, &is_in_double_quote, token_start);
 		token[i++] = *token_start;
 		token_start++;
 	}

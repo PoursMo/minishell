@@ -1,6 +1,6 @@
 CC = gcc
 SRCS = minishell.c	\
-parsing/tokenization.c parsing/parsing_utils.c \
+parsing/tokenization.c parsing/parsing_utils.c parsing/variable_expansion.c \
 
 OBJSDIR = objects
 OBJS = $(SRCS:%.c=$(OBJSDIR)/%.o)
