@@ -33,4 +33,9 @@ fclean: clean
 test: all
 	./$(NAME)
 
+test_wsl: ${LIBFT} ${OBJS}
+	$(CC) -o $(NAME) $(OBJS) $(LIBFT)  $(LFLAGS)
+	./$(NAME)
+
+
 re: fclean all
