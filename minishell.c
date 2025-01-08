@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/08 19:05:12 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/08 19:08:51 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 int	main()
 {
 	char *test;
-	test = readline("minishell$ ");
 	add_key_signals();
+	test = readline("minishell$ ");
 	if (test[0] == EOF)
 	{
-		printf("Exiting...This exit must be removed\n");
+		printf("Exiting\n");
 		return (0);
 	}
 	readline("minishell$ ");
