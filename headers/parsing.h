@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 12:54:58 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/08 17:54:52 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/08 18:05:05 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,8 @@ t_list	*tokenize_input(char *input);
 
 void	minishell_toggle_quote(int *quote, char *quote_start);
 
+
+//tester
+void run_parsing_tests(void);
 
 #endif
