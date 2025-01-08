@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/04 12:54:58 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/08 13:22:33 by aloubry          ###   ########.fr       */
+/*   Created: 2025/01/08 13:22:01 by aloubry           #+#    #+#             */
+/*   Updated: 2025/01/08 13:22:14 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
+#include "minishell.h"
 
-void tokenize_input(char *input);
-
-void toggle_quotes(int *single_quote, int *double_quote, char c);
-
-#endif
+void toggle_quotes(int *single_quote, int *double_quote, char c)
+{
+	if(c == '"' && !*single_quote)
+		*double_quote = !*double_quote;
+	else if(c == '\'' && !*double_quote)
+		*single_quote = !*single_quote;
+}
