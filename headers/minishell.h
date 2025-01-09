@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 15:40:28 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/09 10:36:13 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/09 15:16:29 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # include <termios.h>
 # include <curses.h>
 # include <term.h>
-# include <sys/ioctl.h>
+# include <signal.h>
 
 # include "libft.h"
 # include "signals_key.h"

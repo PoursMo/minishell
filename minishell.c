@@ -6,18 +6,15 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/09 11:32:24 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/09 15:30:56 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/minishell.h"
 
-int	main()
+int	main(void)
 {
-	//char	*test;
-
-	add_key_signals();
-	//test = readline("minishell$ ");
+	add_signals('i');
 	readline("minishell$ ");
 	return (0);
 }

@@ -6,13 +6,13 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:14:24 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/09 11:21:57 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/09 15:00:35 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SIGNALS_KEY_H
 # define SIGNALS_KEY_H
 
-void	add_key_signals(void);
+void	add_signals(char c);
 
 #endif

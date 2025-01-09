@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:14:07 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/09 11:36:43 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/09 15:30:38 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,30 @@
 
 #include "minishell.h"
 
-void	sig_handler(int sig)
+static void	sig_interactive(int sig)
 {
 	if (sig == SIGINT)
 	{
 		rl_replace_line("", 0);
 		rl_redisplay();
 		rl_on_new_line();
+		printf("\nTHIS MUST BE CHANGED TO GO TO NEWLINE:\n");
+		printf("Exiting minishell...\n");
 		usleep(200000);
 		exit (0);
 	}
-	if (sig == SIGQUIT)
-		return ;
 }
 
-static void	add_ctrl_d(void)
+void	add_signals(char c)
 {
-	printf("%d\n",isatty(STDIN_FILENO));
-	printf("%d\n",ttyslot());
-}
+	struct sigaction	sig_sigint;
+	struct sigaction	sig_sigquit;
 
-void	add_key_signals(void)
-{
-	struct	sigaction sig;
-
-	sig.sa_handler = &sig_handler;
-	sigaction(SIGQUIT, &sig, NULL);
-	sigaction(SIGINT, &sig, NULL);
-	add_ctrl_d();
+	if (c == 'i')
+	{
+		sig_sigint.sa_handler = &sig_interactive;
+		sig_sigquit.sa_handler = SIG_IGN;
+		sigaction(SIGINT, &sig_sigint, NULL);
+		sigaction(SIGQUIT, &sig_sigquit, NULL);
+	}
 }
