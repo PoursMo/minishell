@@ -6,16 +6,11 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 16:18:23 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/08 18:00:25 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/10 13:59:22 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static int	is_operator(int c)
-{
-	return (c == '>' || c == '<' || c == '|');
-}
 
 static int	get_token_size(char *token_start)
 {
@@ -86,9 +81,12 @@ t_list	*tokenize_input(char *input)
 	{
 		while (ft_isspace(*input))
 			input++;
-		ft_lstadd_back(&tokens, ft_lstnew(make_token(input)));
-		//protect mallocs
-		input += ft_strlen(ft_lstlast(tokens)->content);
+		if(*input)
+		{
+			ft_lstadd_back(&tokens, ft_lstnew(make_token(input)));
+			//protect mallocs
+			input += ft_strlen(ft_lstlast(tokens)->content);
+		}
 	}
 	return (tokens);
 }
