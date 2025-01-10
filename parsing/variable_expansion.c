@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 16:21:13 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/08 17:52:31 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/10 18:19:42 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,12 @@ static int get_expanded_size(char *input)
 				input += get_var_name_size(input + 1);
 				free(var_name);
 			}
+			else if(*(input + 1) == '?')
+			{
+				//get exit num
+				//size += len of exit num
+				input++;
+			}
 		}
 		else
 			size++;
@@ -102,6 +108,12 @@ char *expand_variables_of_input(char *input)
 				}
 				free(var_name);
 				input += get_var_name_size(input + 1);
+			}
+			else if(*(input + 1) == '?')
+			{
+				// get and cpy last exit num
+				// i += len of exit num
+				input++;
 			}
 			else
 				input++;
