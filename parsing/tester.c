@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:04:03 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/08 18:12:04 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/10 15:13:26 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,23 @@ void run_parsing_tests(void)
         "echo $USER",
         "echo \"User: $USER, Home: $HOME\"",
         "echo 'User: $USER, Home: $HOME'",
-        "echo \"Hello \\\"World\\\"\"",
-        "echo 'Hello \\'World\\''",
         "ls -l | grep minishell",
         "cat file.txt | wc -l",
-        "echo \"Hello World\" > output.txt",
+        "echo \"Hello World\" > output.txt  ",
         "cat < input.txt",
         "cat input.txt > output.txt",
         "echo \"Hello World\" >> output.txt",
         "cat input.txt >> output.txt",
         "ls -l | grep minishell > result.txt",
         "cat file.txt | wc -l >> count.txt",
-        "sleep 10 &",
-        "ls -l &",
-        "(cd /home && ls)",
-        "(echo \"Hello\" && echo \"World\")",
-        "echo \"Hello\" && echo \"World\"",
-        "false || echo \"This will be printed\"",
-        "echo \"Starting process\" && (cd /home && ls) | grep minishell > result.txt",
         "echo \"Hello World\" |",
         "echo \"Hello World\" >",
         "echo \"Hello World\" >>",
         "echo \"Hello World\" <",
+		"| echo \"Hello World\"",
         "echo \"Special characters: !@#$%^&*()_+\"",
+		"echo 'Hello \"World\"'",
+		"echo \"Hello 'World'\"",
         ""
     };
 
@@ -55,6 +49,7 @@ void run_parsing_tests(void)
         char *expanded_input = expand_variables_of_input(test_commands[i]);
         printf("expanded input: %s\n", expanded_input);
         t_list *tokenized_expanded_input = tokenize_input(expanded_input);
+        free(expanded_input);
         int token_number = 1;
         t_list *current = tokenized_expanded_input;
         while (current)
@@ -63,7 +58,20 @@ void run_parsing_tests(void)
             current = current->next;
             token_number++;
         }
-        free(expanded_input);
+		if(!check_syntax_errors(tokenized_expanded_input))
+			printf("no syntax error\n");
+		else
+			continue ;
+		remove_quotes(tokenized_expanded_input);
+		printf("removing quotes...\n");
+		token_number = 1;
+        current = tokenized_expanded_input;
+        while (current)
+        {
+            printf("token %d: %s\n", token_number, (char *)current->content);
+            current = current->next;
+            token_number++;
+        }
         ft_lstclear(&tokenized_expanded_input, free);
     }
 }
