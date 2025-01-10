@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 16:23:42 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/10 14:22:41 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/10 18:35:51 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void print_syntax_error(char *token)
 
 int check_syntax_errors(t_list *tokens)
 {
-	if(ft_strchr(tokens->content, '|'))
+	if(tokens && ft_strchr(tokens->content, '|'))
 	{
 		print_syntax_error("|");
 		return (1);

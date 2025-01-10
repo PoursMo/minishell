@@ -21,7 +21,7 @@ $(OBJSDIR)/%.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(LIBFT) $(OBJS)
-	$(CC) $(LFLAGS) -o $(NAME) $(OBJS) $(LIBFT)
+	$(CC) $(OBJS) -o $(NAME) $(LIBFT) $(LFLAGS)
 
 $(LIBFT):
 	make -C libft
