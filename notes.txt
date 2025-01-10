@@ -42,3 +42,9 @@ Bash executes the command:
 
 
 - Wait for Completion
+
+Error codes:
+success: 0
+syntax error: 2
+command not found: 127
+command found but not executable: 126
