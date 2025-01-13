@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 16:21:13 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/10 18:19:42 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/13 15:33:50 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ static int get_expanded_size(char *input)
 			{
 				var_name = get_var_name(input + 1);
 				var_value = getenv(var_name);
+				free(var_name);
 				if(var_value)
 					size += ft_strlen(var_value);
 				input += get_var_name_size(input + 1);
-				free(var_name);
 			}
 			else if(*(input + 1) == '?')
 			{
@@ -83,11 +83,9 @@ char *expand_variables_of_input(char *input)
 	int is_in_single_quote;
 	char *var_name;
 	char *var_value;
-	int new_input_len;
 	int i;
 
-	new_input_len = get_expanded_size(input) + 1;
-	new_input = malloc(sizeof(char) * new_input_len);
+	new_input = malloc(sizeof(char) * (get_expanded_size(input) + 1));
 	// protect malloc
 	is_in_single_quote = 0;
 	i = 0;
@@ -101,12 +99,12 @@ char *expand_variables_of_input(char *input)
 			{
 				var_name = get_var_name(input + 1);
 				var_value = getenv(var_name);
+				free(var_name);
 				if(var_value)
 				{
 					ft_memcpy(&new_input[i], var_value, ft_strlen(var_value));
 					i += ft_strlen(var_value);
 				}
-				free(var_name);
 				input += get_var_name_size(input + 1);
 			}
 			else if(*(input + 1) == '?')
@@ -115,8 +113,10 @@ char *expand_variables_of_input(char *input)
 				// i += len of exit num
 				input++;
 			}
-			else
+			else if(ft_isdigit(*(input + 1)))
 				input++;
+			else
+				new_input[i++] = *input;
 		}
 		else
 			new_input[i++] = *input;

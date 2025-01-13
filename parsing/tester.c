@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:04:03 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/13 14:44:27 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/13 15:47:21 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,9 @@ void run_parsing_tests(void)
 		"echo 'Hello \"World\"'",
 		"echo \"Hello 'World'\"",
 		"\"\"",
+		"\"\"\"\"\"\"",
 		"''",
+		"echo $%ab",
 		"       ", // spaces
 		"		", // tabs
 		"echo \"\"",

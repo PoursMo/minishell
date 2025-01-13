@@ -84,3 +84,4 @@ else
 		}
 	}
 }
+wait for all pids
