@@ -22,3 +22,65 @@ success: 0
 syntax error: 2
 command not found: 127
 command found but not executable: 126
+
+
+
+
+ptr = tokens
+ptr = get_pipe(ptr + 1)
+if(ptr)
+{
+	while(ptr)
+	{
+		setup_pipe
+		pid = fork
+		if(pid == 0)
+		{
+			setup_redirections
+			check_cmd
+			if(builtin)
+			{
+				exec_builtin
+				exit
+			}
+			else
+			{
+				execve_cmd
+			}
+		}
+		ptr = get_pipe(ptr + 1)
+	}
+	pid = fork
+	if(pid == 0)
+	{
+		setup_redirections
+		check_cmd
+		if(builtin)
+		{
+			exec_builtin
+			exit
+		}
+		else
+		{
+			execve_cmd
+		}
+	}
+}
+else
+{
+	setup_redirections
+	check_cmd
+	if(builtin)
+	{
+		exec_builtin
+		set_exit_code
+	}
+	else
+	{
+		pid = fork
+		if(pid == 0)
+		{
+			execve_cmd
+		}
+	}
+}
