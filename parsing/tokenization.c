@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 16:18:23 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/10 13:59:22 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/14 15:23:26 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ static char	*make_token(char *token_start)
 	is_in_single_quote = 0;
 	is_in_double_quote = 0;
 	token = malloc(sizeof(char) * (get_token_size(token_start) + 1));
-	// protect malloc
+	if(!token)
+		return (perror("make_token"), NULL);
 	i = 0;
 	if (is_operator(*token_start))
 	{
@@ -75,6 +76,8 @@ static char	*make_token(char *token_start)
 t_list	*tokenize_input(char *input)
 {
 	t_list	*tokens;
+	char *new_token_content;
+	t_list *new_token;
 
 	tokens = NULL;
 	while (*input)
@@ -83,12 +86,15 @@ t_list	*tokenize_input(char *input)
 			input++;
 		if(*input)
 		{
-			ft_lstadd_back(&tokens, ft_lstnew(make_token(input)));
-			//protect mallocs
+			new_token_content = make_token(input);
+			if(!new_token_content)
+				return (NULL);
+			new_token = ft_lstnew(new_token_content);
+			if(!new_token)
+				return (free(new_token_content), NULL);
+			ft_lstadd_back(&tokens, new_token);
 			input += ft_strlen(ft_lstlast(tokens)->content);
 		}
 	}
 	return (tokens);
 }
-
-// echo "Hello" >| file ?????

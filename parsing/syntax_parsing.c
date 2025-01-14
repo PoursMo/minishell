@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 16:23:42 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/10 18:35:51 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/14 15:25:13 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static void print_syntax_error(char *token)
 	ft_putstr_fd("minishell: syntax error near unexpected token `", 2);
 	ft_putstr_fd(token, 2);
 	ft_putstr_fd("'\n", 2);
-	//start reading a new line and change $? code
 }
 
 int check_syntax_errors(t_list *tokens)
@@ -33,7 +32,7 @@ int check_syntax_errors(t_list *tokens)
 		{
 			if(tokens->next)
 			{
-				if(is_operator(*(char *)tokens->next->content))
+				if(*(char *)tokens->next->content == '>' || *(char *)tokens->next->content == '<')
 				{
 					print_syntax_error(tokens->next->content);
 					return (1);

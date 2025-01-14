@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 11:21:16 by aloubry           #+#    #+#             */
-/*   Updated: 2024/10/03 11:21:55 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/14 15:27:43 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_list	*ft_lstnew(void *content)
 
 	new = malloc(sizeof(t_list));
 	if (!new)
-		return (NULL);
+		return (perror("ft_lstnew"), NULL);
 	new->content = content;
 	new->next = NULL;
 	return (new);

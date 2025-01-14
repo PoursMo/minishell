@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 16:21:13 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/13 15:33:50 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/14 15:03:51 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ static char *get_var_name(char *var_start)
 	int i;
 
 	var_name = malloc(sizeof(char) * (get_var_name_size(var_start) + 1));
-	// protect malloc
+	if(!var_name)
+		return (perror("get_var_name"), NULL);
 	i = 0;
 	while(ft_isalnum(*var_start) || *var_start == '_')
 		var_name[i++] = *var_start++;
@@ -57,6 +58,8 @@ static int get_expanded_size(char *input)
 			if(ft_isalpha(*(input + 1)) || *(input + 1) == '_')
 			{
 				var_name = get_var_name(input + 1);
+				if(!var_name)
+					return (-1);
 				var_value = getenv(var_name);
 				free(var_name);
 				if(var_value)
@@ -65,8 +68,7 @@ static int get_expanded_size(char *input)
 			}
 			else if(*(input + 1) == '?')
 			{
-				//get exit num
-				//size += len of exit num
+				size += get_exit_code_len();
 				input++;
 			}
 		}
@@ -80,13 +82,18 @@ static int get_expanded_size(char *input)
 char *expand_variables_of_input(char *input)
 {
 	char *new_input;
+	int new_input_len;
 	int is_in_single_quote;
 	char *var_name;
 	char *var_value;
 	int i;
 
-	new_input = malloc(sizeof(char) * (get_expanded_size(input) + 1));
-	// protect malloc
+	new_input_len = get_expanded_size(input);
+	if(new_input_len == -1)
+		return (NULL);
+	new_input = malloc(sizeof(char) * (new_input_len + 1));
+	if(!new_input)
+		return (perror("expand_variables_of_input"), NULL);
 	is_in_single_quote = 0;
 	i = 0;
 	while(*input)
@@ -98,6 +105,8 @@ char *expand_variables_of_input(char *input)
 			if(ft_isalpha(*(input + 1)) || *(input + 1) == '_')
 			{
 				var_name = get_var_name(input + 1);
+				if(!var_name)
+					return (free(new_input), NULL);
 				var_value = getenv(var_name);
 				free(var_name);
 				if(var_value)
@@ -109,8 +118,12 @@ char *expand_variables_of_input(char *input)
 			}
 			else if(*(input + 1) == '?')
 			{
-				// get and cpy last exit num
-				// i += len of exit num
+				var_value = ft_itoa(get_exit_code());
+				if(!var_value)
+					return (free(new_input), NULL);
+				ft_memcpy(&new_input[i], var_value, ft_strlen(var_value));
+				i += ft_strlen(var_value);
+				free(var_value);
 				input++;
 			}
 			else if(ft_isdigit(*(input + 1)))
