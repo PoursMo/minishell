@@ -1,6 +1,7 @@
 CC = gcc
 SRCS = minishell.c	\
-		builtins/ft_echo.c
+		builtins/ft_echo.c \
+		builtins/change_directory.c
 
 OBJSDIR = objects
 OBJS = $(SRCS:%.c=$(OBJSDIR)/%.o)

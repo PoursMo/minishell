@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   change_directory.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/14 17:51:42 by lbaecher         ###   ########.fr       */
+/*   Created: 2025/01/14 16:54:39 by lbaecher          #+#    #+#             */
+/*   Updated: 2025/01/14 17:55:45 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main()
+//NEED TO CHECK LATER, WHEN MAIN LOOP EXISTS
+
+void	change_directory(char	*str)
 {
-	// int	fd;
+	int	i;
 
-	// fd = open("builtins/output.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644 );
-	// dup2(fd, STDOUT_FILENO);
-
-	// //ft_echo(1, "hello");
-	// //Output.txt should contain "Hello" and another line
-
-	// ft_echo(0, "hello");
-	// //Output.txt should contain "Hello"
-	// return (0);
-
-	change_directory("/builtins");
+	res = chdir(str);
 }
