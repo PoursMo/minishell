@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 11:29:42 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/03 19:35:12 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/14 17:13:14 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdint.h>
+# include <stdio.h>
 
 //libft
 typedef struct s_list

@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 11:21:34 by aloubry           #+#    #+#             */
-/*   Updated: 2024/10/03 11:25:27 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/14 16:14:52 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strdup(const char *s)
 	slen = ft_strlen(s);
 	dup = malloc(sizeof(char) * (slen + 1));
 	if (!dup)
-		return (NULL);
+		return (perror("ft_strdup"), NULL);
 	ft_strlcpy(dup, s, slen + 1);
 	return (dup);
 }

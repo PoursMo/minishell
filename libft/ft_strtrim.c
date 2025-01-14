@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 11:21:47 by aloubry           #+#    #+#             */
-/*   Updated: 2024/10/03 11:31:07 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/14 16:15:30 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 		end--;
 	trim = malloc(sizeof(char) * (end - start + 2));
 	if (!trim)
-		return (NULL);
+		return (perror("ft_strtrim"), NULL);
 	ft_strlcpy(trim, &s1[start], end - start + 2);
 	return (trim);
 }

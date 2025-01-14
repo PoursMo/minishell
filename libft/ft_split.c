@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:17:46 by aloubry           #+#    #+#             */
-/*   Updated: 2024/10/03 13:55:59 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/14 16:06:29 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static char	*ft_strndup(const char *s, size_t n)
 		size = n;
 	dup = malloc(sizeof(char) * (size + 1));
 	if (!dup)
-		return (NULL);
+		return (perror("ft_split: ft_strndup"), NULL);
 	ft_memcpy(dup, s, size);
 	dup[size] = '\0';
 	return (dup);
@@ -66,7 +66,7 @@ char	**ft_split(const char *str, char c)
 
 	split = malloc(sizeof(char *) * (count_strs(str, c) + 1));
 	if (!split)
-		return (NULL);
+		return (perror("ft_split"), NULL);
 	i = 0;
 	while (*str)
 	{
