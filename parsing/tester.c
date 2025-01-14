@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:04:03 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/14 16:14:05 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/14 20:43:44 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,14 @@ void run_parsing_tests(void)
         "echo \"Hello World\" >>",
         "echo \"Hello World\" <",
 		"| echo \"Hello World\"",
-        "echo \"Special characters: !@#$%^&*()_+\"",
+        "echo 'Special characters: !@#$%^&*()_+'",
 		"echo 'Hello \"World\"'",
 		"echo \"Hello 'World'\"",
 		"\"\"",
 		"\"\"\"\"\"\"",
 		"''",
 		"echo $%ab",
+		"echo $123",
 		"echo \"\"",
 		"echo $?",
 		"echo \"Hello\" >| file",

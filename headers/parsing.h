@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 12:54:58 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/14 17:40:53 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/14 21:01:21 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,15 @@
 //variable_expansion.c
 
 char	*expand_variables_of_input(char *input);
+
+//variable_expansion_size.c
+
+int	get_expanded_size(char *input);
+
+//variable_expansion_utils.c
+
+int	get_var_name_size(char *var_start);
+char	*get_var_name(char *var_start);
 
 //tokenization.c
 

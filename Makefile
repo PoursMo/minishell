@@ -3,6 +3,8 @@ SRCS = minishell.c \
 parsing/tokenization.c \
 parsing/parsing_utils.c \
 parsing/variable_expansion.c \
+parsing/variable_expansion_size.c \
+parsing/variable_expansion_utils.c \
 parsing/syntax_errors.c \
 parsing/quote_removal.c \
 parsing/tester.c \
