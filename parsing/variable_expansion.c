@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 16:21:13 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/14 15:03:51 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/14 15:34:20 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int get_var_name_size(char *var_start)
 	int size;
 
 	size = 0;
-	while(ft_isalnum(*var_start) || *var_start == '_')
+	while (ft_isalnum(*var_start) || *var_start == '_')
 	{
 		size++;
 		var_start++;	
@@ -31,10 +31,10 @@ static char *get_var_name(char *var_start)
 	int i;
 
 	var_name = malloc(sizeof(char) * (get_var_name_size(var_start) + 1));
-	if(!var_name)
+	if (!var_name)
 		return (perror("get_var_name"), NULL);
 	i = 0;
-	while(ft_isalnum(*var_start) || *var_start == '_')
+	while (ft_isalnum(*var_start) || *var_start == '_')
 		var_name[i++] = *var_start++;
 	var_name[i] = '\0';
 	return (var_name);
@@ -49,24 +49,24 @@ static int get_expanded_size(char *input)
 
 	is_in_single_quote = 0;
 	size = 0;
-	while(*input)
+	while (*input)
 	{
-		if(*input == '\'')
+		if (*input == '\'')
 			minishell_toggle_quote(&is_in_single_quote, input);
-		if(*input == '$' && !is_in_single_quote)
+		if (*input == '$' && !is_in_single_quote)
 		{
-			if(ft_isalpha(*(input + 1)) || *(input + 1) == '_')
+			if (ft_isalpha(*(input + 1)) || *(input + 1) == '_')
 			{
 				var_name = get_var_name(input + 1);
-				if(!var_name)
+				if (!var_name)
 					return (-1);
 				var_value = getenv(var_name);
 				free(var_name);
-				if(var_value)
+				if (var_value)
 					size += ft_strlen(var_value);
 				input += get_var_name_size(input + 1);
 			}
-			else if(*(input + 1) == '?')
+			else if (*(input + 1) == '?')
 			{
 				size += get_exit_code_len();
 				input++;
@@ -89,44 +89,44 @@ char *expand_variables_of_input(char *input)
 	int i;
 
 	new_input_len = get_expanded_size(input);
-	if(new_input_len == -1)
+	if (new_input_len == -1)
 		return (NULL);
 	new_input = malloc(sizeof(char) * (new_input_len + 1));
-	if(!new_input)
+	if (!new_input)
 		return (perror("expand_variables_of_input"), NULL);
 	is_in_single_quote = 0;
 	i = 0;
-	while(*input)
+	while (*input)
 	{
-		if(*input == '\'')
+		if (*input == '\'')
 			minishell_toggle_quote(&is_in_single_quote, input);
-		if(*input == '$' && !is_in_single_quote)
+		if (*input == '$' && !is_in_single_quote)
 		{
-			if(ft_isalpha(*(input + 1)) || *(input + 1) == '_')
+			if (ft_isalpha(*(input + 1)) || *(input + 1) == '_')
 			{
 				var_name = get_var_name(input + 1);
-				if(!var_name)
+				if (!var_name)
 					return (free(new_input), NULL);
 				var_value = getenv(var_name);
 				free(var_name);
-				if(var_value)
+				if (var_value)
 				{
 					ft_memcpy(&new_input[i], var_value, ft_strlen(var_value));
 					i += ft_strlen(var_value);
 				}
 				input += get_var_name_size(input + 1);
 			}
-			else if(*(input + 1) == '?')
+			else if (*(input + 1) == '?')
 			{
 				var_value = ft_itoa(get_exit_code());
-				if(!var_value)
+				if (!var_value)
 					return (free(new_input), NULL);
 				ft_memcpy(&new_input[i], var_value, ft_strlen(var_value));
 				i += ft_strlen(var_value);
 				free(var_value);
 				input++;
 			}
-			else if(ft_isdigit(*(input + 1)))
+			else if (ft_isdigit(*(input + 1)))
 				input++;
 			else
 				new_input[i++] = *input;

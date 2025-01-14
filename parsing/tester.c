@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:04:03 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/14 15:20:50 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/14 16:14:05 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void test_loop(char *command)
         current = current->next;
         token_number++;
     }
-	if(!check_syntax_errors(tokenized_expanded_input))
+	if (!check_syntax_errors(tokenized_expanded_input))
 		printf("no syntax error\n");
 	else
 		return ;
@@ -79,13 +79,14 @@ void run_parsing_tests(void)
 		"echo \"\"",
 		"echo $?",
 		"echo \"Hello\" >| file",
+		"echo \"Hello\" <<| file",
 		"       ", // spaces
 		"		", // tabs
         ""
     };
 
 	int i = 0;
-	while(test_commands[i][0])
+	while (test_commands[i][0])
 	{
 		test_loop(test_commands[i]);
 		i++;

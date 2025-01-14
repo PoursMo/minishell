@@ -28,17 +28,17 @@ command found but not executable: 126
 
 ptr = tokens
 ptr = get_pipe(ptr + 1)
-if(ptr)
+if (ptr)
 {
-	while(ptr)
+	while (ptr)
 	{
 		setup_pipe
 		pid = fork
-		if(pid == 0)
+		if (pid == 0)
 		{
 			setup_redirections
 			check_cmd
-			if(builtin)
+			if (builtin)
 			{
 				exec_builtin
 				exit
@@ -51,11 +51,11 @@ if(ptr)
 		ptr = get_pipe(ptr + 1)
 	}
 	pid = fork
-	if(pid == 0)
+	if (pid == 0)
 	{
 		setup_redirections
 		check_cmd
-		if(builtin)
+		if (builtin)
 		{
 			exec_builtin
 			exit
@@ -70,7 +70,7 @@ else
 {
 	setup_redirections
 	check_cmd
-	if(builtin)
+	if (builtin)
 	{
 		exec_builtin
 		set_exit_code
@@ -78,7 +78,7 @@ else
 	else
 	{
 		pid = fork
-		if(pid == 0)
+		if (pid == 0)
 		{
 			execve_cmd
 		}

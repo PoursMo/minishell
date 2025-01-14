@@ -6,32 +6,32 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 14:24:27 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/10 16:10:13 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/14 15:37:52 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void trim_token(char *token)
+static void	trim_token(char *token)
 {
-	int is_in_single_quote;
-	int is_in_double_quote;
+	int	is_in_single_quote;
+	int	is_in_double_quote;
 
 	is_in_single_quote = 0;
 	is_in_double_quote = 0;
-	while(*token)
+	while (*token)
 	{
-		if(*token == '"' && !is_in_single_quote)
+		if (*token == '"' && !is_in_single_quote)
 		{
-			if(minishell_toggle_quote(&is_in_double_quote, token))
+			if (minishell_toggle_quote(&is_in_double_quote, token))
 			{
 				ft_memmove(token, token + 1, ft_strlen(token));
 				continue ;
 			}
 		}
-		else if(*token == '\'' && !is_in_double_quote)
+		else if (*token == '\'' && !is_in_double_quote)
 		{
-			if(minishell_toggle_quote(&is_in_single_quote, token))
+			if (minishell_toggle_quote(&is_in_single_quote, token))
 			{
 				ft_memmove(token, token + 1, ft_strlen(token));
 				continue ;
@@ -41,9 +41,9 @@ static void trim_token(char *token)
 	}
 }
 
-void remove_quotes(t_list *tokens)
+void	remove_quotes(t_list *tokens)
 {
-	while(tokens)
+	while (tokens)
 	{
 		trim_token(tokens->content);
 		tokens = tokens->next;
