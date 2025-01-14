@@ -1,7 +1,4 @@
 CC = gcc
-<<<<<<< HEAD
-SRCS = minishell.c	\
-=======
 SRCS = minishell.c \
 parsing/tokenization.c \
 parsing/parsing_utils.c \
@@ -13,16 +10,11 @@ parsing/quote_removal.c \
 parsing/tester.c \
 parsing/parsing.c \
 utils/exit_code.c \
->>>>>>> parsing
 
 OBJSDIR = objects
 OBJS = $(SRCS:%.c=$(OBJSDIR)/%.o)
 LFLAGS = -lreadline
-<<<<<<< HEAD
 CFLAGS = -Wall -Wextra -Werror -Iheaders -Ilibft
-=======
-CFLAGS = -Wall -Wextra -Werror -Iheaders -Ilibft -g
->>>>>>> parsing
 NAME = minishell
 LIBFT = libft/libft.a
 
@@ -33,11 +25,7 @@ $(OBJSDIR)/%.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(LIBFT) $(OBJS)
-<<<<<<< HEAD
-	$(CC) $(LFLAGS) -o $(NAME) $(OBJS) $(LIBFT)
-=======
 	$(CC) $(OBJS) -o $(NAME) $(LIBFT) $(LFLAGS)
->>>>>>> parsing
 
 $(LIBFT):
 	make -C libft
