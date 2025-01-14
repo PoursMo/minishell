@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:54:39 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/14 17:55:45 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/14 18:03:55 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 
 void	change_directory(char	*str)
 {
-	int	i;
+	int	res;
 
 	res = chdir(str);
+	printf("res : %d", res);
 }

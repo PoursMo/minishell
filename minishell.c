@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/14 17:51:42 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/14 18:03:18 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ int	main()
 	// //Output.txt should contain "Hello"
 	// return (0);
 
-	change_directory("/builtins");
+	//change_directory("/builtins");
+
+	get_pwd();
 }
