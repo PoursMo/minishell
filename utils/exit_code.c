@@ -1,22 +1,34 @@
-static int update_exit_code(int new_code)
-{
-	static unsigned int code;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exit_code.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/14 17:38:20 by aloubry           #+#    #+#             */
+/*   Updated: 2025/01/14 17:38:34 by aloubry          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-	if(new_code != -1)
+static int	update_exit_code(int new_code)
+{
+	static unsigned int	code;
+
+	if (new_code != -1)
 	{
-		code = new_code;	
+		code = new_code;
 	}
 	return (code);
 }
 
-int get_exit_code_len(void)
+int	get_exit_code_len(void)
 {
-	int len;
-	int code;
+	int	len;
+	int	code;
 
 	code = update_exit_code(-1);
 	len = 1;
-	while(code)
+	while (code)
 	{
 		len++;
 		code /= 10;
@@ -24,12 +36,12 @@ int get_exit_code_len(void)
 	return (len);
 }
 
-int get_exit_code(void)
+int	get_exit_code(void)
 {
 	return (update_exit_code(-1));
 }
 
-void set_exit_code(int code)
+void	set_exit_code(int code)
 {
 	update_exit_code(code);
 }
