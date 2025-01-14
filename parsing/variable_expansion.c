@@ -6,29 +6,29 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 16:21:13 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/14 15:34:20 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/14 17:44:29 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int get_var_name_size(char *var_start)
+static int	get_var_name_size(char *var_start)
 {
-	int size;
+	int	size;
 
 	size = 0;
 	while (ft_isalnum(*var_start) || *var_start == '_')
 	{
 		size++;
-		var_start++;	
+		var_start++;
 	}
 	return (size);
 }
 
-static char *get_var_name(char *var_start)
+static char	*get_var_name(char *var_start)
 {
-	char *var_name;
-	int i;
+	char	*var_name;
+	int		i;
 
 	var_name = malloc(sizeof(char) * (get_var_name_size(var_start) + 1));
 	if (!var_name)
@@ -40,15 +40,15 @@ static char *get_var_name(char *var_start)
 	return (var_name);
 }
 
-static int get_expanded_size(char *input)
+static int	get_expanded_size(char *input)
 {
-	int size;
-	char *var_name;
-	char *var_value;
-	int is_in_single_quote;
+	int		size;
+	char	*var_name;
+	char	*var_value;
+	int		is_in_single_quote;
 
-	is_in_single_quote = 0;
 	size = 0;
+	is_in_single_quote = 0;
 	while (*input)
 	{
 		if (*input == '\'')
@@ -79,14 +79,14 @@ static int get_expanded_size(char *input)
 	return (size);
 }
 
-char *expand_variables_of_input(char *input)
+char	*expand_variables_of_input(char *input)
 {
-	char *new_input;
-	int new_input_len;
-	int is_in_single_quote;
-	char *var_name;
-	char *var_value;
-	int i;
+	char	*new_input;
+	int		new_input_len;
+	int		is_in_single_quote;
+	char	*var_name;
+	char	*var_value;
+	int		i;
 
 	new_input_len = get_expanded_size(input);
 	if (new_input_len == -1)
