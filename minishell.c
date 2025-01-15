@@ -6,13 +6,13 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/15 09:46:40 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/15 11:10:58 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **environ)
 {
 	// int	fd;
 
@@ -28,7 +28,7 @@ int	main(int argc, char **argv, char **envp)
 
 	//change_directory("/builtins");
 
-	export_var(NULL, envp);
+	export_var("CHROME_DESKTOP", NULL, environ);
 	(void)argc;
 	(void)argv;
 }
