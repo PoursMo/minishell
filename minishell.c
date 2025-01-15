@@ -6,13 +6,13 @@
 /*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/15 17:36:37 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/15 18:12:19 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **environ)
 {
 	// int	fd;
 
@@ -31,17 +31,18 @@ int	main(int argc, char **argv, char **envp)
 	//EXPORT
 
 	//No parameters
-	display_all_env(envp);
+	display_all_env(environ);
 
 	//Add new
-	export_var("MY_ENV_VAR", "lol120", &envp);
+	export_var("MY_ENV_VAR", "lol120", &environ);
 	printf("end of first phase\n");
-	display_all_env(envp);
+	display_all_env(environ);
 
 	//Change existing
-	// export_var("MY_ENV_VAR", "lol120", envp);
-	// export_var(NULL, NULL, envp);
+	// export_var("MY_ENV_VAR", "lol120", &envp);
+	// display_all_env(envp);
 
+	(void)environ;
 	(void)argc;
 	(void)argv;
 }
