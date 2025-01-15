@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:15:05 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/14 15:37:32 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/15 12:07:47 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,5 @@ int	parse_input(char *input, t_list *tokens)
 	free(expanded_input);
 	if (check_syntax_errors(tokens))
 		return (ft_lstclear(&tokens, free), -1);
-	remove_quotes(tokens);
 	return (0);
 }
