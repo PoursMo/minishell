@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:06:40 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/15 12:47:59 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/15 12:54:28 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	is_same_env_var(char *var_name, char *environ_line)
 	while (environ_line[y] != '=' && var_name[y])
 	{
 		if (environ_line[y] != var_name[y])
-			return (0) ;
+			return (0);
 		y++;
 	}
 	if (environ_line[y] == '=' && var_name[y] == '\0')
@@ -84,12 +84,12 @@ char	*fill_env_str(char *new_var, char *var_name, char *val)
 
 	i = 0;
 	c = 0;
-	while(var_name[i])
+	while (var_name[i])
 		new_var[c++] = var_name[i++];
 	i = 0;
 	new_var[c++] = '=';
-	while(val[i])
+	while (val[i])
 		new_var[c++] = val[i++];
 	new_var[c] = '\0';
-	return(new_var);
+	return (new_var);
 }

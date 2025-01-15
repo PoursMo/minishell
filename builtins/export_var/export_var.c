@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 08:49:04 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/15 12:51:55 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/15 12:53:44 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static int	check_existing_var(char *var_name, char **envp)
 	i = 0;
 	while (envp[i])
 	{
-		if(is_same_env_var(var_name, envp[i]))
-			return(1);
+		if (is_same_env_var(var_name, envp[i]))
+			return (1);
 		i++;
 	}
 	return (0);
@@ -63,7 +63,9 @@ static void	replace_env_var(char *var_name, char *val, char **envp)
 	envp[i] = new_var;
 }
 
-void	export_var(char	*var_name, char *value, char **envp)
+// void	add_env_var(char)
+
+void	export_var(char *var_name, char *value, char **envp)
 {
 	if (!var_name)
 		display_all_env(envp);
@@ -72,7 +74,7 @@ void	export_var(char	*var_name, char *value, char **envp)
 		if (check_existing_var(var_name, envp))
 			replace_env_var(var_name, value, envp);
 		// else
-		// add_env_var(var_name, value, environ);
+		// 	add_env_var(var_name, value, environ);
 	}
 	(void)value;
 }
