@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:06:40 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/15 12:54:28 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/15 15:15:27 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,27 +33,52 @@ char	**env_bubble_sort(char **new_env)
 	return (new_env);
 }
 
-char	**malloc_copy_env(char **environ)
+char	**malloc_add_var(char **envp, int *i)
+{
+	int		count;
+	char	**new_var;
+
+	count = 0;
+	while (envp[count])
+		count++;
+	new_var = malloc(sizeof(char *) * (count + 1));
+	if (!new_var)
+		return (NULL); //MALLOC ERROR;
+	*i = 0;
+	while (envp[*i])
+	{
+		new_var[*i] = ft_strdup(envp[*i]);
+		if (!new_var[*i])
+		{
+			while (--(*i) >= 0)
+				free(new_var[(*i)--]);
+			return (free(new_var), NULL); // MALLOC ERROR
+		}
+		(*i)++;
+	}
+	return (new_var);
+}
+
+char	**malloc_copy_env(char **envp)
 {
 	int		count;
 	char	**new_var;
 	int		i;
 
 	count = 0;
-	while (environ[count])
+	while (envp[count])
 		count++;
-	new_var = malloc(sizeof(char *) * count + 1);
+	new_var = malloc(sizeof(char *) * count);
 	if (!new_var)
 		return (NULL); //MALLOC ERROR;
 	i = 0;
-	while (environ[i])
+	while (envp[i])
 	{
-		new_var[i] = ft_strdup(environ[i]);
-		printf("%s\n", new_var[i]);
+		new_var[i] = ft_strdup(envp[i]);
 		if (!new_var[i])
 		{
 			while (--i >= 0)
-				free(new_var[i]);
+				free(new_var[i--]);
 			return (free(new_var), NULL); // MALLOC ERROR
 		}
 		i++;

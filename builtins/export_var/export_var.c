@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 08:49:04 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/15 13:13:45 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/15 15:16:08 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,25 +62,37 @@ static void	replace_env_var(char *var_name, char *val, char **envp)
 		return ; //MALLOC ERROR
 	new_var = fill_env_str(new_var, var_name, val);
 	envp[i] = new_var;
+	free(new_var);
 }
 
-// void	add_env_var(char *var, char *value, char **envp)
-// {
-// 	char	**new_env;
+static void	add_env_var(char *var, char *val, char ***envp)
+{
+	char	**new_env;
+	char	*new_var;
+	int		index;
+	int		tot_len;
 
-// 	new_env = malloc_copy_env(char )
-// }
+	index = 0;
+	new_env = malloc_add_var(*envp, &index);
+	tot_len = ft_strlen(var) + ft_strlen(val);
+	new_var = malloc(sizeof(char) * (tot_len + 2));
+	new_var = fill_env_str(new_var, var, val);
+	new_env[index] = new_var;
+	*envp = new_env;
+	//free(new_var);
+	//free(new_env);
+}
 
-void	export_var(char *var_name, char *value, char **envp)
+void	export_var(char *var_name, char *value, char ***envp)
 {
 	if (!var_name)
-		display_all_env(envp);
+		display_all_env(*envp);
 	else
 	{
-		if (check_existing_var(var_name, envp))
-			replace_env_var(var_name, value, envp);
-		// else
-		// 	add_env_var(var_name, value, envp);
+		if (check_existing_var(var_name, *envp))
+			replace_env_var(var_name, value, *envp);
+		else
+			add_env_var(var_name, value, envp);
 	(void)value;
 	}
 }

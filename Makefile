@@ -36,5 +36,7 @@ fclean: clean
 
 test: all
 	@./$(NAME)
+	@echo ""
+	@echo ""
 
 re: fclean all
