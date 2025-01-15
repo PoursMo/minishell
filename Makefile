@@ -12,6 +12,7 @@ parsing/parsing.c \
 utils/exit_code.c \
 utils/utils.c \
 execution/redirection.c \
+execution/execution.c \
 
 OBJSDIR = objects
 OBJS = $(SRCS:%.c=$(OBJSDIR)/%.o)

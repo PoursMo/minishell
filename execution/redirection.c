@@ -6,41 +6,36 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:46:38 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/15 14:50:56 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/15 19:05:09 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void setup_input_redirection(const char *file)
+static int setup_input_redirection(const char *file)
 {
 	int fd;
 
 	if(access(file, R_OK) == -1)
 	{
 		perror(file);
-		fd = open("/dev/null", O_RDONLY);
+		fd = open("/dev/null", O_RDONLY); // is it really needed
 		if(fd == -1)
-		{
-			perror(file);
-			return ;
-		}
+			return(perror(file), 0);
 	}
 	else
 	{
 		fd = open(file, O_RDONLY);
 		if (fd == -1)
-		{
-			perror("open");
-			return ;
-		}
+			return(perror("open"), 0);
 	}
 	if (dup2(fd, STDIN_FILENO) == -1)
-		perror("dup2");
+		return (perror("dup2"), 0);
 	if(close(fd) == -1)
-		perror("close");
+		return (perror("close"), 0);
+	return (1);
 }
-void setup_output_redirection(const char *file, int mode)
+static int setup_output_redirection(const char *file, int mode)
 {
 	int fd;
 
@@ -49,28 +44,23 @@ void setup_output_redirection(const char *file, int mode)
 	else
 		fd = open(file, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if(fd == -1)
-	{
-		perror(file);
-		return ;
-	}
+		return (perror(file), 0);
 	if(dup2(fd, STDOUT_FILENO) == -1)
-		perror("dup2");
+		return (perror("dup2"), 0);
 	if(close(fd) == -1)
-		perror("close");
+		return (perror("close"), 0);
+	return (1);
 }
 
 
 // THIS ONE CAN BE IMPROVED
-void setup_heredoc(char *doc)
+static int setup_heredoc(char *doc)
 {
 	char *line;
 	int pipe_fds[2];
 
 	if(pipe(pipe_fds) == -1)
-	{
-		perror("pipe");
-		return ;
-	}
+		return (perror("pipe"), 0);
 	line = get_next_line(STDIN_FILENO);
 	while(line)
 	{
@@ -84,9 +74,30 @@ void setup_heredoc(char *doc)
 		line = get_next_line(STDIN_FILENO);
 	}
 	if(close(pipe_fds[1]) == -1)
-		perror("close");
+		return (perror("close"), 0);
 	if(dup2(pipe_fds[0], STDIN_FILENO) == -1)
-		perror("dup2");
+		return (perror("dup2"), 0);
 	if(close(pipe_fds[0]) == -1)
-		perror("close");
+		return (perror("close"), 0);
+	return (1);
+}
+int setup_redirections(t_list *start, t_list *end)
+{
+	while(start != end)
+	{
+		if(is_operator_not_pipe(*(char *)start->content))
+		{
+			remove_quotes(start->next->content);
+			if(!ft_strncmp(start->content, ">>", 2))
+				return (setup_output_redirection(start->next->content, 1));
+			else if(!ft_strncmp(start->content, ">", 1))
+				return (setup_output_redirection(start->next->content, 0));
+			else if(!ft_strncmp(start->content, "<<", 2))
+				return (setup_heredoc(start->next->content));
+			else if(!ft_strncmp(start->content, "<", 1))
+				return (setup_input_redirection(start->next->content));
+		}
+		start = start->next;
+	}
+	return (1);
 }

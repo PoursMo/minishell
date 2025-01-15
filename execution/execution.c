@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:18:49 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/15 14:54:32 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/15 20:35:51 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,33 +23,34 @@ t_list *find_pipe(t_list *tokens)
 	return (NULL);
 }
 
-void setup_redirections(t_list *tokens, t_list *end)
+t_list *find_cmd(t_list *tokens)
 {
-	while(tokens != end)
-	{
-		if(is_operator_not_pipe(*(char *)tokens->content))
-		{
-			if(!ft_strncmp(tokens->content, ">>", 2))
-				setup_output_redirection(tokens->next->content, 1);
-			else if(!ft_strncmp(tokens->content, ">", 1))
-				setup_output_redirection(tokens->next->content, 0);
-			else if(!ft_strncmp(tokens->content, "<<", 2))
-				setup_heredoc(tokens->next->content);
-			else if(!ft_strncmp(tokens->content, "<", 1))
-				setup_input_redirection(tokens->next->content);
-		}
-		tokens = tokens->next;
-	}
+	while(is_operator_not_pipe(*(char *)tokens->content))
+		tokens = tokens->next->next;
+	return (tokens);
 }
 
 int is_builtin(char *cmd)
 {
-	
+	const char *builtins[] = {"echo", "cd", "pwd", "export", "unset", "env", "exit", NULL};
+	int i;
+
+	i = 0;
+	while(builtins[i])
+	{
+		if(!strncmp(cmd, builtins[i], get_biggest(ft_strlen(cmd), ft_strlen(builtins[i]))))
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
 void execute_tokens(t_list *tokens)
 {
 	t_list *pipe_ptr;
+	t_list *pids;
+	int pid;
+	t_list *cmd_ptr;
 
 	// save stdin stdout
 	pipe_ptr = find_pipe(tokens);
@@ -58,21 +59,31 @@ void execute_tokens(t_list *tokens)
 		while(pipe_ptr)
 		{
 			// setup pipe
-			// fork
-			// if (pid == 0)
-			// {
-			// setup_redirections
-			// check_cmd
-			// if (builtin)
-			// {
-				// exec_builtin
-				// exit
-			// }
-			// else
-			// {
-				// execve_cmd
-			// }
-			pipe_ptr = find_pipe(pipe_ptr->next);
+			pid = fork();
+			if(pid == -1)
+			{
+				perror("fork");
+				return ;
+			}
+			ft_lstadd_back(pids, ft_lstnew(pid));
+			if(ft_lstlast(pids)->content == 0)
+			{
+				if (!setup_redirections(tokens, pipe_ptr))
+					exit(EXIT_FAILURE);
+				cmd_ptr = find_cmd(tokens);
+				if (is_builtin(cmd_ptr->content))
+				{
+					// exec_builtin
+					exit(EXIT_SUCCESS);
+				}
+				else
+				{
+					// check_cmd
+					// execve_cmd
+				}
+			}
+			tokens = pipe_ptr->next;
+			pipe_ptr = find_pipe(tokens);
 		}
 		// pid = fork
 		// if (pid == 0)
@@ -92,8 +103,7 @@ void execute_tokens(t_list *tokens)
 	}
 	else
 	{
-		// setup_redirections
-		// check_cmd
+		// setup redirection
 		// if (builtin)
 		// {
 			// exec_builtin
@@ -104,10 +114,12 @@ void execute_tokens(t_list *tokens)
 			// pid = fork
 			// if (pid == 0)
 			// {
+				// check_cmd
 				// execve_cmd
 			// }
 		// }
 	}
 	// wait for all pids
+	// lstclear pids
 	// reset stdin stdout
 }
