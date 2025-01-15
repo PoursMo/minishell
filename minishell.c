@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/14 18:03:18 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/15 08:54:30 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ int	main()
 
 	//change_directory("/builtins");
 
-	get_pwd();
+	
 }
