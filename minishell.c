@@ -31,11 +31,11 @@ int	main(int argc, char **argv, char **envp)
 	//EXPORT
 
 	//No parameters
-	export_var(NULL, NULL, &envp);
+	//export_var(NULL, NULL, &envp);
 
 	//Add new
-	//export_var("MY_ENV_VAR", "lol120", &envp);
-	//export_var(NULL, NULL, &envp);
+	export_var("MY_ENV_VAR", "lol120", &envp);
+	export_var(NULL, NULL, &envp);
 
 	//Change existing
 	// export_var("MY_ENV_VAR", "lol120", envp);
