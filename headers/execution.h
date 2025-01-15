@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/14 12:58:40 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/15 14:40:57 by aloubry          ###   ########.fr       */
+/*   Created: 2025/01/15 12:18:32 by aloubry           #+#    #+#             */
+/*   Updated: 2025/01/15 14:28:22 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#ifndef EXECUTION_H
+# define EXECUTION_H
 
-// exit_code.c
-
-int		get_exit_code(void);
-void	set_exit_code(int code);
-int		get_exit_code_len(void);
-
-// utils.c
-
-int get_biggest(int a, int b);
-
+void setup_input_redirection(const char *input_file);
+void setup_output_redirection(const char *file, int mode);
+void setup_heredoc(char *doc);
 
 #endif

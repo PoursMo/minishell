@@ -10,6 +10,8 @@ parsing/quote_removal.c \
 parsing/tester.c \
 parsing/parsing.c \
 utils/exit_code.c \
+utils/utils.c \
+execution/redirection.c \
 
 OBJSDIR = objects
 OBJS = $(SRCS:%.c=$(OBJSDIR)/%.o)

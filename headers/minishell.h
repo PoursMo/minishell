@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 15:40:28 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/14 12:59:38 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/15 12:51:28 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@
 # include "libft.h"
 # include "parsing.h"
 # include "utils.h"
+# include "execution.h"
 
 #endif

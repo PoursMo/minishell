@@ -6,13 +6,13 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/14 15:12:45 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/15 14:28:28 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int main()
+int main(int argc, char **argv)
 {
-	run_parsing_tests();
+	setup_heredoc(argv[argc - 1]);
 }
