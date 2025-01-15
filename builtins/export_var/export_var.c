@@ -6,46 +6,18 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 08:49:04 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/15 11:24:52 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/15 12:51:55 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	**malloc_copy_env(char **environ)
-{
-	int		count;
-	char	**new_var;
-	int		i;
-
-	count = 0;
-	while (environ[count])
-		count++;
-	new_var = malloc(sizeof(char *) * count + 1);
-	if (!new_var)
-		return (NULL); //MALLOC ERROR;
-	i = 0;
-	while (environ[i])
-	{
-		new_var[i] = ft_strdup(environ[i]);
-		printf("%s\n", new_var[i]);
-		if (!new_var[i])
-		{
-			while (--i >= 0)
-				free(new_var[i]);
-			return (free(new_var), NULL); // MALLOC ERROR
-		}
-		i++;
-	}
-	return (new_var);
-}
-
-static void	display_all_env(char **environ)
+static void	display_all_env(char **envp)
 {
 	char	**new_environ;
 	int		i;
 
-	new_environ = malloc_copy_env(environ);
+	new_environ = malloc_copy_env(envp);
 	if (!new_environ)
 		return ; //MALLOC ERROR;
 	new_environ = env_bubble_sort(new_environ);
@@ -57,9 +29,50 @@ static void	display_all_env(char **environ)
 	free(new_environ);
 }
 
-void	export_var(char	*var_name, char *value, char **environ)
+static int	check_existing_var(char *var_name, char **envp)
+{
+	int	i;
+
+	i = 0;
+	while (envp[i])
+	{
+		if(is_same_env_var(var_name, envp[i]))
+			return(1);
+		i++;
+	}
+	return (0);
+}
+
+static void	replace_env_var(char *var_name, char *val, char **envp)
+{
+	int		i;
+	char	*new_var;
+
+	i = 0;
+	while (envp[i])
+	{
+		if (is_same_env_var(var_name, envp[i]))
+			break ;
+		else
+			i++;
+	}
+	new_var = malloc(sizeof(char) * (ft_strlen(var_name) + ft_strlen(val) + 2));
+	if (!new_var)
+		return ; //MALLOC ERROR
+	new_var = fill_env_str(new_var, var_name, val);
+	envp[i] = new_var;
+}
+
+void	export_var(char	*var_name, char *value, char **envp)
 {
 	if (!var_name)
-		display_all_env(environ);
+		display_all_env(envp);
+	else
+	{
+		if (check_existing_var(var_name, envp))
+			replace_env_var(var_name, value, envp);
+		// else
+		// add_env_var(var_name, value, environ);
+	}
 	(void)value;
 }
