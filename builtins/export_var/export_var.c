@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 08:49:04 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/15 12:53:44 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/15 13:13:45 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void	display_all_env(char **envp)
 	i = 0;
 	while (new_environ[i])
 		printf("%s\n", new_environ[i++]);
+	i = 0;
 	while (new_environ[i])
 		free(new_environ[i++]);
 	free(new_environ);
@@ -63,7 +64,12 @@ static void	replace_env_var(char *var_name, char *val, char **envp)
 	envp[i] = new_var;
 }
 
-// void	add_env_var(char)
+// void	add_env_var(char *var, char *value, char **envp)
+// {
+// 	char	**new_env;
+
+// 	new_env = malloc_copy_env(char )
+// }
 
 void	export_var(char *var_name, char *value, char **envp)
 {
@@ -74,7 +80,7 @@ void	export_var(char *var_name, char *value, char **envp)
 		if (check_existing_var(var_name, envp))
 			replace_env_var(var_name, value, envp);
 		// else
-		// 	add_env_var(var_name, value, environ);
-	}
+		// 	add_env_var(var_name, value, envp);
 	(void)value;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/15 12:51:26 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/15 13:08:40 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ int	main(int argc, char **argv, char **envp)
 	//EXPORT
 
 	//No parameters
-	//export_var(NULL, NULL, environ);
+	export_var(NULL, NULL, envp);
 
 	//Change existing
-	export_var("MY_ENV_VAR", "lol", envp);
+	//export_var("MY_ENV_VAR", "lol", envp);
 
 	(void)argc;
 	(void)argv;
