@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:22:22 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/15 11:07:35 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/15 11:16:47 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	ft_echo(int new_line_flag, char *str);
 void	change_directory(char	*str);
 int		get_pwd(void);
-void	export_var(char	*str, char *value, char **envp);
-char	**env_bubble_sort(char **env_var);
+void	export_var(char	*var_name, char *value, char **envp);
+char	**env_bubble_sort(char **new_env);
 
 #endif
