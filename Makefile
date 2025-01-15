@@ -34,6 +34,6 @@ fclean: clean
 	rm -f $(NAME)
 
 test: all
-	./$(NAME)
+	@./$(NAME)
 
 re: fclean all
