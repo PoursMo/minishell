@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:04:03 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/14 20:43:44 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/15 12:02:16 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void run_parsing_tests(void)
 		"echo $123",
 		"echo \"\"",
 		"echo $?",
+		"echo \"|\"",
 		"echo \"Hello\" >| file",
 		"echo \"Hello\" <<| file",
 		"       ", // spaces

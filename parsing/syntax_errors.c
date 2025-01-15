@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   syntax_parsing.c                                   :+:      :+:    :+:   */
+/*   syntax_errors.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 16:23:42 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/14 16:12:54 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/15 12:02:02 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	print_syntax_error(char *token)
 
 int	check_syntax_errors(t_list *tokens)
 {
-	if (tokens && ft_strchr(tokens->content, '|'))
+	if (tokens && *(char *)tokens->content == '|')
 	{
 		print_syntax_error("|");
 		return (1);
@@ -38,7 +38,7 @@ int	check_syntax_errors(t_list *tokens)
 				print_syntax_error("newline");
 			return (1);
 		}
-		if (!tokens->next && ft_strchr(tokens->content, '|'))
+		if (!tokens->next && *(char *)tokens->content == '|')
 		{
 			print_syntax_error("newline");
 			return (1);
