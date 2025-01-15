@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   export_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 08:49:04 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/15 15:16:08 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/15 17:40:28 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	display_all_env(char **envp)
+void	display_all_env(char **envp)
 {
 	char	**new_environ;
 	int		i;
@@ -44,15 +44,15 @@ static int	check_existing_var(char *var_name, char **envp)
 	return (0);
 }
 
-static void	replace_env_var(char *var_name, char *val, char **envp)
+static void	replace_env_var(char *var_name, char *val, char ***envp)
 {
 	int		i;
 	char	*new_var;
 
 	i = 0;
-	while (envp[i])
+	while ((*envp)[i])
 	{
-		if (is_same_env_var(var_name, envp[i]))
+		if (is_same_env_var(var_name, (*envp)[i]))
 			break ;
 		else
 			i++;
@@ -61,7 +61,7 @@ static void	replace_env_var(char *var_name, char *val, char **envp)
 	if (!new_var)
 		return ; //MALLOC ERROR
 	new_var = fill_env_str(new_var, var_name, val);
-	envp[i] = new_var;
+	(*envp)[i] = new_var;
 	free(new_var);
 }
 
@@ -73,26 +73,21 @@ static void	add_env_var(char *var, char *val, char ***envp)
 	int		tot_len;
 
 	index = 0;
-	new_env = malloc_add_var(*envp, &index);
+	new_env = malloc_add_var(envp, &index);
 	tot_len = ft_strlen(var) + ft_strlen(val);
 	new_var = malloc(sizeof(char) * (tot_len + 2));
 	new_var = fill_env_str(new_var, var, val);
 	new_env[index] = new_var;
 	*envp = new_env;
-	//free(new_var);
-	//free(new_env);
+	free(new_var);
+	free(new_env);
 }
 
 void	export_var(char *var_name, char *value, char ***envp)
 {
-	if (!var_name)
-		display_all_env(*envp);
+	if (check_existing_var(var_name, *envp))
+		replace_env_var(var_name, value, envp);
 	else
-	{
-		if (check_existing_var(var_name, *envp))
-			replace_env_var(var_name, value, *envp);
-		else
-			add_env_var(var_name, value, envp);
+		add_env_var(var_name, value, envp);
 	(void)value;
-	}
 }

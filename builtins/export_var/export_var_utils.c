@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_var_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:06:40 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/15 15:15:27 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/15 17:38:49 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,21 @@ char	**env_bubble_sort(char **new_env)
 	return (new_env);
 }
 
-char	**malloc_add_var(char **envp, int *i)
+char	**malloc_add_var(char ***envp, int *i)
 {
 	int		count;
 	char	**new_var;
 
 	count = 0;
-	while (envp[count])
+	while ((*envp)[count])
 		count++;
 	new_var = malloc(sizeof(char *) * (count + 1));
 	if (!new_var)
 		return (NULL); //MALLOC ERROR;
 	*i = 0;
-	while (envp[*i])
+	while ((*envp)[*i])
 	{
-		new_var[*i] = ft_strdup(envp[*i]);
+		new_var[*i] = ft_strdup((*envp)[*i]);
 		if (!new_var[*i])
 		{
 			while (--(*i) >= 0)
