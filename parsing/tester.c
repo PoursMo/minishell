@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:04:03 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/15 12:02:16 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/15 12:14:16 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,6 @@ static void test_loop(char *command)
 		printf("no syntax error\n");
 	else
 		return ;
-	remove_quotes(tokenized_expanded_input);
-	printf("removing quotes...\n");
-	token_number = 1;
-    current = tokenized_expanded_input;
-    while (current)
-    {
-        printf("token %d: %s\n", token_number, (char *)current->content);
-        current = current->next;
-        token_number++;
-    }
     ft_lstclear(&tokenized_expanded_input, free);
 }
 

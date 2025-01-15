@@ -6,13 +6,13 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 14:24:27 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/14 15:37:52 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/15 12:13:42 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	trim_token(char *token)
+void	remove_quotes(char *token)
 {
 	int	is_in_single_quote;
 	int	is_in_double_quote;
@@ -38,14 +38,5 @@ static void	trim_token(char *token)
 			}
 		}
 		token++;
-	}
-}
-
-void	remove_quotes(t_list *tokens)
-{
-	while (tokens)
-	{
-		trim_token(tokens->content);
-		tokens = tokens->next;
 	}
 }
