@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_var_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:06:40 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/15 17:38:49 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/16 12:00:35 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,29 +33,29 @@ char	**env_bubble_sort(char **new_env)
 	return (new_env);
 }
 
-char	**malloc_add_var(char ***envp, int *i)
+char	**malloc_add_var(char **envp, int *i)
 {
 	int		count;
+	int		y;
 	char	**new_var;
 
 	count = 0;
-	while ((*envp)[count])
-		count++;
-	new_var = malloc(sizeof(char *) * (count + 1));
+	new_var = malloc(sizeof(char *) * (count + 2));
 	if (!new_var)
 		return (NULL); //MALLOC ERROR;
-	*i = 0;
-	while ((*envp)[*i])
+	y = 0;
+	while (envp[y])
 	{
-		new_var[*i] = ft_strdup((*envp)[*i]);
-		if (!new_var[*i])
+		new_var[y] = ft_strdup(envp[y]);
+		if (!new_var[y])
 		{
-			while (--(*i) >= 0)
-				free(new_var[(*i)--]);
+			while (--(y) >= 0)
+				free(new_var[(y)--]);
 			return (free(new_var), NULL); // MALLOC ERROR
 		}
-		(*i)++;
+		y++;
 	}
+	*i = y;
 	return (new_var);
 }
 
@@ -68,7 +68,7 @@ char	**malloc_copy_env(char **envp)
 	count = 0;
 	while (envp[count])
 		count++;
-	new_var = malloc(sizeof(char *) * count);
+	new_var = malloc(sizeof(char *) * (count + 1));
 	if (!new_var)
 		return (NULL); //MALLOC ERROR;
 	i = 0;
@@ -83,6 +83,7 @@ char	**malloc_copy_env(char **envp)
 		}
 		i++;
 	}
+	envp[i] = NULL;
 	return (new_var);
 }
 

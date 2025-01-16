@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 08:49:04 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/15 17:40:28 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/16 11:57:45 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,12 @@ static void	add_env_var(char *var, char *val, char ***envp)
 	int		tot_len;
 
 	index = 0;
-	new_env = malloc_add_var(envp, &index);
+	new_env = malloc_add_var(*envp, &index);
 	tot_len = ft_strlen(var) + ft_strlen(val);
 	new_var = malloc(sizeof(char) * (tot_len + 2));
 	new_var = fill_env_str(new_var, var, val);
 	new_env[index] = new_var;
+	new_env[index + 1] = NULL;
 	*envp = new_env;
 	free(new_var);
 	free(new_env);

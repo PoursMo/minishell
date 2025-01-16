@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/15 18:12:19 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/16 11:58:49 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	main(int argc, char **argv, char **environ)
 	display_all_env(environ);
 
 	//Add new
+	printf("end of display phase\n");
 	export_var("MY_ENV_VAR", "lol120", &environ);
 	printf("end of first phase\n");
 	display_all_env(environ);
