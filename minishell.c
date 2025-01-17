@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/16 11:58:49 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/17 16:01:16 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,19 @@ int	main(int argc, char **argv, char **environ)
 	//EXPORT
 
 	//No parameters
-	display_all_env(environ);
+	// display_all_env(environ);
 
-	//Add new
-	printf("end of display phase\n");
-	export_var("MY_ENV_VAR", "lol120", &environ);
-	printf("end of first phase\n");
-	display_all_env(environ);
+	// //Add new;
+	// printf("\n\n\n");
+	// export_var("MY_ENV_VAR", "lol120", &environ);
+	// display_all_env(environ);
 
-	//Change existing
-	// export_var("MY_ENV_VAR", "lol120", &envp);
-	// display_all_env(envp);
+	// //Change existing
+	// printf("\n\n\n");
+	// export_var("MY_ENV_VAR", "newlol", &environ);
+	// display_all_env(environ);
 
-	(void)environ;
-	(void)argc;
-	(void)argv;
+	// (void)environ;
+	// (void)argc;
+	// (void)argv;
 }

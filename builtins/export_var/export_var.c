@@ -6,7 +6,7 @@
 /*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 08:49:04 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/17 15:23:57 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/17 16:02:12 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ static void	replace_env_var(char *var_name, char *val, char ***envp)
 	if (!new_var)
 		return ; //MALLOC ERROR
 	new_var = fill_env_str(new_var, var_name, val);
+	free((*envp)[i]);
 	(*envp)[i] = new_var;
-	free(new_var);
 }
 
 static void	add_env_var(char *var, char *val, char ***envp)
@@ -98,5 +98,4 @@ void	export_var(char *var_name, char *value, char ***envp)
 		replace_env_var(var_name, value, envp);
 	else
 		add_env_var(var_name, value, envp);
-	(void)value;
 }

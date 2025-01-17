@@ -6,7 +6,7 @@
 /*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:06:40 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/17 15:24:18 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/17 16:01:40 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,20 +61,20 @@ char	**malloc_copy_env(char **envp)
 		}
 		i++;
 	}
-	envp[i] = NULL;
+	new_var[i] = NULL;
 	return (new_var);
 }
 
-char	**malloc_add_var(char **envp, int *index)
+char	**malloc_add_var(char **envp, int *pass_index)
 {
 	int		i;
-	int		len;
+	int		index;
 	char	**new_var;
 
-	len = 0;
-	while(envp[len])
-		len++;
-	new_var = malloc(sizeof(char *) * (len + 2));
+	index = 0;
+	while (envp[index])
+		index++;
+	new_var = malloc(sizeof(char *) * (index + 2));
 	if (!new_var)
 		return (NULL); //MALLOC ERROR;
 	i = 0;
@@ -89,7 +89,7 @@ char	**malloc_add_var(char **envp, int *index)
 		}
 		i++;
 	}
-	*index = i;
+	*pass_index = i;
 	return (new_var);
 }
 
