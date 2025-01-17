@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_var_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:06:40 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/16 12:00:35 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/17 15:24:18 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,16 @@
 char	**env_bubble_sort(char **new_env)
 {
 	char	*temp;
+	size_t	max_size;
 	int		i;
 
 	i = 0;
 	while (new_env[i] && new_env[i + 1])
 	{
-		if (ft_strncmp(new_env[i], new_env[i + 1], ft_strlen(new_env[i])) > 0)
+		max_size = ft_strlen(new_env[i]);
+		if (ft_strlen(new_env[i + 1]) > max_size)
+			max_size = ft_strlen(new_env[i + 1]);
+		if (ft_strncmp(new_env[i], new_env[i + 1], max_size) > 0)
 		{
 			temp = new_env[i];
 			new_env[i] = new_env[i + 1];
@@ -33,42 +37,44 @@ char	**env_bubble_sort(char **new_env)
 	return (new_env);
 }
 
-char	**malloc_add_var(char **envp, int *i)
+char	**malloc_copy_env(char **envp)
 {
-	int		count;
-	int		y;
+	int		i;
+	int		last_index;
 	char	**new_var;
 
-	count = 0;
-	new_var = malloc(sizeof(char *) * (count + 2));
+	last_index = 0;
+	while (envp[last_index])
+		last_index++;
+	new_var = malloc(sizeof(char *) * last_index);
 	if (!new_var)
 		return (NULL); //MALLOC ERROR;
-	y = 0;
-	while (envp[y])
+	i = 0;
+	while (envp[i])
 	{
-		new_var[y] = ft_strdup(envp[y]);
-		if (!new_var[y])
+		new_var[i] = ft_strdup(envp[i]);
+		if (!new_var[i])
 		{
-			while (--(y) >= 0)
-				free(new_var[(y)--]);
-			return (free(new_var), NULL); // MALLOC ERROR
+			while (--i >= 0)
+				free(new_var[i--]);
+			return (free(new_var), NULL); // MALLOC ERROR;
 		}
-		y++;
+		i++;
 	}
-	*i = y;
+	envp[i] = NULL;
 	return (new_var);
 }
 
-char	**malloc_copy_env(char **envp)
+char	**malloc_add_var(char **envp, int *index)
 {
-	int		count;
-	char	**new_var;
 	int		i;
+	int		len;
+	char	**new_var;
 
-	count = 0;
-	while (envp[count])
-		count++;
-	new_var = malloc(sizeof(char *) * (count + 1));
+	len = 0;
+	while(envp[len])
+		len++;
+	new_var = malloc(sizeof(char *) * (len + 2));
 	if (!new_var)
 		return (NULL); //MALLOC ERROR;
 	i = 0;
@@ -83,7 +89,7 @@ char	**malloc_copy_env(char **envp)
 		}
 		i++;
 	}
-	envp[i] = NULL;
+	*index = i;
 	return (new_var);
 }
 

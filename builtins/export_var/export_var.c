@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 08:49:04 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/16 11:57:45 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/17 15:23:57 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,25 @@
 
 void	display_all_env(char **envp)
 {
-	char	**new_environ;
 	int		i;
+	char	**new_environ;
 
 	new_environ = malloc_copy_env(envp);
 	if (!new_environ)
-		return ; //MALLOC ERROR;
+		return ; //MALLOC ERROR
 	new_environ = env_bubble_sort(new_environ);
 	i = 0;
 	while (new_environ[i])
-		printf("%s\n", new_environ[i++]);
+	{
+		printf("%s\n", new_environ[i]);
+		i++;
+	}
 	i = 0;
 	while (new_environ[i])
-		free(new_environ[i++]);
+	{
+		free(new_environ[i]);
+		i++;
+	}
 	free(new_environ);
 }
 
@@ -76,12 +82,14 @@ static void	add_env_var(char *var, char *val, char ***envp)
 	new_env = malloc_add_var(*envp, &index);
 	tot_len = ft_strlen(var) + ft_strlen(val);
 	new_var = malloc(sizeof(char) * (tot_len + 2));
+	if (!new_var)
+		return ; //MALLOC ERROR
 	new_var = fill_env_str(new_var, var, val);
 	new_env[index] = new_var;
 	new_env[index + 1] = NULL;
 	*envp = new_env;
-	free(new_var);
-	free(new_env);
+	//free(new_var);
+	//free(new_env);
 }
 
 void	export_var(char *var_name, char *value, char ***envp)
