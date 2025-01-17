@@ -23,7 +23,7 @@ syntax error: 2
 command not found: 127
 command found but not executable: 126
 
-
+shell level
 
 
 ptr = tokens

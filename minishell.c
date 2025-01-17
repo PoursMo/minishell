@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/15 19:02:44 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/17 17:33:09 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int main(int argc, char **argv)
 {
-	printf("%d\n", is_builtin(argv[argc - 1]));
+	printf("%s\n", check_command(argv[argc - 1]));
 }
