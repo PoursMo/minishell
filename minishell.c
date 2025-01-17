@@ -6,7 +6,7 @@
 /*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/17 16:01:16 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/17 16:21:41 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,21 @@ int	main(int argc, char **argv, char **environ)
 	// display_all_env(environ);
 
 	// //Add new;
-	// printf("\n\n\n");
-	// export_var("MY_ENV_VAR", "lol120", &environ);
-	// display_all_env(environ);
+	printf("\n\n\n");
+	export_var("MY_ENV_VAR", "first_value", &environ);
+	display_all_env(environ);
 
 	// //Change existing
 	// printf("\n\n\n");
-	// export_var("MY_ENV_VAR", "newlol", &environ);
+	// export_var("MY_ENV_VAR", "second_value", &environ);
 	// display_all_env(environ);
 
-	// (void)environ;
-	// (void)argc;
-	// (void)argv;
+	// Remove var
+	printf("\n\n\n");
+	remove_var("MY_ENV_VAR", &environ);
+	display_all_env(environ);
+
+	(void)environ;
+	(void)argc;
+	(void)argv;
 }
