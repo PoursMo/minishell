@@ -6,13 +6,13 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:15:05 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/15 12:07:47 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/18 17:04:48 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	parse_input(char *input, t_list *tokens)
+int	parse_input(char *input, t_list **tokens)
 {
 	char	*expanded_input;
 
@@ -20,11 +20,11 @@ int	parse_input(char *input, t_list *tokens)
 	if (!expanded_input)
 		return (free(input), -1);
 	free(input);
-	tokens = tokenize_input(expanded_input);
+	*tokens = tokenize_input(expanded_input);
 	if (!tokens)
 		return (free(expanded_input), -1);
 	free(expanded_input);
-	if (check_syntax_errors(tokens))
-		return (ft_lstclear(&tokens, free), -1);
+	if (check_syntax_errors(*tokens))
+		return (ft_lstclear(tokens, free), -1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 12:54:58 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/15 14:40:48 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/18 17:05:17 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ int		check_syntax_errors(t_list *tokens);
 
 void	remove_quotes(char *token);
 
+// parsing.c
+
+int	parse_input(char *input, t_list **tokens);
 
 
 void run_parsing_tests(void); //tester

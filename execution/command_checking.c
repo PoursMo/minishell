@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 13:16:22 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/17 17:33:21 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/18 14:04:56 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void free_split(char **split)
 	int i;
 
 	i = 0;
-	while(split[i])
+	while (split[i])
 	{
 		free(split[i]);
 		i++;
@@ -42,26 +42,31 @@ char *check_command(char *cmd)
 
 	if (access(cmd, F_OK) == 0)
 	{
-		if(access(cmd, X_OK) == 0)
+		if (access(cmd, X_OK) == 0)
 			return (cmd);
 		perror(cmd);
 		exit(126);
 	}
 	split_path = ft_split(getenv("PATH"), ':');
 	i = 0;
-	while(split_path[i])
+	while (split_path[i])
 	{
 		joined_cmd = ft_strdup(cmd);
-		//protect malloc
+		if (!joined_cmd)
+			return (free_split(split_path), NULL);
 		if (split_path[i][ft_strlen(*split_path) - 1] != '/')
+		{
 			joined_cmd = join_and_frees2("/", joined_cmd);
-			//protect malloc
+			if (!joined_cmd)
+				return (free_split(split_path), NULL);
+		}
 		joined_cmd = join_and_frees2(split_path[i], joined_cmd);
-		//protect malloc
-		if(access(joined_cmd, F_OK) == 0)
+		if (!joined_cmd)
+			return (free_split(split_path), NULL);
+		if (access(joined_cmd, F_OK) == 0)
 		{
 			free_split(split_path);
-			if(access(joined_cmd, X_OK) == 0)
+			if (access(joined_cmd, X_OK) == 0)
 				return (joined_cmd);
 			free(joined_cmd);
 			perror(cmd);

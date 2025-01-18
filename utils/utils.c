@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 14:37:26 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/15 14:40:19 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/18 13:57:11 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int get_biggest(int a, int b)
 {
-	if(a > b)
+	if (a > b)
 		return (a);
 	else
 		return (b);
