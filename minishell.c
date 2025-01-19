@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/18 18:33:41 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/19 17:38:09 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int main()
 {
 	t_list *tokens;
 
-	char *input = "ls -l";
+	char *input = "ls";
 	char *mallocd_input = malloc(sizeof(char) * (ft_strlen(input) + 1));
 	ft_strlcpy(mallocd_input, input, ft_strlen(input) + 1);
 

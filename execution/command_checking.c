@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 13:16:22 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/18 14:04:56 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/19 17:37:30 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void free_split(char **split)
 	free(split);
 }
 
-char *check_command(char *cmd)
+char *find_cmd_path(char *cmd)
 {
 	char **split_path;
 	char *joined_cmd;

@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:46:38 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/18 13:57:26 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/19 17:01:30 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,19 @@ static int setup_input_redirection(const char *file)
 		perror(file);
 		fd = open("/dev/null", O_RDONLY); // is it really needed
 		if (fd == -1)
-			return (perror(file), 0);
+			return (perror(file), -1);
 	}
 	else
 	{
 		fd = open(file, O_RDONLY);
 		if (fd == -1)
-			return (perror("open"), 0);
+			return (perror("open"), -1);
 	}
 	if (dup2(fd, STDIN_FILENO) == -1)
-		return (perror("dup2"), 0);
+		return (perror("dup2"), -1);
 	if (close(fd) == -1)
-		return (perror("close"), 0);
-	return (1);
+		return (perror("close"), -1);
+	return (0);
 }
 static int setup_output_redirection(const char *file, int mode)
 {
@@ -44,12 +44,12 @@ static int setup_output_redirection(const char *file, int mode)
 	else
 		fd = open(file, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (fd == -1)
-		return (perror(file), 0);
+		return (perror(file), -1);
 	if (dup2(fd, STDOUT_FILENO) == -1)
-		return (perror("dup2"), 0);
+		return (perror("dup2"), -1);
 	if (close(fd) == -1)
-		return (perror("close"), 0);
-	return (1);
+		return (perror("close"), -1);
+	return (0);
 }
 
 
@@ -60,7 +60,7 @@ static int setup_heredoc(char *doc)
 	int pipe_fds[2];
 
 	if (pipe(pipe_fds) == -1)
-		return (perror("pipe"), 0);
+		return (perror("pipe"), -1);
 	line = get_next_line(STDIN_FILENO);
 	while (line)
 	{
@@ -74,12 +74,12 @@ static int setup_heredoc(char *doc)
 		line = get_next_line(STDIN_FILENO);
 	}
 	if (close(pipe_fds[1]) == -1)
-		return (perror("close"), 0);
+		return (perror("close"), -1);
 	if (dup2(pipe_fds[0], STDIN_FILENO) == -1)
-		return (perror("dup2"), 0);
+		return (perror("dup2"), -1);
 	if (close(pipe_fds[0]) == -1)
-		return (perror("close"), 0);
-	return (1);
+		return (perror("close"), -1);
+	return (0);
 }
 
 int setup_redirections(t_list *start, t_list *end)
@@ -100,5 +100,5 @@ int setup_redirections(t_list *start, t_list *end)
 		}
 		start = start->next;
 	}
-	return (1);
+	return (0);
 }
