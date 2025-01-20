@@ -6,7 +6,7 @@
 /*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 16:07:13 by loicbaecher       #+#    #+#             */
-/*   Updated: 2025/01/20 11:00:54 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/20 16:56:44 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ char	**malloc_copy_less(char **envp, int not_included)
 	char	**new_var;
 	int		y;
 
-	printf("NOT INCLUDED %d\n", not_included);
 	last_index = 0;
 	while (envp[last_index])
 		last_index++;
@@ -46,7 +45,10 @@ char	**malloc_copy_less(char **envp, int not_included)
 	while (envp[y])
 	{
 		if (y == not_included)
+		{
+			printf("YES\n");
 			y++;
+		}
 		else
 		{
 			new_var[i] = ft_strdup(envp[y]);
@@ -58,6 +60,7 @@ char	**malloc_copy_less(char **envp, int not_included)
 			}
 			i++;
 			y++;
+
 		}
 	}
 	new_var[i] = NULL;
@@ -67,15 +70,14 @@ char	**malloc_copy_less(char **envp, int not_included)
 int	remove_var(char *var_name, char ***envp)
 {
 	int	index;
-	char	**new_env;
 
 	if (check_existing_var(var_name, *envp))
 	{
 		index = find_index(*envp, var_name);
 		if (index == -1)
 			return (0); //VAR NOT FOUND
-		new_env = malloc_copy_less(*envp, index);
-		if (!new_env)
+		*envp = malloc_copy_less(*envp, index);
+		if (!envp)
 			return (-1); //MALLOC ERROR
 		return (1);
 	}

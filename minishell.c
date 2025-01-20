@@ -6,7 +6,7 @@
 /*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/20 10:49:16 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/20 16:56:10 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char **argv, char **environ)
 
 	//EXPORT
 
-	//No parameters
+	// No parameters
 	display_all_env(environ);
 
 	// //Add new;
@@ -40,9 +40,9 @@ int	main(int argc, char **argv, char **environ)
 	display_all_env(environ);
 
 	//Change existing
-	// printf("\n\n\n");
-	// export_var("MY_ENV_VAR", "second_value", &environ);
-	// display_all_env(environ);
+	printf("\n\n\n");
+	export_var("MY_ENV_VAR", "second_value", &environ);
+	display_all_env(environ);
 
 	// Remove var
 	printf("\n\n\n");
