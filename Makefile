@@ -14,6 +14,9 @@ utils/utils.c \
 execution/redirection.c \
 execution/execution.c \
 execution/command_checking.c \
+execution/execution_pipeline.c \
+execution/execution_utils.c \
+execution/execution2.c \
 
 OBJSDIR = objects
 OBJS = $(SRCS:%.c=$(OBJSDIR)/%.o)
