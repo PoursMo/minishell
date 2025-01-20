@@ -6,7 +6,7 @@
 /*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 08:49:04 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/17 16:02:12 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/20 10:49:53 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	display_all_env(char **envp)
 	free(new_environ);
 }
 
-static int	check_existing_var(char *var_name, char **envp)
+int	check_existing_var(char *var_name, char **envp)
 {
 	int	i;
 
@@ -88,8 +88,6 @@ static void	add_env_var(char *var, char *val, char ***envp)
 	new_env[index] = new_var;
 	new_env[index + 1] = NULL;
 	*envp = new_env;
-	//free(new_var);
-	//free(new_env);
 }
 
 void	export_var(char *var_name, char *value, char ***envp)
