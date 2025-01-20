@@ -6,21 +6,21 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:41:57 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/20 12:48:20 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/20 12:54:49 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int get_cmd_args_size(t_list *cmd, t_list *end)
+static int	get_cmd_args_size(t_list *cmd, t_list *end)
 {
-	int size;
+	int	size;
 
 	size = 0;
 	cmd = cmd->next;
-	while(cmd != end)
+	while (cmd != end)
 	{
-		if(is_operator_not_pipe(*(char *)cmd->content))
+		if (is_operator_not_pipe(*(char *)cmd->content))
 		{
 			cmd = cmd->next->next;
 			continue ;
@@ -31,18 +31,18 @@ static int get_cmd_args_size(t_list *cmd, t_list *end)
 	return (size);
 }
 
-char **get_cmd_args(t_list *cmd, t_list *end)
+char	**get_cmd_args(t_list *cmd, t_list *end)
 {
-	char **args;
-	int i;
+	char	**args;
+	int		i;
 
 	args = malloc(sizeof(char *) * get_cmd_args_size(cmd, end) + 1);
 	if (!args)
 		return (perror("get_cmd_args"), NULL);
 	i = 0;
-	while(cmd != end)
+	while (cmd != end)
 	{
-		if(is_operator_not_pipe(*(char *)cmd->content))
+		if (is_operator_not_pipe(*(char *)cmd->content))
 		{
 			cmd = cmd->next->next;
 			continue ;
@@ -55,7 +55,7 @@ char **get_cmd_args(t_list *cmd, t_list *end)
 	return (args);
 }
 
-void handle_builtin(t_list *cmd_ptr, t_list *pipe_ptr)
+void	handle_builtin(t_list *cmd_ptr, t_list *pipe_ptr)
 {
 	fprintf(stderr, "Executing builtin command: %s\n", (char *)cmd_ptr->content);
 	fprintf(stderr, "pipe_ptr: %s\n", (char *)pipe_ptr->content);
@@ -78,13 +78,13 @@ void handle_builtin(t_list *cmd_ptr, t_list *pipe_ptr)
 	// 	// exit
 }
 
-void handle_non_builtin(t_list *cmd_ptr, t_list *pipe_ptr)
+void	handle_non_builtin(t_list *cmd_ptr, t_list *pipe_ptr)
 {
-	char *cmd;
-	char **cmd_args;
+	char	*cmd;
+	char	**cmd_args;
 	
 	cmd = find_cmd_path(cmd_ptr->content);
-	if(!cmd)
+	if (!cmd)
 		exit(EXIT_FAILURE);
 	fprintf(stderr, "full cmd: %s\n", cmd); // debug
 	cmd_args = get_cmd_args(cmd_ptr, pipe_ptr);

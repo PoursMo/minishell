@@ -6,24 +6,24 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 13:16:22 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/20 11:49:47 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/20 12:50:24 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char *join_and_frees2(const char *s1, char *s2)
+static char	*join_and_frees2(const char *s1, char *s2)
 {
-	char *new_str;
+	char	*new_str;
 
 	new_str = ft_strjoin(s1, s2);
 	free(s2);
 	return (new_str);
 }
 
-static void free_split(char **split)
+static void	free_split(char **split)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (split[i])
@@ -34,11 +34,11 @@ static void free_split(char **split)
 	free(split);
 }
 
-char *find_cmd_path(char *cmd)
+char	*find_cmd_path(char *cmd)
 {
-	char **split_path;
-	char *joined_cmd;
-	int i;
+	char	**split_path;
+	char	*joined_cmd;
+	int		i;
 
 	if (access(cmd, F_OK) == 0)
 	{

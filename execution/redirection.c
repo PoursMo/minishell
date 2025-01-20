@@ -6,15 +6,15 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:46:38 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/19 17:01:30 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/20 12:57:03 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int setup_input_redirection(const char *file)
+static int	setup_input_redirection(const char *file)
 {
-	int fd;
+	int	fd;
 
 	if (access(file, R_OK) == -1)
 	{
@@ -35,9 +35,10 @@ static int setup_input_redirection(const char *file)
 		return (perror("close"), -1);
 	return (0);
 }
-static int setup_output_redirection(const char *file, int mode)
+
+static int	setup_output_redirection(const char *file, int mode)
 {
-	int fd;
+	int	fd;
 
 	if (!mode)
 		fd = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
@@ -52,12 +53,11 @@ static int setup_output_redirection(const char *file, int mode)
 	return (0);
 }
 
-
-// THIS ONE CAN BE IMPROVED
-static int setup_heredoc(char *doc)
+// THIS ONE CAN BE IMPROVED ?
+static int	setup_heredoc(char *doc)
 {
-	char *line;
-	int pipe_fds[2];
+	char	*line;
+	int		pipe_fds[2];
 
 	if (pipe(pipe_fds) == -1)
 		return (perror("pipe"), -1);
@@ -82,7 +82,7 @@ static int setup_heredoc(char *doc)
 	return (0);
 }
 
-int setup_redirections(t_list *start, t_list *end)
+int	setup_redirections(t_list *start, t_list *end)
 {
 	while (start != end)
 	{
