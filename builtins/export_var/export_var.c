@@ -6,7 +6,7 @@
 /*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 08:49:04 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/20 10:49:53 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/20 18:48:06 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,17 @@ static void	add_env_var(char *var, char *val, char ***envp)
 
 	index = 0;
 	new_env = malloc_add_var(*envp, &index);
+	//FREE OLD ENV
 	tot_len = ft_strlen(var) + ft_strlen(val);
 	new_var = malloc(sizeof(char) * (tot_len + 2));
 	if (!new_var)
 		return ; //MALLOC ERROR
 	new_var = fill_env_str(new_var, var, val);
+
 	new_env[index] = new_var;
 	new_env[index + 1] = NULL;
 	*envp = new_env;
+	//FREE *envp
 }
 
 void	export_var(char *var_name, char *value, char ***envp)

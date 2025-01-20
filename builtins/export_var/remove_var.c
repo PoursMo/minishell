@@ -6,7 +6,7 @@
 /*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 16:07:13 by loicbaecher       #+#    #+#             */
-/*   Updated: 2025/01/20 16:56:44 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/20 18:41:20 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,7 @@ char	**malloc_copy_less(char **envp, int not_included)
 	while (envp[y])
 	{
 		if (y == not_included)
-		{
-			printf("YES\n");
 			y++;
-		}
 		else
 		{
 			new_var[i] = ft_strdup(envp[y]);
