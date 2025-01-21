@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:22:22 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/20 10:50:10 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/21 09:19:40 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ int		is_same_env_var(char *var_name, char *environ_line);
 char	*fill_env_str(char *new_var, char *var_name, char *val);
 int		remove_var(char *var_name, char ***envp);
 int		check_existing_var(char *var_name, char **envp);
+void	free_env(char ***new_env);
 
 #endif
