@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   export_var_utils2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 18:44:34 by loicbaecher       #+#    #+#             */
-/*   Updated: 2025/01/20 18:45:36 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/21 09:51:04 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	free_old_env(char ***old_env)
+#include "minishell.h"
+
+void	free_env(char ***new_env)
 {
-	
+	int	i;
+
+	i = 0;
+	while((*new_env)[i])
+	{
+		free((*new_env)[i]);
+		i++;
+	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_var_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:06:40 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/20 18:47:31 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/21 09:47:13 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,28 +41,28 @@ char	**malloc_copy_env(char **envp)
 {
 	int		i;
 	int		last_index;
-	char	**new_var;
+	char	**new_tab;
 
 	last_index = 0;
 	while (envp[last_index])
 		last_index++;
-	new_var = malloc(sizeof(char *) * (last_index + 1));
-	if (!new_var)
+	new_tab = malloc(sizeof(char *) * (last_index + 1));
+	if (!new_tab)
 		return (NULL); //MALLOC ERROR;
 	i = 0;
 	while (i < last_index)
 	{
-		new_var[i] = ft_strdup(envp[i]);
-		if (!new_var[i])
+		new_tab[i] = ft_strdup(envp[i]);
+		if (!new_tab[i])
 		{
 			while (--i >= 0)
-				free(new_var[i]);
-			return (free(new_var), NULL); // MALLOC ERROR;
+				free(new_tab[i]);
+			return (free(new_tab), NULL); // MALLOC ERROR;
 		}
 		i++;
 	}
-	new_var[i] = NULL;
-	return (new_var);
+	new_tab[i] = NULL;
+	return (new_tab);
 }
 
 char	**malloc_add_var(char **envp, int *pass_index)

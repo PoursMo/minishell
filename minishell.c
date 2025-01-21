@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/20 18:43:40 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/21 09:51:26 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,29 @@ int	main(int argc, char **argv, char **environ)
 	//EXPORT
 
 	// No parameters
-	display_all_env(environ);
+	char **new_environ;
 
-	// //Add new;
+	new_environ = malloc_copy_env(environ);
+	display_all_env(new_environ);
+
+	//Add new;
 	printf("\n\n\n");
-	export_var("MY_ENV_VAR", "first_value", &environ);
+	export_var("MY_ENV_VAR", "first_value", &new_environ);
 	printf("End of first phase\n");
+	display_all_env(new_environ);
+
+	//Change existing
+	printf("\n\n\n");
+	export_var("MY_ENV_VAR", "second_value", &new_environ);
+	display_all_env(new_environ);
+
+	// Remove var
+	printf("\n\n\n");
+	remove_var("MY_ENV_VAR", &environ);
 	display_all_env(environ);
 
-	// //Change existing
-	// printf("\n\n\n");
-	// export_var("MY_ENV_VAR", "second_value", &environ);
-	// display_all_env(environ);
-
-	// // Remove var
-	// printf("\n\n\n");
-	// remove_var("MY_ENV_VAR", &environ);
-	// display_all_env(environ);
-
-	(void)environ;
+	free_env(&new_environ);
+	free(new_environ);
 	(void)argc;
 	(void)argv;
 }

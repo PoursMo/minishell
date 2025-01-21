@@ -5,6 +5,7 @@ SRCS = minishell.c	\
 		builtins/get_pwd.c \
 		builtins/export_var/export_var.c \
 		builtins/export_var/export_var_utils.c \
+		builtins/export_var/export_var_utils2.c \
 		builtins/export_var/remove_var.c
 
 OBJSDIR = objects
