@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:22:22 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/21 11:28:48 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/21 13:52:10 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ void	free_env(char ***new_env);
 char	**create_new_env(char **old_env);
 char	**malloc_copy_less(char **envp, int not_included);
 int		find_index(char **envp, char *var_name);
+int		echo_sorter(char **args);
 
 #endif
