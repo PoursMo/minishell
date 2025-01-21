@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 18:44:34 by loicbaecher       #+#    #+#             */
-/*   Updated: 2025/01/21 10:45:49 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/21 11:29:14 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	free_env(char ***new_env)
 	}
 }
 
-void	display_all_ENV(char **environ)
+void	display_all_env(char **environ)
 {
 	int		i;
 	char	**new_environ;
@@ -47,7 +47,7 @@ void	display_all_ENV(char **environ)
 	free(new_environ);
 }
 
-void	display_all_EXPORT(char **environ)
+void	display_all_export(char **environ)
 {
 	int		i;
 	char	**new_environ;

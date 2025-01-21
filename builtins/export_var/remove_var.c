@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 16:07:13 by loicbaecher       #+#    #+#             */
-/*   Updated: 2025/01/21 11:26:00 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/21 11:29:06 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int	remove_var(char *var_name, char ***envp)
 {
 	int		index;
 	char	**new_env;
+
 	if (check_existing_var(var_name, *envp))
 	{
 		index = find_index(*envp, var_name);
