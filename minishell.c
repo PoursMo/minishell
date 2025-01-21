@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/21 11:26:43 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/21 11:59:48 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,25 @@ int	main(int argc, char **argv, char **envp)
 	char **new_environ;
 
 	new_environ = create_new_env(envp);
-	display_all_ENV(envp);
-	printf("\nPREVIOUS LIST SHOULD CONTAIN THE \"_\" VAR AND NOT BE ORDERED\n");
-	display_all_EXPORT(new_environ);
+	// display_all_env(envp);
+	// printf("\nPREVIOUS LIST SHOULD CONTAIN THE \"_\" VAR AND NOT BE ORDERED\n");
+	display_all_export(new_environ);
 
-	// // //Add new;
-	printf("\n\n\n");
-	export_var("MY_ENV_VAR", "first_value", &new_environ);
-	printf("End of first phase\n");
-	display_all_EXPORT(new_environ);
+	// // // //Add new;
+	// printf("\n\n\n");
+	// export_var("MY_ENV_VAR", "first_value", &new_environ);
+	// printf("End of first phase\n");
+	// display_all_export(new_environ);
 
-	// //Change existing
-	printf("\n\n\n");
-	export_var("MY_ENV_VAR", "second_value", &new_environ);
-	display_all_EXPORT(new_environ);
+	// // //Change existing
+	// printf("\n\n\n");
+	// export_var("MY_ENV_VAR", "second_value", &new_environ);
+	// display_all_export(new_environ);
 
-	// // // // Remove var
-	printf("\n\n\n");
-	remove_var("MY_ENV_VAR", &new_environ);
-	display_all_EXPORT(new_environ);
+	// // // // // Remove var
+	// printf("\n\n\n");
+	// remove_var("MY_ENV_VAR", &new_environ);
+	// display_all_export(new_environ);
 
 	free_env(&new_environ);
 	free(new_environ);
