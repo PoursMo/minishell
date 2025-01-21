@@ -6,35 +6,11 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 08:49:04 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/21 09:58:13 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/21 10:34:38 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	display_all_env(char **environ)
-{
-	int		i;
-	char	**new_environ;
-
-	new_environ = malloc_copy_env(environ);
-	if (!new_environ)
-		return ; //MALLOC ERROR
-	new_environ = env_bubble_sort(new_environ);
-	i = 0;
-	while (new_environ[i])
-	{
-		printf("%s\n", new_environ[i]);
-		i++;
-	}
-	i = 0;
-	while (new_environ[i])
-	{
-		free(new_environ[i]);
-		i++;
-	}
-	free(new_environ);
-}
 
 int	check_existing_var(char *var_name, char **environ)
 {

@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:17:53 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/21 10:19:36 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/21 10:33:58 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 char	**create_new_env(char **old_env)
 {
-	int		index;
 	char	**new_env;
 
-	index = find_index(old_env, "_");
-	new_env = malloc_copy_less(old_env, index);
+	new_env = malloc_copy_env(old_env);
 	return (new_env);
 }
