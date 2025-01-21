@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   remove_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 16:07:13 by loicbaecher       #+#    #+#             */
-/*   Updated: 2025/01/20 18:41:20 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/21 09:58:03 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,37 @@ static int	find_index(char **envp, char *var_name)
 	{
 		if (ft_strncmp(envp[i], var_name, ft_strlen(var_name)) == 0)
 			if (envp[i][ft_strlen(var_name)] == '=')
-				return(i);
+				return (i);
 		i++;
 	}
 	return (-1);
+}
+
+int	malloc_loop(char **envp, int n_i, char ***new_var)
+{
+	int	i;
+	int	y;
+
+	i = 0;
+	y = 0;
+	while (envp[y])
+	{
+		if (y == n_i)
+			y++;
+		else
+		{
+			(*new_var)[i] = ft_strdup(envp[y]);
+			if (!((*new_var)[i]))
+			{
+				while (--i >= 0)
+					free((*new_var)[i--]);
+				return (free((*new_var)), -1); // MALLOC ERROR;
+			}
+			i++;
+			y++;
+		}
+	}
+	return (i);
 }
 
 char	**malloc_copy_less(char **envp, int not_included)
@@ -32,7 +59,6 @@ char	**malloc_copy_less(char **envp, int not_included)
 	int		i;
 	int		last_index;
 	char	**new_var;
-	int		y;
 
 	last_index = 0;
 	while (envp[last_index])
@@ -40,26 +66,9 @@ char	**malloc_copy_less(char **envp, int not_included)
 	new_var = malloc(sizeof(char *) * (last_index));
 	if (!new_var)
 		return (NULL); //MALLOC ERROR;
-	i = 0;
-	y = 0;
-	while (envp[y])
-	{
-		if (y == not_included)
-			y++;
-		else
-		{
-			new_var[i] = ft_strdup(envp[y]);
-			if (!new_var[i])
-			{
-				while (--i >= 0)
-					free(new_var[i--]);
-				return (free(new_var), NULL); // MALLOC ERROR;
-			}
-			i++;
-			y++;
-
-		}
-	}
+	i = malloc_loop(envp, not_included, &new_var);
+	if (i == -1)
+		return (NULL); //MALLOC ERROR
 	new_var[i] = NULL;
 	return (new_var);
 }

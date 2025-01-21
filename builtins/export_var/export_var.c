@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 08:49:04 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/21 09:46:00 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/21 09:58:13 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ static void	add_env_var(char *var, char *val, char ***environ)
 	if (!new_var)
 		return ; //MALLOC ERROR
 	new_var = fill_env_str(new_var, var, val);
-
 	new_env[index] = new_var;
 	new_env[index + 1] = NULL;
 	free_env(environ);

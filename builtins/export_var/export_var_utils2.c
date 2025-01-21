@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 18:44:34 by loicbaecher       #+#    #+#             */
-/*   Updated: 2025/01/21 09:51:04 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/21 09:52:36 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	free_env(char ***new_env)
 	int	i;
 
 	i = 0;
-	while((*new_env)[i])
+	while ((*new_env)[i])
 	{
 		free((*new_env)[i]);
 		i++;
