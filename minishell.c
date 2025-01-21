@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/21 09:51:26 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/21 10:26:02 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,21 @@ int	main(int argc, char **argv, char **environ)
 	// No parameters
 	char **new_environ;
 
-	new_environ = malloc_copy_env(environ);
+	new_environ = create_new_env(environ);
 	display_all_env(new_environ);
 
-	//Add new;
+	// //Add new;
 	printf("\n\n\n");
 	export_var("MY_ENV_VAR", "first_value", &new_environ);
 	printf("End of first phase\n");
 	display_all_env(new_environ);
 
-	//Change existing
+	// //Change existing
 	printf("\n\n\n");
 	export_var("MY_ENV_VAR", "second_value", &new_environ);
 	display_all_env(new_environ);
 
-	// Remove var
+	// // Remove var
 	printf("\n\n\n");
 	remove_var("MY_ENV_VAR", &environ);
 	display_all_env(environ);

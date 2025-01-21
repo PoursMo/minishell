@@ -6,7 +6,8 @@ SRCS = minishell.c	\
 		builtins/export_var/export_var.c \
 		builtins/export_var/export_var_utils.c \
 		builtins/export_var/export_var_utils2.c \
-		builtins/export_var/remove_var.c
+		builtins/export_var/remove_var.c \
+		builtins/export_var/new_environ.c
 
 OBJSDIR = objects
 OBJS = $(SRCS:%.c=$(OBJSDIR)/%.o)

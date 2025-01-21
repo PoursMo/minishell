@@ -6,13 +6,13 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 16:07:13 by loicbaecher       #+#    #+#             */
-/*   Updated: 2025/01/21 09:58:03 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/21 10:21:24 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	find_index(char **envp, char *var_name)
+int	find_index(char **envp, char *var_name)
 {
 	int	i;
 
