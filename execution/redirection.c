@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:46:38 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/20 12:57:03 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/21 16:42:41 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,13 +90,25 @@ int	setup_redirections(t_list *start, t_list *end)
 		{
 			remove_quotes(start->next->content);
 			if (!ft_strncmp(start->content, ">>", 2))
-				return (setup_output_redirection(start->next->content, 1));
+			{
+				if(setup_output_redirection(start->next->content, 1) == -1)
+					return (-1);
+			}
 			else if (!ft_strncmp(start->content, ">", 1))
-				return (setup_output_redirection(start->next->content, 0));
+			{
+				if(setup_output_redirection(start->next->content, 0) == -1)
+					return (-1);
+			}
 			else if (!ft_strncmp(start->content, "<<", 2))
-				return (setup_heredoc(start->next->content));
+			{
+				if(setup_heredoc(start->next->content) == -1)
+					return (-1);
+			}
 			else if (!ft_strncmp(start->content, "<", 1))
-				return (setup_input_redirection(start->next->content));
+			{
+				if(setup_input_redirection(start->next->content) == -1)
+					return (-1);
+			}
 		}
 		start = start->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:37:44 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/20 12:51:32 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/21 16:09:12 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	handle_pipeline_child_exec(t_list *tokens, t_list *pipe_ptr, int pip
 	cmd_ptr = find_cmd_token(tokens, pipe_ptr);
 	if (!cmd_ptr)
 		exit(EXIT_SUCCESS);
-	fprintf(stderr, "cmd_ptr content: %s\n", (char *)cmd_ptr->content); // debug
+	// fprintf(stderr, "cmd_ptr content: %s\n", (char *)cmd_ptr->content); // debug
 	remove_quotes(cmd_ptr->content);
 	if (is_builtin(cmd_ptr->content))
 	{

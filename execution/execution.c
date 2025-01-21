@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:18:49 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/20 19:11:48 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/21 16:09:12 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int execute_no_pipeline(t_list *tokens, t_list **pids)
 	cmd_ptr = find_cmd_token(tokens, NULL);
 	if (!cmd_ptr)
 		return (set_exit_code(EXIT_SUCCESS), -1);
-	fprintf(stderr, "cmd_ptr content: %s\n", (char *)cmd_ptr->content); // debug
+	// fprintf(stderr, "cmd_ptr content: %s\n", (char *)cmd_ptr->content); // debug
 	remove_quotes(cmd_ptr->content);
 	if (is_builtin(cmd_ptr->content))
 	{
@@ -53,9 +53,8 @@ void execute_tokens(t_list *tokens)
 	t_list *pipe_ptr;
 	t_list *pids = NULL;
 
-	// save stdin stdout
 	pipe_ptr = find_pipe_token(tokens);
-	fprintf(stderr, "pipe_ptr: %p, content: %s\n", pipe_ptr, pipe_ptr ? (char *)pipe_ptr->content : "NULL"); // debug
+	// fprintf(stderr, "pipe_ptr: %p, content: %s\n", pipe_ptr, pipe_ptr ? (char *)pipe_ptr->content : "NULL"); // debug
 	if (pipe_ptr)
 	{
 		while (pipe_ptr)
@@ -74,5 +73,4 @@ void execute_tokens(t_list *tokens)
 			return ; // free des trucs + exit code
 	}
 	wait_for_processes(pids);
-	// reset stdin stdout
 }

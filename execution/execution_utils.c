@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:37:08 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/20 12:52:12 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/21 16:34:55 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	wait_for_processes(t_list *pids)
 	tmp = pids;
 	while (tmp)
 	{
-		fprintf(stderr, "waiting for pid: %d\n", *(int *)tmp->content); // debug
+		// fprintf(stderr, "waiting for pid: %d\n", *(int *)tmp->content); // debug
 		waitpid(*(int *)tmp->content, &status, 0);
 		set_exit_code(status);
 		tmp = tmp->next;
