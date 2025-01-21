@@ -1,15 +1,15 @@
 CHROME_DESKTOP=code.desktop
 COLORTERM=truecolor
-DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/102529/bus
-DEBUGINFOD_URLS=https://debuginfod.ubuntu.com 
+DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/102529/bus'
+DEBUGINFOD_URLS='https://debuginfod.ubuntu.com '
 DESKTOP_SESSION=ubuntu
 DISPLAY=:0
 DOCKER_HOST=unix:///run/user/102529/docker.sock
 FT_HOOK_NAME=login-user
 FT_HOOK_PATHNAME=login-user.d
 GDK_BACKEND=x11
-GDMSESSION=ubuntu
 GDM_LANG=en
+GDMSESSION=ubuntu
 GIO_LAUNCHED_DESKTOP_FILE_PID=970711
 GIT_ASKPASS=/usr/share/code/resources/app/extensions/git/dist/askpass.sh
 GNOME_DESKTOP_SESSION_ID=this-is-deprecated
@@ -37,15 +37,15 @@ SHLVL=2
 SSH_AGENT_PID=969177
 SSH_AUTH_SOCK=/run/user/102529/keyring/ssh
 SYSTEMD_EXEC_PID=969404
-TERM=xterm-256color
 TERMINATOR_DBUS_NAME=net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873
 TERMINATOR_DBUS_PATH=/net/tenshu/Terminator2
 TERMINATOR_UUID=urn:uuid:7937b936-d905-404a-8617-5adc966b6cf6
-TERM_PROGRAM=vscode
 TERM_PROGRAM_VERSION=1.95.3
+TERM_PROGRAM=vscode
+TERM=xterm-256color
 USER=lbaecher
 USER_ZDOTDIR=/home/lbaecher
-VSCODE_GIT_ASKPASS_EXTRA_ARGS=
+VSCODE_GIT_ASKPASS_EXTRA_ARGS=''
 VSCODE_GIT_ASKPASS_MAIN=/usr/share/code/resources/app/extensions/git/dist/askpass-main.js
 VSCODE_GIT_ASKPASS_NODE=/usr/share/code/code
 VSCODE_GIT_IPC_HANDLE=/run/user/102529/vscode-git-3f0482a103.sock
@@ -63,6 +63,6 @@ XDG_SESSION_CLASS=user
 XDG_SESSION_DESKTOP=ubuntu
 XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session0
 XDG_SESSION_TYPE=x11
-XMODIFIERS=@im=ibus
+XMODIFIERS='@im=ibus'
 YAD_PID=969074
 ZDOTDIR=/home/lbaecher

@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 16:07:13 by loicbaecher       #+#    #+#             */
-/*   Updated: 2025/01/21 10:21:24 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/21 11:26:00 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,18 +75,21 @@ char	**malloc_copy_less(char **envp, int not_included)
 
 int	remove_var(char *var_name, char ***envp)
 {
-	int	index;
-
+	int		index;
+	char	**new_env;
 	if (check_existing_var(var_name, *envp))
 	{
 		index = find_index(*envp, var_name);
 		if (index == -1)
 			return (0); //VAR NOT FOUND
-		*envp = malloc_copy_less(*envp, index);
+		new_env = malloc_copy_less(*envp, index);
+		free_env(envp);
 		if (!envp)
 			return (-1); //MALLOC ERROR
+		free(*envp);
+		*envp = new_env;
 		return (1);
 	}
 	else
-		return (0);
+		return (0); //VAR NOT FOUND
 }
