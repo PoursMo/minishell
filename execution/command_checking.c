@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 13:16:22 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/20 12:50:24 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/21 14:43:16 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,17 @@ static void	free_split(char **split)
 		i++;
 	}
 	free(split);
+}
+
+static void print_cmd_not_found(char *cmd)
+{
+	char *err;
+
+	err = ft_strjoin(cmd, ": command not found\n");
+	if (!err)
+		return ;
+	write(2, err, ft_strlen(err));
+	free(err);
 }
 
 char	*find_cmd_path(char *cmd)
@@ -68,15 +79,14 @@ char	*find_cmd_path(char *cmd)
 			free_split(split_path);
 			if (access(joined_cmd, X_OK) == 0)
 				return (joined_cmd);
-			free(joined_cmd);
 			perror(cmd);
+			free(joined_cmd);
 			exit(126);
 		}
 		free(joined_cmd);
 		i++;
 	}
 	free_split(split_path);
-	ft_putstr_fd(cmd, 2);
-	ft_putstr_fd(": command not found\n", 2); // write
+	print_cmd_not_found(cmd);
 	exit(127);
 }
