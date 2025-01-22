@@ -1,22 +1,37 @@
 CC = gcc
-SRCS = minishell.c \
-parsing/tokenization.c \
-parsing/parsing_utils.c \
-parsing/variable_expansion.c \
-parsing/variable_expansion_size.c \
-parsing/variable_expansion_utils.c \
-parsing/syntax_errors.c \
-parsing/quote_removal.c \
-parsing/tester.c \
-parsing/parsing.c \
-utils/exit_code.c \
-utils/utils.c \
-execution/redirection.c \
-execution/execution.c \
-execution/command_checking.c \
-execution/execution_pipeline.c \
-execution/execution_utils.c \
-execution/execution2.c \
+SRCS = minishell.c	\
+    parsing/tokenization.c \
+    parsing/parsing_utils.c \
+    parsing/variable_expansion.c \
+    parsing/variable_expansion_size.c \
+    parsing/variable_expansion_utils.c \
+    parsing/syntax_errors.c \
+    parsing/quote_removal.c \
+    parsing/tester.c \
+    parsing/parsing.c \
+    utils/exit_code.c \
+    utils/utils.c \
+    execution/redirection.c \
+    execution/execution.c \
+    execution/command_checking.c \
+    execution/execution_pipeline.c \
+    execution/execution_utils.c \
+    execution/execution2.c
+    builtins/ft_echo.c \
+		builtins/change_directory.c \
+		builtins/get_pwd.c \
+		builtins/export_var/export_var.c \
+		builtins/export_var/export_var_utils.c \
+		builtins/export_var/export_var_utils2.c \
+		builtins/export_var/remove_var.c \
+		builtins/export_var/new_environ.c \
+		builtins/exit_w_status.c \
+		builtins/my_get_env.c \
+		builtins/builtins_sorter/echo_sorter.c \
+		builtins/builtins_sorter/cd_sorter.c \
+		builtins/builtins_sorter/export_sorter.c \
+		builtins/builtins_sorter/unset_sorter.c \
+		builtins/builtins_sorter/env_sorter.c
 
 OBJSDIR = objects
 OBJS = $(SRCS:%.c=$(OBJSDIR)/%.o)
@@ -47,6 +62,6 @@ fclean: clean
 	rm -f $(NAME)
 
 test: all
-	./$(NAME)
+	@./$(NAME)
 
 re: fclean all

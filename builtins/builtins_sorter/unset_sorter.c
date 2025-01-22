@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   unset_sorter.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/22 11:51:58 by lbaecher         ###   ########.fr       */
+/*   Created: 2025/01/22 11:34:56 by lbaecher          #+#    #+#             */
+/*   Updated: 2025/01/22 11:45:48 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-int main()
-{
-	char *input;
-	t_list *tokens;
 
-	while(1)
+void	unset_sorter(char **args, char ***new_env)
+{
+	int	count;
+	int	i;
+
+	count = 0;
+	while (args[count])
+		count++;
+	if (count == 1)
+		return ;
+	i = 1;
+	while (args[i])
 	{
-		input = readline(">");
-		if (parse_input(input, &tokens) == -1) // gerer readline vide
-			continue ;
-		int tmp_stdin = dup(STDIN_FILENO);
-		int tmp_stdout = dup(STDOUT_FILENO);
-		execute_tokens(tokens);
-		dup2(tmp_stdin, STDIN_FILENO);
-		dup2(tmp_stdout, STDOUT_FILENO);
-		ft_lstclear(&tokens, free);
+		printf("args[i] %s\n", args[i]);
+		remove_var(args[i], new_env);
+		i++;
 	}
 }

@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   get_pwd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/22 11:51:58 by lbaecher         ###   ########.fr       */
+/*   Created: 2025/01/14 17:57:19 by lbaecher          #+#    #+#             */
+/*   Updated: 2025/01/22 09:34:33 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-int main()
-{
-	char *input;
-	t_list *tokens;
 
-	while(1)
-	{
-		input = readline(">");
-		if (parse_input(input, &tokens) == -1) // gerer readline vide
-			continue ;
-		int tmp_stdin = dup(STDIN_FILENO);
-		int tmp_stdout = dup(STDOUT_FILENO);
-		execute_tokens(tokens);
-		dup2(tmp_stdin, STDIN_FILENO);
-		dup2(tmp_stdout, STDOUT_FILENO);
-		ft_lstclear(&tokens, free);
-	}
+int	get_pwd(void)
+{
+	char	*str;
+
+	str = NULL;
+	str = getcwd(str, 0);
+	if (!str)
+		return (0);
+	printf("%s\n", str);
+	free(str);
+	return (1);
 }

@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   cd_sorter.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/22 11:51:58 by lbaecher         ###   ########.fr       */
+/*   Created: 2025/01/21 13:49:16 by lbaecher          #+#    #+#             */
+/*   Updated: 2025/01/22 09:19:17 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-int main()
-{
-	char *input;
-	t_list *tokens;
 
-	while(1)
-	{
-		input = readline(">");
-		if (parse_input(input, &tokens) == -1) // gerer readline vide
-			continue ;
-		int tmp_stdin = dup(STDIN_FILENO);
-		int tmp_stdout = dup(STDOUT_FILENO);
-		execute_tokens(tokens);
-		dup2(tmp_stdin, STDIN_FILENO);
-		dup2(tmp_stdout, STDOUT_FILENO);
-		ft_lstclear(&tokens, free);
-	}
+int	cd_sorter(char	**args, char **new_env)
+{
+	int	count;
+
+	count = 0;
+	while (args[count])
+		count++;
+	if (count != 2)
+		return (1);
+	change_directory(args[1]);
+	export_var("PWD", args[1], &new_env);
+	return (0);
 }
