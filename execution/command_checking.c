@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 13:16:22 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/22 13:52:40 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/22 19:14:09 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,11 @@ char	*find_cmd_path(char *cmd)
 			return (cmd);
 		perror(cmd);
 		exit(126);
+	}
+	if (!*cmd)
+	{
+		print_cmd_not_found("''");
+		exit(127);
 	}
 	split_path = ft_split(getenv("PATH"), ':');
 	i = 0;
