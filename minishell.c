@@ -6,17 +6,11 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/01/22 12:42:18 by lbaecher         ###   ########.fr       */
-=======
-/*   Updated: 2025/01/22 14:07:23 by aloubry          ###   ########.fr       */
->>>>>>> execution
+/*   Updated: 2025/01/22 15:03:33 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-<<<<<<< HEAD
-=======
 
 int is_empty_input(char *input)
 {
@@ -27,24 +21,20 @@ int is_empty_input(char *input)
 	return (0);
 }
 
->>>>>>> execution
 int main(int argc, char **argv, char **envp)
 {
 	char *input;
 	t_list *tokens;
-<<<<<<< HEAD
 	char	**new_env;
 
 	new_env = create_new_env(envp);
-	set_minishell_env(envp);
-=======
+	set_minishell_env(new_env);
 	t_list *pids;
 
 	(void)argc;
 	(void)argv;
 	(void)envp;
 	pids = NULL;
->>>>>>> execution
 	while(1)
 	{
 		input = readline(">");
@@ -58,8 +48,8 @@ int main(int argc, char **argv, char **envp)
 		dup2(tmp_stdout, STDOUT_FILENO);
 		ft_lstclear(&tokens, free);
 	}
-	free_env(&new_env);
-	free(&new_env);
+	free_env(new_env);
+	free(new_env);
 	(void)argc;
 	(void)argv;
 }

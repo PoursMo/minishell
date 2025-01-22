@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_var_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:06:40 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/22 11:13:43 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/22 18:07:54 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,8 @@ int	is_same_env_var(char *var_name, char *environ_line)
 			return (0);
 		y++;
 	}
-	if (environ_line[y] == '=' && var_name[y] == '\0')
+	if ((environ_line[y] == '=' && var_name[y] == '\0')
+		|| (environ_line[y] == '\0' && var_name[y] == '\0'))
 		return (1);
 	return (0);
 }
