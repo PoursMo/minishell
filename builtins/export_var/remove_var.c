@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 16:07:13 by loicbaecher       #+#    #+#             */
-/*   Updated: 2025/01/22 11:41:20 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:56:43 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,22 +73,22 @@ char	**malloc_copy_less(char **envp, int not_included)
 	return (new_var);
 }
 
-int	remove_var(char *var_name, char ***envp)
+int	remove_var(char *var_name, char **envp)
 {
 	int		index;
 	char	**new_env;
 
-	if (check_existing_var(var_name, *envp))
+	if (check_existing_var(var_name, envp))
 	{
-		index = find_env_index(*envp, var_name);
+		index = find_env_index(envp, var_name);
 		if (index == -1)
 			return (0);
-		new_env = malloc_copy_less(*envp, index);
+		new_env = malloc_copy_less(envp, index);
 		free_env(envp);
 		if (!envp)
 			return (-1);
-		free(*envp);
-		*envp = new_env;
+		free(envp);
+		set_minishell_env(new_env);
 		return (1);
 	}
 	else

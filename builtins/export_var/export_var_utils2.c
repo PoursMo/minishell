@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   export_var_utils2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 18:44:34 by loicbaecher       #+#    #+#             */
-/*   Updated: 2025/01/22 09:36:09 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/22 18:01:55 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	free_env(char ***new_env)
+void	free_env(char **new_env)
 {
 	int	i;
 
 	i = 0;
-	while ((*new_env)[i])
+	while (new_env[i])
 	{
-		free((*new_env)[i]);
+		free(new_env[i]);
 		i++;
 	}
 }
@@ -54,7 +54,12 @@ void	special_print(char *line)
 	i = 0;
 	printf("declare -x ");
 	while (line[i] != '=')
-		printf("%c", line[i++]);
+	{
+		printf("%c", line[i]);
+		i++;
+		if (line[i] == '\0')
+			return (printf("%s", "\n"), (void ) NULL);
+	}
 	i++;
 	printf("%s", "=\"");
 	while (line[i] != '\0')
