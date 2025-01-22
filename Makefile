@@ -1,6 +1,23 @@
 CC = gcc
 SRCS = minishell.c	\
-		builtins/ft_echo.c \
+    parsing/tokenization.c \
+    parsing/parsing_utils.c \
+    parsing/variable_expansion.c \
+    parsing/variable_expansion_size.c \
+    parsing/variable_expansion_utils.c \
+    parsing/syntax_errors.c \
+    parsing/quote_removal.c \
+    parsing/tester.c \
+    parsing/parsing.c \
+    utils/exit_code.c \
+    utils/utils.c \
+    execution/redirection.c \
+    execution/execution.c \
+    execution/command_checking.c \
+    execution/execution_pipeline.c \
+    execution/execution_utils.c \
+    execution/execution2.c
+    builtins/ft_echo.c \
 		builtins/change_directory.c \
 		builtins/get_pwd.c \
 		builtins/export_var/export_var.c \
@@ -30,7 +47,7 @@ $(OBJSDIR)/%.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(LIBFT) $(OBJS)
-	$(CC) $(LFLAGS) -o $(NAME) $(OBJS) $(LIBFT)
+	$(CC) $(OBJS) -o $(NAME) $(LIBFT) $(LFLAGS)
 
 $(LIBFT):
 	make -C libft

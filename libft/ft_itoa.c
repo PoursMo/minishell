@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:17:07 by aloubry           #+#    #+#             */
-/*   Updated: 2024/10/03 12:02:10 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/14 15:31:28 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char	*int_min_str(void)
 
 	int_min_str = ft_calloc(sizeof(char), 12);
 	if (!int_min_str)
-		return (NULL);
+		return (perror("ft_itoa: int_min_str"), NULL);
 	ft_strlcpy(int_min_str, "-2147483648", 12);
 	return (int_min_str);
 }
@@ -45,7 +45,7 @@ static char	*zero_str(void)
 
 	zero_str = ft_calloc(sizeof(char), 2);
 	if (!zero_str)
-		return (NULL);
+		return (perror("ft_itoa: zero_str"), NULL);
 	ft_strlcpy(zero_str, "0", 2);
 	return (zero_str);
 }
@@ -63,7 +63,7 @@ char	*ft_itoa(int num)
 	size = get_size(num);
 	conv = ft_calloc(sizeof(char), size + 1);
 	if (!conv)
-		return (NULL);
+		return (perror("ft_itoa"), NULL);
 	if (num < 0)
 	{
 		num = -num;

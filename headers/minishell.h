@@ -32,5 +32,8 @@
 
 # include "libft.h"
 # include "builtins.h"
+# include "parsing.h"
+# include "utils.h"
+# include "execution.h"
 
 #endif

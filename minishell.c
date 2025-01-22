@@ -11,55 +11,21 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	main(int argc, char **argv, char **envp)
+int main()
 {
-	// int	fd;
+	char *input;
+	t_list *tokens;
 
-	// fd = open("builtins/output.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644 );
-	// dup2(fd, STDOUT_FILENO);
-
-	// //ft_echo(1, "hello");
-	// //Output.txt should contain "Hello" and another line
-
-	// ft_echo(0, "hello");
-	// //Output.txt should contain "Hello"
-	// return (0);
-
-	//change_directory("/builtins");
-
-	//EXPORT
-
-	// No parameters
-	char **new_environ;
-	char *args[2];
-
-	args[0] = "export";
-	args[1] = NULL;
-	new_environ = create_new_env(envp);
-	//display_all_env(envp);
-	env_sorter(args, new_environ);
-	// printf("\nPREVIOUS LIST SHOULD CONTAIN THE \"_\" VAR AND NOT BE ORDERED\n");
-	//display_all_export(new_environ);
-
-	// // // //Add new;
-	// printf("\n\n\n");
-	// export_var("MY_ENV_VAR", "first_value", &new_environ);
-	// printf("End of first phase\n");
-	// display_all_export(new_environ);
-
-	// // //Change existing
-	// printf("\n\n\n");
-	// export_var("MY_ENV_VAR", "second_value", &new_environ);
-	// display_all_export(new_environ);
-
-	// // // // // Remove var
-	// printf("\n\n\n");
-	// remove_var("MY_ENV_VAR", &new_environ);
-	// display_all_export(new_environ);
-
-	free_env(&new_environ);
-	free(new_environ);
-	(void)argc;
-	(void)argv;
+	while(1)
+	{
+		input = readline(">");
+		if (parse_input(input, &tokens) == -1) // gerer readline vide
+			continue ;
+		int tmp_stdin = dup(STDIN_FILENO);
+		int tmp_stdout = dup(STDOUT_FILENO);
+		execute_tokens(tokens);
+		dup2(tmp_stdin, STDIN_FILENO);
+		dup2(tmp_stdout, STDOUT_FILENO);
+		ft_lstclear(&tokens, free);
+	}
 }
