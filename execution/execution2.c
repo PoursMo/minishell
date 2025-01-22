@@ -5,7 +5,6 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/20 12:41:57 by aloubry           #+#    #+#             */
 /*   Updated: 2025/01/22 14:58:55 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -86,12 +85,9 @@ void	handle_non_builtin(t_list *cmd_ptr, t_list *pipe_ptr)
 	cmd = find_cmd_path(cmd_ptr->content);
 	if (!cmd)
 		exit(EXIT_FAILURE);
-	// fprintf(stderr, "full cmd: %s\n", cmd); // debug
 	cmd_args = get_cmd_args(cmd_ptr, pipe_ptr);
 	if (!cmd_args)
 		exit(EXIT_FAILURE);
-	// for (int j = 0; cmd_args[j]; j++) // debug
-		// fprintf(stderr, "cmd_args[%d]: %s\n", j, cmd_args[j]); // debug
 	if (execve(cmd, cmd_args, __environ) == -1)
 	{
 		perror("execve");
