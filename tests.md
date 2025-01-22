@@ -51,3 +51,10 @@ ls -l
 cat minishell.c > out.txt
 < minishell.c awk '{print "42"}' >> out.txt
 cat > out.txt minishell.c
+# pipes
+
+# command not found (exit code 127)
+
+# command found but not executable (exit code 126)
+
+# errors (exit code 1)
