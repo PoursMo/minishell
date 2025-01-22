@@ -8,6 +8,7 @@ SRCS = minishell.c	\
 		builtins/export_var/export_var_utils2.c \
 		builtins/export_var/remove_var.c \
 		builtins/export_var/new_environ.c \
+		builtins/exit_w_status.c \
 		builtins/builtins_sorter/echo_sorter.c \
 		builtins/builtins_sorter/cd_sorter.c
 
@@ -41,7 +42,5 @@ fclean: clean
 
 test: all
 	@./$(NAME)
-	@echo ""
-	@echo ""
 
 re: fclean all

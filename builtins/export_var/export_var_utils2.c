@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 18:44:34 by loicbaecher       #+#    #+#             */
-/*   Updated: 2025/01/21 11:29:14 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/22 09:10:41 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,22 @@ void	display_all_env(char **environ)
 	free(new_environ);
 }
 
+void	special_print(char *line)
+{
+	int	i;
+
+	i = 0;
+	printf("declare -x ");
+	while(line[i] != '=')
+		printf("%c", line[i++]);
+	printf("%c", line[i++]);
+	printf("%s", "\"");
+	i++;
+	while(line[i] != '\0')
+		printf("%c", line[i++]);
+	printf("%s", "\"\n");
+}
+
 void	display_all_export(char **environ)
 {
 	int		i;
@@ -62,7 +78,7 @@ void	display_all_export(char **environ)
 	while (new_environ[i])
 	{
 		if (i != index_to_avoid)
-			printf("%s\n", new_environ[i]);
+			special_print(new_environ[i]);
 		i++;
 	}
 	i = 0;

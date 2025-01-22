@@ -6,13 +6,13 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 13:49:16 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/21 13:58:37 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/22 08:51:57 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	cd_sorter(char	**args, char **new_env)
+int	cd_sorter(char	**args, char **new_env)
 {
 	int	count;
 
