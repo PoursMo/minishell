@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/22 11:32:03 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:45:00 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,15 @@ int	main(int argc, char **argv, char **envp)
 	char *args[3];
 
 	args[0] = "export";
-	args[1] = "TEST55839123=lolilol";
+	args[1] = "TEST55839123";
 	args[2] = NULL;
 	new_environ = create_new_env(envp);
 	//display_all_env(envp);
 	export_sorter(args, &new_environ);
 	display_all_export(new_environ);
-	display_all_env(new_environ);
+	printf("\n\n\n\n\n");
+	unset_sorter(args, &new_environ);
+	display_all_export(new_environ);
 	// printf("\nPREVIOUS LIST SHOULD CONTAIN THE \"_\" VAR AND NOT BE ORDERED\n");
 	//display_all_export(new_environ);
 
