@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 09:34:58 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/22 09:58:49 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/22 10:10:45 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ char	*copy_var(int size, char *var)
 
 	i = 0;
 	new_var = malloc(sizeof(char) * (size + 1));
+	if (!new_var)
+		return (NULL);
 	while (var[i] != '=')
 		i++;
 	i++;
@@ -63,6 +65,8 @@ char	*my_get_env(char **env, char *var_name)
 		var = env[index];
 		size = get_var_value_size(var);
 		return_var = copy_var(size, var);
+		if (!return_var)
+			return (NULL);
 	}
 	return (return_var);
 }
