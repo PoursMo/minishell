@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/22 18:11:13 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/22 18:47:11 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int setup_minishell(char **envp)
 {
 	(void)envp;
 	// create env
+	// incr SHLVL
 	// history stuff
 	return (0);
 }
