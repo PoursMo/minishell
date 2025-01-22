@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:38:20 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/14 17:38:34 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/22 12:23:04 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,16 @@ static int	update_exit_code(int new_code)
 		code = new_code;
 	}
 	return (code);
+}
+
+int	get_exit_code(void)
+{
+	return (update_exit_code(-1));
+}
+
+void	set_exit_code(int code)
+{
+	update_exit_code(code);
 }
 
 int	get_exit_code_len(void)
@@ -34,14 +44,4 @@ int	get_exit_code_len(void)
 		code /= 10;
 	}
 	return (len);
-}
-
-int	get_exit_code(void)
-{
-	return (update_exit_code(-1));
-}
-
-void	set_exit_code(int code)
-{
-	update_exit_code(code);
 }
