@@ -52,9 +52,10 @@ cat minishell.c > out.txt
 < minishell.c awk '{print "42"}' >> out.txt
 cat > out.txt minishell.c
 # pipes
+echo Hello World | cat
+cat minishell.c | wc -l > out.txt
+cat < minishell.c | awk '{print "42"}' | wc -l
+# errors (exit code 1)
 
 # command not found (exit code 127)
-
 # command found but not executable (exit code 126)
-
-# errors (exit code 1)

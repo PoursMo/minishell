@@ -38,7 +38,7 @@ SRCS = minishell.c	\
 OBJSDIR = objects
 OBJS = $(SRCS:%.c=$(OBJSDIR)/%.o)
 LFLAGS = -lreadline
-CFLAGS = -Wall -Wextra -Werror -Iheaders -Ilibft
+CFLAGS = -Wall -Wextra -Werror -Iheaders -Ilibft -g
 NAME = minishell
 LIBFT = libft/libft.a
 

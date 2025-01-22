@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:41:57 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/22 16:30:53 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/22 21:16:01 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static int	get_cmd_args_size(t_list *cmd, t_list *end)
 	int	size;
 
 	size = 0;
-	cmd = cmd->next;
 	while (cmd != end)
 	{
 		if (is_operator_not_pipe(*(char *)cmd->content))
@@ -36,7 +35,7 @@ char	**get_cmd_args(t_list *cmd, t_list *end)
 	char	**args;
 	int		i;
 
-	args = malloc(sizeof(char *) * get_cmd_args_size(cmd, end) + 1);
+	args = malloc(sizeof(char *) * (get_cmd_args_size(cmd, end) + 1));
 	if (!args)
 		return (perror("get_cmd_args"), NULL);
 	i = 0;
