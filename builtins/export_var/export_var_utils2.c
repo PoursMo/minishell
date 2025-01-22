@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 18:44:34 by loicbaecher       #+#    #+#             */
-/*   Updated: 2025/01/22 09:10:41 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/22 09:16:48 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,8 @@ void	special_print(char *line)
 	printf("declare -x ");
 	while(line[i] != '=')
 		printf("%c", line[i++]);
-	printf("%c", line[i++]);
-	printf("%s", "\"");
 	i++;
+	printf("%s", "=\"");
 	while(line[i] != '\0')
 		printf("%c", line[i++]);
 	printf("%s", "\"\n");
