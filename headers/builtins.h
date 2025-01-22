@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:22:22 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/22 11:39:30 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:49:46 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ void	export_sorter(char **args, char ***new_env);
 void	unset_sorter(char **args, char ***new_env);
 void	exit_w_status(int status);
 char	*my_get_env(char **env, char *var_name);
+void	env_sorter(char **args, char **new_env);
 
 #endif

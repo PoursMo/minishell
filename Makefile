@@ -13,7 +13,8 @@ SRCS = minishell.c	\
 		builtins/builtins_sorter/echo_sorter.c \
 		builtins/builtins_sorter/cd_sorter.c \
 		builtins/builtins_sorter/export_sorter.c \
-		builtins/builtins_sorter/unset_sorter.c
+		builtins/builtins_sorter/unset_sorter.c \
+		builtins/builtins_sorter/env_sorter.c
 
 OBJSDIR = objects
 OBJS = $(SRCS:%.c=$(OBJSDIR)/%.o)
