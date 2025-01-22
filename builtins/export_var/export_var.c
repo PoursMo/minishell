@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 08:49:04 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/22 15:02:46 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/22 17:54:44 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ static void	replace_env_var(char *var_name, char *val, char **environ)
 		else
 			i++;
 	}
+	if (!val)
+		return ;
 	new_var = malloc(sizeof(char) * (ft_strlen(var_name) + ft_strlen(val) + 2));
 	if (!new_var)
 		return ;
@@ -53,15 +55,13 @@ static void	add_env_var(char *var, char *val, char **environ)
 	char	**new_env;
 	char	*new_var;
 	int		index;
-	int		tot_len;
 
 	index = 0;
 	new_env = malloc_add_var(environ, &index);
-	tot_len = ft_strlen(var) + ft_strlen(val);
-	new_var = malloc(sizeof(char) * (tot_len + 2));
-	if (!new_var)
-		return ;
-	new_var = fill_env_str(new_var, var, val);
+	if (val)
+		new_env_var_str(var, val, &new_var);
+	else
+		new_env_var_empty(var, &new_var);
 	new_env[index] = new_var;
 	new_env[index + 1] = NULL;
 	free_env(environ);

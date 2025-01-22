@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_sorter.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 08:46:48 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/22 15:04:18 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/22 17:47:08 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@ static void	var_len(char *line, int *name_len, int *val_len)
 
 	i = 0;
 	while (line[i] != '=')
+	{
 		i++;
+		if (line[i] == '\0')
+			return ;
+	}
 	*name_len = i;
 	count = 0;
 	i++;
@@ -64,13 +68,24 @@ static void	export_splitter(char *line, char **new_env)
 	char	*name;
 
 	var_len(line, &len_name, &len_val);
-	value = malloc(sizeof(char) * (len_val + 1));
 	name = malloc(sizeof(char) * (len_name + 1));
-	if (!value || !name)
+	if (!name)
 		return ;
-	fill_str(line, &value, &name);
+	if (len_val)
+	{
+		value = malloc(sizeof(char) * (len_val + 1));
+		if (!value)
+			return ;
+		fill_str(line, &value, &name);
+	}
+	else
+	{
+		value = NULL;
+		fill_env_str_empty(line, &name);
+	}
 	export_var(name, value, new_env);
-	free(value);
+	if (value)
+		free(value);
 	free(name);
 }
 

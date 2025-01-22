@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:22:22 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/22 14:58:40 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/22 17:44:03 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,8 @@ void	unset_sorter(char **args, char **new_env);
 void	exit_w_status(int status);
 char	*my_get_env(char **env, char *var_name);
 void	env_sorter(char **args, char **new_env);
+void	new_env_var_str(char *var, char *val, char **new_var);
+void	new_env_var_empty(char *var, char **new_var);
+void	fill_env_str_empty(char *line, char **name_str);
 
 #endif

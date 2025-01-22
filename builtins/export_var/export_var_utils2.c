@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_var_utils2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 18:44:34 by loicbaecher       #+#    #+#             */
-/*   Updated: 2025/01/22 14:54:11 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/22 17:58:32 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,12 @@ void	special_print(char *line)
 	i = 0;
 	printf("declare -x ");
 	while (line[i] != '=')
-		printf("%c", line[i++]);
+	{
+		printf("%c", line[i]);
+		i++;
+		if (line[i] == '\0')
+			return(printf("%s", "\n"), (void)NULL);
+	}
 	i++;
 	printf("%s", "=\"");
 	while (line[i] != '\0')
