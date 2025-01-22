@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:18:32 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/20 12:47:33 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/22 14:00:21 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char *find_cmd_path(char *cmd);
 
 // execution.c
 
-void execute_tokens(t_list *tokens);
+void execute_tokens(t_list *tokens, t_list **pids);
 
 // execution_pipeline.c
 

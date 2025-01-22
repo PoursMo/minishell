@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:18:49 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/21 16:09:12 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/22 14:00:35 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int execute_no_pipeline(t_list *tokens, t_list **pids)
 	cmd_ptr = find_cmd_token(tokens, NULL);
 	if (!cmd_ptr)
 		return (set_exit_code(EXIT_SUCCESS), -1);
-	// fprintf(stderr, "cmd_ptr content: %s\n", (char *)cmd_ptr->content); // debug
 	remove_quotes(cmd_ptr->content);
 	if (is_builtin(cmd_ptr->content))
 	{
@@ -48,29 +47,26 @@ int execute_no_pipeline(t_list *tokens, t_list **pids)
 	return (0);
 }
 
-void execute_tokens(t_list *tokens)
+void execute_tokens(t_list *tokens, t_list **pids)
 {
 	t_list *pipe_ptr;
-	t_list *pids = NULL;
 
 	pipe_ptr = find_pipe_token(tokens);
-	// fprintf(stderr, "pipe_ptr: %p, content: %s\n", pipe_ptr, pipe_ptr ? (char *)pipe_ptr->content : "NULL"); // debug
 	if (pipe_ptr)
 	{
 		while (pipe_ptr)
 		{
-			if (execute_pipeline(tokens, pipe_ptr, &pids) == -1)
-				return ; // free des trucs + exit code
+			if (execute_pipeline(tokens, pipe_ptr, pids) == -1)
+				return ;
 			tokens = pipe_ptr->next;
 			pipe_ptr = find_pipe_token(tokens);
 		}
-		if (execute_pipeline(tokens, pipe_ptr, &pids) == -1)
-			return ; // free des trucs + exit code
+		if (execute_pipeline(tokens, pipe_ptr, pids) == -1)
+			return ;
 	}
 	else
 	{
-		if (execute_no_pipeline(tokens, &pids) == -1)
-			return ; // free des trucs + exit code
+		if (execute_no_pipeline(tokens, pids) == -1)
+			return ;
 	}
-	wait_for_processes(pids);
 }
