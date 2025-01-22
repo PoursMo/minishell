@@ -7,7 +7,6 @@ SRCS = minishell.c	\
     parsing/variable_expansion_utils.c \
     parsing/syntax_errors.c \
     parsing/quote_removal.c \
-    parsing/tester.c \
     parsing/parsing.c \
     utils/exit_code.c \
     utils/utils.c \
