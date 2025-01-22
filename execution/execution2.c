@@ -6,7 +6,11 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:41:57 by aloubry           #+#    #+#             */
+<<<<<<< Updated upstream
 /*   Updated: 2025/01/21 16:12:28 by aloubry          ###   ########.fr       */
+=======
+/*   Updated: 2025/01/22 13:43:40 by aloubry          ###   ########.fr       */
+>>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +61,14 @@ char	**get_cmd_args(t_list *cmd, t_list *end)
 
 void	handle_builtin(t_list *cmd_ptr, t_list *pipe_ptr)
 {
+<<<<<<< Updated upstream
 	fprintf(stderr, "Executing builtin command: %s\n", (char *)cmd_ptr->content); // debug
 	fprintf(stderr, "pipe_ptr: %s\n", (char *)pipe_ptr->content); // debug
 	// size_t cmd_len;
+=======
+	size_t cmd_len;
+	char	**cmd_args;
+>>>>>>> Stashed changes
 
 	// cmd_len = ft_strlen(cmd_ptr->content);
 	// if (ft_strlen("echo") == cmd_len && !strncmp(cmd_ptr->content, "echo", cmd_len))
@@ -86,12 +95,9 @@ void	handle_non_builtin(t_list *cmd_ptr, t_list *pipe_ptr)
 	cmd = find_cmd_path(cmd_ptr->content);
 	if (!cmd)
 		exit(EXIT_FAILURE);
-	// fprintf(stderr, "full cmd: %s\n", cmd); // debug
 	cmd_args = get_cmd_args(cmd_ptr, pipe_ptr);
 	if (!cmd_args)
 		exit(EXIT_FAILURE);
-	// for (int j = 0; cmd_args[j]; j++) // debug
-		// fprintf(stderr, "cmd_args[%d]: %s\n", j, cmd_args[j]); // debug
 	if (execve(cmd, cmd_args, __environ) == -1)
 	{
 		perror("execve");
