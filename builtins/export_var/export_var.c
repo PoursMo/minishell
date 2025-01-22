@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 08:49:04 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/21 10:34:38 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/22 09:19:42 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	replace_env_var(char *var_name, char *val, char ***environ)
 	}
 	new_var = malloc(sizeof(char) * (ft_strlen(var_name) + ft_strlen(val) + 2));
 	if (!new_var)
-		return ; //MALLOC ERROR
+		return ;
 	new_var = fill_env_str(new_var, var_name, val);
 	free((*environ)[i]);
 	(*environ)[i] = new_var;
@@ -59,7 +59,7 @@ static void	add_env_var(char *var, char *val, char ***environ)
 	tot_len = ft_strlen(var) + ft_strlen(val);
 	new_var = malloc(sizeof(char) * (tot_len + 2));
 	if (!new_var)
-		return ; //MALLOC ERROR
+		return ;
 	new_var = fill_env_str(new_var, var, val);
 	new_env[index] = new_var;
 	new_env[index + 1] = NULL;

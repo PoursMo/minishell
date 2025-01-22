@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 18:44:34 by loicbaecher       #+#    #+#             */
-/*   Updated: 2025/01/22 09:16:48 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/22 09:20:23 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	display_all_env(char **environ)
 
 	new_environ = malloc_copy_env(environ);
 	if (!new_environ)
-		return ; //MALLOC ERROR
+		return ;
 	i = 0;
 	while (new_environ[i])
 	{
@@ -53,11 +53,11 @@ void	special_print(char *line)
 
 	i = 0;
 	printf("declare -x ");
-	while(line[i] != '=')
+	while (line[i] != '=')
 		printf("%c", line[i++]);
 	i++;
 	printf("%s", "=\"");
-	while(line[i] != '\0')
+	while (line[i] != '\0')
 		printf("%c", line[i++]);
 	printf("%s", "\"\n");
 }
@@ -70,7 +70,7 @@ void	display_all_export(char **environ)
 
 	new_environ = malloc_copy_env(environ);
 	if (!new_environ)
-		return ; //MALLOC ERROR
+		return ;
 	new_environ = env_bubble_sort(new_environ);
 	index_to_avoid = find_index(new_environ, "_");
 	i = 0;

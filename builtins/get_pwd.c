@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:57:19 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/14 18:15:35 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/22 09:18:57 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@ int	get_pwd(void)
 	str = NULL;
 	str = getcwd(str, 0);
 	if (!str)
-	{
-		//ERROR errno
 		return (0);
-	}
 	printf("%s\n", str);
 	free(str);
 	return (1);

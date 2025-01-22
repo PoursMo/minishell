@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 16:07:13 by loicbaecher       #+#    #+#             */
-/*   Updated: 2025/01/21 11:29:06 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/22 09:20:36 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	malloc_loop(char **envp, int n_i, char ***new_var)
 			{
 				while (--i >= 0)
 					free((*new_var)[i--]);
-				return (free((*new_var)), -1); // MALLOC ERROR;
+				return (free((*new_var)), -1);
 			}
 			i++;
 			y++;
@@ -65,10 +65,10 @@ char	**malloc_copy_less(char **envp, int not_included)
 		last_index++;
 	new_var = malloc(sizeof(char *) * (last_index));
 	if (!new_var)
-		return (NULL); //MALLOC ERROR;
+		return (NULL);
 	i = malloc_loop(envp, not_included, &new_var);
 	if (i == -1)
-		return (NULL); //MALLOC ERROR
+		return (NULL);
 	new_var[i] = NULL;
 	return (new_var);
 }
@@ -82,15 +82,15 @@ int	remove_var(char *var_name, char ***envp)
 	{
 		index = find_index(*envp, var_name);
 		if (index == -1)
-			return (0); //VAR NOT FOUND
+			return (0);
 		new_env = malloc_copy_less(*envp, index);
 		free_env(envp);
 		if (!envp)
-			return (-1); //MALLOC ERROR
+			return (-1);
 		free(*envp);
 		*envp = new_env;
 		return (1);
 	}
 	else
-		return (0); //VAR NOT FOUND
+		return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:06:40 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/21 10:15:25 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/22 09:19:52 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	**malloc_copy_env(char **envp)
 		last_index++;
 	new_tab = malloc(sizeof(char *) * (last_index + 1));
 	if (!new_tab)
-		return (NULL); //MALLOC ERROR;
+		return (NULL);
 	i = 0;
 	while (i < last_index)
 	{
@@ -57,7 +57,7 @@ char	**malloc_copy_env(char **envp)
 		{
 			while (--i >= 0)
 				free(new_tab[i]);
-			return (free(new_tab), NULL); // MALLOC ERROR;
+			return (free(new_tab), NULL);
 		}
 		i++;
 	}
@@ -76,7 +76,7 @@ char	**malloc_add_var(char **envp, int *pass_index)
 		len++;
 	new_var = malloc(sizeof(char *) * (len + 2));
 	if (!new_var)
-		return (NULL); //MALLOC ERROR;
+		return (NULL);
 	i = 0;
 	while (i < len)
 	{
@@ -85,7 +85,7 @@ char	**malloc_add_var(char **envp, int *pass_index)
 		{
 			while (--i >= 0)
 				free(new_var[i]);
-			return (free(new_var), NULL); // MALLOC ERROR
+			return (free(new_var), NULL);
 		}
 		i++;
 	}

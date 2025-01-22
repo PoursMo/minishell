@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 08:46:48 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/22 08:47:51 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/22 09:19:26 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@ void	export_sorter(char **args)
 	int	count;
 
 	count = 0;
-	while(args[count])
+	while (args[count])
 		count++;
 }

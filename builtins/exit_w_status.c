@@ -6,13 +6,13 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 08:44:52 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/22 08:51:12 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/22 09:19:09 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	exit_w_status(int	status)
+void	exit_w_status(int status)
 {
 	exit(status);
 }
