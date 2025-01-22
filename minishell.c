@@ -6,16 +6,19 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/22 11:51:58 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:42:18 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-int main()
+int main(int argc, char **argv, char **envp)
 {
 	char *input;
 	t_list *tokens;
+	char	**new_env;
 
+	new_env = create_new_env(envp);
+	set_minishell_env(envp);
 	while(1)
 	{
 		input = readline(">");
@@ -28,4 +31,8 @@ int main()
 		dup2(tmp_stdout, STDOUT_FILENO);
 		ft_lstclear(&tokens, free);
 	}
+	free_env(&new_env);
+	free(&new_env);
+	(void)argc;
+	(void)argv;
 }

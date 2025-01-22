@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 12:58:40 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/15 14:40:57 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/22 12:29:24 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,9 @@ int		get_exit_code_len(void);
 
 int get_biggest(int a, int b);
 
+// minishell_env.c
+
+char	**get_minishell_env(void);
+void	set_minishell_env(char **new_env);
 
 #endif
