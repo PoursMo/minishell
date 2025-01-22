@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 18:44:34 by loicbaecher       #+#    #+#             */
-/*   Updated: 2025/01/22 09:20:23 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/22 09:36:09 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	display_all_export(char **environ)
 	if (!new_environ)
 		return ;
 	new_environ = env_bubble_sort(new_environ);
-	index_to_avoid = find_index(new_environ, "_");
+	index_to_avoid = find_env_index(new_environ, "_");
 	i = 0;
 	while (new_environ[i])
 	{

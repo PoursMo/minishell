@@ -9,6 +9,7 @@ SRCS = minishell.c	\
 		builtins/export_var/remove_var.c \
 		builtins/export_var/new_environ.c \
 		builtins/exit_w_status.c \
+		builtins/my_get_env.c \
 		builtins/builtins_sorter/echo_sorter.c \
 		builtins/builtins_sorter/cd_sorter.c
 

@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:22:22 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/22 09:21:12 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/22 09:51:17 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ int		check_existing_var(char *var_name, char **envp);
 void	free_env(char ***new_env);
 char	**create_new_env(char **old_env);
 char	**malloc_copy_less(char **envp, int not_included);
-int		find_index(char **envp, char *var_name);
+int		find_env_index(char **envp, char *var_name);
 int		echo_sorter(char **args);
 int		cd_sorter(char **args, char **new_env);
 void	exit_w_status(int status);
+char	*my_get_env(char **env, char *var_name);
 
 #endif

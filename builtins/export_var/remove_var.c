@@ -6,13 +6,13 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 16:07:13 by loicbaecher       #+#    #+#             */
-/*   Updated: 2025/01/22 09:20:36 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/22 09:36:14 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	find_index(char **envp, char *var_name)
+int	find_env_index(char **envp, char *var_name)
 {
 	int	i;
 
@@ -80,7 +80,7 @@ int	remove_var(char *var_name, char ***envp)
 
 	if (check_existing_var(var_name, *envp))
 	{
-		index = find_index(*envp, var_name);
+		index = find_env_index(*envp, var_name);
 		if (index == -1)
 			return (0);
 		new_env = malloc_copy_less(*envp, index);
