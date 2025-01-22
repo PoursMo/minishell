@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/22 12:42:18 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:02:16 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int main(int argc, char **argv, char **envp)
 		ft_lstclear(&tokens, free);
 	}
 	free_env(&new_env);
-	free(&new_env);
+	free(new_env);
 	(void)argc;
 	(void)argv;
 }
