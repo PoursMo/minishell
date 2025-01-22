@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:22:22 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/22 11:49:46 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:58:40 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	ft_echo(int new_line_flag, char *str);
 void	change_directory(char	*str);
 int		get_pwd(void);
-void	export_var(char	*var_name, char *value, char ***envp);
+void	export_var(char	*var_name, char *value, char **envp);
 void	display_all_env(char **environ);
 void	display_all_export(char **environ);
 char	**env_bubble_sort(char **new_env);
@@ -24,16 +24,16 @@ char	**malloc_copy_env(char **envp);
 char	**malloc_add_var(char **envp, int *i);
 int		is_same_env_var(char *var_name, char *environ_line);
 char	*fill_env_str(char *new_var, char *var_name, char *val);
-int		remove_var(char *var_name, char ***envp);
+int		remove_var(char *var_name, char **envp);
 int		check_existing_var(char *var_name, char **envp);
-void	free_env(char ***new_env);
+void	free_env(char **new_env);
 char	**create_new_env(char **old_env);
 char	**malloc_copy_less(char **envp, int not_included);
 int		find_env_index(char **envp, char *var_name);
 int		echo_sorter(char **args);
 int		cd_sorter(char **args, char **new_env);
-void	export_sorter(char **args, char ***new_env);
-void	unset_sorter(char **args, char ***new_env);
+void	export_sorter(char **args, char **new_env);
+void	unset_sorter(char **args, char **new_env);
 void	exit_w_status(int status);
 char	*my_get_env(char **env, char *var_name);
 void	env_sorter(char **args, char **new_env);
