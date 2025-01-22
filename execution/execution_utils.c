@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:37:08 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/22 15:08:06 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/22 16:40:58 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ int	is_builtin(char *cmd)
 	return (0);
 }
 
-void	wait_for_processes(t_list *pids)
+void	wait_for_processes(t_list **pids)
 {
 	t_list	*tmp;
 	int		status;
 
-	tmp = pids;
+	tmp = *pids;
 	while (tmp)
 	{
 		if (waitpid(*(int *)tmp->content, &status, 0) == -1)
@@ -64,5 +64,5 @@ void	wait_for_processes(t_list *pids)
 		set_exit_code(WEXITSTATUS(status));
 		tmp = tmp->next;
 	}
-	ft_lstclear(&pids, free);
+	ft_lstclear(pids, free);
 }

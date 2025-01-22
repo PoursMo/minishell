@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:46:38 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/22 14:26:04 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/22 16:23:31 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	setup_input_redirection(const char *file)
 	if (access(file, R_OK) == -1)
 	{
 		perror(file);
-		fd = open("/dev/null", O_RDONLY); // is it really needed
+		fd = open("/dev/null", O_RDONLY); // ?
 		if (fd == -1)
 			return (perror(file), -1);
 	}
