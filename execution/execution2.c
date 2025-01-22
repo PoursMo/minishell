@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:41:57 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/22 12:39:57 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:30:12 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ char	**get_cmd_args(t_list *cmd, t_list *end)
 
 void	handle_builtin(t_list *cmd_ptr, t_list *pipe_ptr)
 {
-	fprintf(stderr, "Executing builtin command: %s\n", (char *)cmd_ptr->content); // debug
-	fprintf(stderr, "pipe_ptr: %s\n", (char *)pipe_ptr->content); // debug
 	size_t cmd_len;
 	char	**cmd_args;
 
