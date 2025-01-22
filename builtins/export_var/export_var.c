@@ -6,7 +6,7 @@
 /*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 08:49:04 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/22 17:54:44 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/22 18:04:28 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,9 @@ static void	add_env_var(char *var, char *val, char **environ)
 void	export_var(char *var_name, char *value, char **environ)
 {
 	if (check_existing_var(var_name, environ))
+	{
 		replace_env_var(var_name, value, environ);
+	}
 	else
 		add_env_var(var_name, value, environ);
 }
