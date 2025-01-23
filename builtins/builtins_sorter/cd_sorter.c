@@ -6,7 +6,7 @@
 /*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 13:49:16 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/23 16:35:42 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/23 17:28:17 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@ int	cd_sorter(char	**args)
 		res = change_directory(my_get_env("HOME"));
 		return (res);
 	}
-	if (!args[count])
-	{
-		res = change_directory(my_get_env("HOME"));
-		return (res);
-	}
+	count = 1;
+	if (args[count][0] == '\0')
+		return (0);
 	return (change_directory(args[1]));
 }
