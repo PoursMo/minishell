@@ -6,7 +6,7 @@
 /*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 08:46:48 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/23 15:04:51 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/23 15:53:22 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	fill_str(char *line, char **val_str, char **name_str)
 	(*val_str)[i] = '\0';
 }
 
-static void val_name_free(char *name, char *val)
+static void	val_name_free(char *name, char *val)
 {
 	if (val)
 		free(val);

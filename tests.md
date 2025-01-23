@@ -11,13 +11,14 @@ echo ""
 echo " "
 echo Hello World
 echo -n Hello World
+echo -n
 cd
 cd ""
 cd " "
 cd Hello
 cd ..
 cd /home
-pwd 
+pwd
 export
 export ""
 export TEST

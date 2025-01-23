@@ -6,7 +6,7 @@
 /*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 11:34:56 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/23 15:15:22 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/23 15:53:29 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	unset_sorter(char **args)
 	i = 1;
 	while (args[i])
 	{
-		if(remove_var(args[i], get_minishell_env()) == -1)
+		if (remove_var(args[i], get_minishell_env()) == -1)
 			return (-1);
 		i++;
 	}
