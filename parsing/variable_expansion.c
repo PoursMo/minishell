@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 16:21:13 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/14 21:03:28 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/23 15:15:26 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	add_var_to_new_input(char **var_start, int *i, char *new_input)
 	var_name = get_var_name(*var_start + 1);
 	if (!var_name)
 		return (0);
-	var_value = getenv(var_name);
+	var_value = my_get_env(var_name);
 	free(var_name);
 	if (var_value)
 	{
