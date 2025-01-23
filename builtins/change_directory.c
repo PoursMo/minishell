@@ -6,7 +6,7 @@
 /*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:54:39 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/23 17:24:36 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/23 17:43:32 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,17 @@
 
 int	change_directory(char *str)
 {
+	int		export_return;
+	char	*curr_wd;
+
+	curr_wd = NULL;
 	if (chdir(str) == -1)
 		return (perror("chdir"), -1);
-	return (export_var("PWD", str, get_minishell_env()));
+	curr_wd = getcwd(curr_wd, 0);
+	printf("%s\n", curr_wd);
+	if (!curr_wd)
+		return(perror("Malloc"), -1);
+	export_return = export_var("PWD", curr_wd, get_minishell_env());
+	free(curr_wd);
+	return (export_return);
 }
