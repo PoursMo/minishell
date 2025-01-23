@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 12:58:40 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/23 14:46:00 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/23 15:11:38 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int		get_exit_code_len(void);
 // utils.c
 
 int get_biggest(int a, int b);
-void	free_split(char **split);
 
 // minishell_env.c
 

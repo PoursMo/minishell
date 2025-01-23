@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 13:16:22 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/22 21:27:26 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/23 15:12:12 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,17 @@ static char	*join_and_frees2(const char *s1, char *s2)
 	return (new_str);
 }
 
+static void print_cmd_not_found(char *cmd)
+{
+	char *err;
+
+	err = ft_strjoin(cmd, ": command not found\n");
+	if (!err)
+		return ;
+	write(2, err, ft_strlen(err));
+	free(err);
+}
+
 static void	free_split(char **split)
 {
 	int	i;
@@ -32,17 +43,6 @@ static void	free_split(char **split)
 		i++;
 	}
 	free(split);
-}
-
-static void print_cmd_not_found(char *cmd)
-{
-	char *err;
-
-	err = ft_strjoin(cmd, ": command not found\n");
-	if (!err)
-		return ;
-	write(2, err, ft_strlen(err));
-	free(err);
 }
 
 char	*find_cmd_path(char *cmd)
