@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo_sorter.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 13:39:48 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/22 14:40:01 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/23 13:18:21 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	echo_sorter(char **args)
 	int	count;
 
 	count = 1;
+	if (!args[1])
+		return(printf("\n"), 0);
 	if (ft_strlen(args[1]) == 2 && !(ft_strncmp(args[1], "-n", 2)))
 	{
 		count++;
@@ -37,5 +39,5 @@ int	echo_sorter(char **args)
 		}
 		ft_echo(1, args[count]);
 	}
-	return (0);
+	return (1);
 }
