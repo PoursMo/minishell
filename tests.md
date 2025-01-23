@@ -41,7 +41,7 @@ echo '$HOME'
 echo "$HOME"
 # syntax errors (exit code 2)
 | echo Hello World
-echo Hello World |
+echo Hello World |									# bash diff
 echo Hello World >
 > | echo Hello World
 # non-builtin command
