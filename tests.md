@@ -55,7 +55,11 @@ cat > out.txt minishell.c
 echo Hello World | cat
 cat minishell.c | wc -l > out.txt
 cat < minishell.c | awk '{print "42"}' | wc -l
+< minishell.c cat | >> out.txt wc -l
 # errors (exit code 1)
+cat nonexistant
+ls | cat nonexistant
+# no path || no env
 
 # command not found (exit code 127)
 # command found but not executable (exit code 126)

@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/22 21:24:29 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/23 12:24:29 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ void run_interactive_loop(void)
 int setup_minishell(char **envp)
 {
 	(void)envp;
-	// create env
-	// incr SHLVL
+	// create env + inct SHLVL
 	// history stuff
 	return (0);
 }

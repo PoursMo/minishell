@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 16:23:42 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/15 12:12:18 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/23 12:38:39 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,11 @@ int	check_syntax_errors(t_list *tokens)
 	}
 	while (tokens)
 	{
-		if (is_operator(*(char *)tokens->content)
-			&& (!tokens->next
-				|| is_operator(*(char *)tokens->next->content)))
-		{
-			if (tokens->next)
-				print_syntax_error(tokens->next->content);
-			else
-				print_syntax_error("newline");
-			return (1);
-		}
+		if (is_operator_not_pipe(*(char *)tokens->content)
+			&& tokens->next && is_operator(*(char *)tokens->next->content))
+			return (print_syntax_error(tokens->next->content), 1);
+		if (is_operator(*(char *)tokens->content) && !tokens->next)
+			return (print_syntax_error("newline"), 1);
 		tokens = tokens->next;
 	}
 	return (0);
