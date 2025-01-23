@@ -7,11 +7,11 @@ SRCS = minishell.c	\
     parsing/variable_expansion_utils.c \
     parsing/syntax_errors.c \
     parsing/quote_removal.c \
-    parsing/tester.c \
     parsing/parsing.c \
     utils/exit_code.c \
     utils/utils.c \
 	utils/minishell_env.c \
+	utils/std_streams.c \
     execution/redirection.c \
     execution/execution.c \
     execution/command_checking.c \
@@ -38,7 +38,7 @@ SRCS = minishell.c	\
 OBJSDIR = objects
 OBJS = $(SRCS:%.c=$(OBJSDIR)/%.o)
 LFLAGS = -lreadline
-CFLAGS = -Wall -Wextra -Werror -Iheaders -Ilibft
+CFLAGS = -Wall -Wextra -Werror -Iheaders -Ilibft -g
 NAME = minishell
 LIBFT = libft/libft.a
 

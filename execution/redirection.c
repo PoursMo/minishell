@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:46:38 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/21 16:42:41 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/22 16:23:31 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	setup_input_redirection(const char *file)
 	if (access(file, R_OK) == -1)
 	{
 		perror(file);
-		fd = open("/dev/null", O_RDONLY); // is it really needed
+		fd = open("/dev/null", O_RDONLY); // ?
 		if (fd == -1)
 			return (perror(file), -1);
 	}
@@ -53,7 +53,6 @@ static int	setup_output_redirection(const char *file, int mode)
 	return (0);
 }
 
-// THIS ONE CAN BE IMPROVED ?
 static int	setup_heredoc(char *doc)
 {
 	char	*line;
@@ -61,9 +60,12 @@ static int	setup_heredoc(char *doc)
 
 	if (pipe(pipe_fds) == -1)
 		return (perror("pipe"), -1);
-	line = get_next_line(STDIN_FILENO);
-	while (line)
+	while (1)
 	{
+		write(STDOUT_FILENO, "> ", 2);
+		line = get_next_line(STDIN_FILENO);
+		if(!line)
+			break ;
 		if (!ft_strncmp(line, doc, get_biggest(ft_strlen(line) - 1, ft_strlen(doc))))
 		{
 			free(line);
@@ -71,7 +73,6 @@ static int	setup_heredoc(char *doc)
 		}
 		write(pipe_fds[1], line, ft_strlen(line));
 		free(line);
-		line = get_next_line(STDIN_FILENO);
 	}
 	if (close(pipe_fds[1]) == -1)
 		return (perror("close"), -1);

@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:18:32 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/22 14:00:21 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/22 16:40:51 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int execute_pipeline(t_list *tokens, t_list *pipe_ptr, t_list **pids);
 t_list *find_pipe_token(t_list *tokens);
 t_list *find_cmd_token(t_list *tokens, t_list *end);
 int is_builtin(char *cmd);
-void wait_for_processes(t_list *pids);
+void	wait_for_processes(t_list **pids);
 
 // execution2.c
 
