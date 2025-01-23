@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_get_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 09:34:58 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/22 10:10:45 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/23 13:47:20 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	get_var_value_size(char *var)
 	return (count);
 }
 
-char	*copy_var(int size, char *var)
+static char	*copy_var(int size, char *var)
 {
 	int		i;
 	int		n_i;
@@ -50,13 +50,15 @@ char	*copy_var(int size, char *var)
 	return (new_var);
 }
 
-char	*my_get_env(char **env, char *var_name)
+char	*my_get_env(char *var_name)
 {
 	int		size;
 	char	*var;
 	int		index;
 	char	*return_var;
+	char	**env;
 
+	env = get_minishell_env();
 	index = find_env_index(env, var_name);
 	if (index == -1)
 		return (NULL);
