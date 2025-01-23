@@ -6,7 +6,7 @@
 /*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:57:19 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/23 16:27:13 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/23 17:22:06 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@ int	get_pwd(void)
 	char	*str;
 
 	str = NULL;
-	str = my_get_env("PWD");
+	str = getcwd(str, 0);
 	if (!str)
-		return (0);
+		return (perror("Malloc"), -1);
 	printf("%s\n", str);
-	return (1);
+	free(str);
+	return (0);
 }
