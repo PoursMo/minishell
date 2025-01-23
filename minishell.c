@@ -32,13 +32,10 @@ void run_interactive_loop(void)
 			continue ;
 		}
 		execute_tokens(tokens, &pids);
+		ft_lstclear(&tokens, free);
 		wait_for_processes(&pids);
 		if (reset_std_streams() == -1)
-		{
-			ft_lstclear(&tokens, free);
 			continue ;
-		}
-		ft_lstclear(&tokens, free);
 	}
 }
 
@@ -64,3 +61,4 @@ int main(int argc, char **argv, char **envp)
 }
 
 // remove -g from makefile
+// remove valgrind rule from makefile + ignore_readline_leaks.supp

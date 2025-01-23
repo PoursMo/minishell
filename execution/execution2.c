@@ -6,7 +6,7 @@
 /*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:41:57 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/23 15:09:50 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/23 14:49:48 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	handle_builtin(t_list *cmd_ptr, t_list *pipe_ptr)
 		env_sorter(cmd_args);
 	if (ft_strlen("exit") == cmd_len && !strncmp(cmd_ptr->content, "exit", cmd_len))
 		return ; //NEED to check
+	free(cmd_args);
 }
 
 void	handle_non_builtin(t_list *cmd_ptr, t_list *pipe_ptr)
