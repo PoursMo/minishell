@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   remove_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 16:07:13 by loicbaecher       #+#    #+#             */
-/*   Updated: 2025/01/22 14:56:43 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:14:50 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	malloc_loop(char **envp, int n_i, char ***new_var)
 			{
 				while (--i >= 0)
 					free((*new_var)[i--]);
-				return (free((*new_var)), -1);
+				return (free((*new_var)), perror("Malloc"), -1);
 			}
 			i++;
 			y++;
@@ -65,7 +65,7 @@ char	**malloc_copy_less(char **envp, int not_included)
 		last_index++;
 	new_var = malloc(sizeof(char *) * (last_index));
 	if (!new_var)
-		return (NULL);
+		return (perror("Malloc"), NULL);
 	i = malloc_loop(envp, not_included, &new_var);
 	if (i == -1)
 		return (NULL);
@@ -84,12 +84,12 @@ int	remove_var(char *var_name, char **envp)
 		if (index == -1)
 			return (0);
 		new_env = malloc_copy_less(envp, index);
-		free_env(envp);
-		if (!envp)
+		if (!new_env)
 			return (-1);
+		free_env(envp);
 		free(envp);
 		set_minishell_env(new_env);
-		return (1);
+		return (0);
 	}
 	else
 		return (0);

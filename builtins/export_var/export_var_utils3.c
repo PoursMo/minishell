@@ -6,7 +6,7 @@
 /*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 17:02:49 by loicbaecher       #+#    #+#             */
-/*   Updated: 2025/01/22 17:55:35 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/23 14:36:36 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,19 @@ void	fill_env_str_empty(char *line, char **name_str)
 	(*name_str)[i] = '\0';
 }
 
-void	new_env_var_str(char *var, char *val, char **new_var)
+int	new_env_var_str(char *var, char *val, char **new_var)
 {
 	int	tot_len;
 
 	tot_len = ft_strlen(var) + ft_strlen(val);
 	(*new_var) = malloc(sizeof(char) * (tot_len + 2));
 	if (!new_var)
-		return ;
+		return (perror("Malloc"), -1);
 	*new_var = fill_env_str(*new_var, var, val);
+	return (0);
 }
 
-void	new_env_var_empty(char *var, char **new_var)
+int	new_env_var_empty(char *var, char **new_var)
 {
 	int	tot_len;
 	int	i;
@@ -44,7 +45,7 @@ void	new_env_var_empty(char *var, char **new_var)
 	tot_len = ft_strlen(var);
 	(*new_var) = malloc(sizeof(char) * (tot_len + 1));
 	if (!(*new_var))
-		return ;
+		return (perror("Malloc"), -1);
 	i = 0;
 	while (var[i])
 	{
@@ -52,4 +53,5 @@ void	new_env_var_empty(char *var, char **new_var)
 		i++;
 	}
 	(*new_var)[i] = '\0';
+	return (0);
 }

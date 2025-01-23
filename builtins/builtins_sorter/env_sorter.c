@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   env_sorter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 11:46:36 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/22 11:52:21 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/23 14:57:09 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	env_sorter(char **args, char **new_env)
+int	env_sorter(char **args)
 {
 	int	count;
 
@@ -20,6 +20,6 @@ void	env_sorter(char **args, char **new_env)
 	while (args[count])
 		count++;
 	if (count != 1)
-		return ;
-	display_all_env(new_env);
+		return (perror("env: too many arguments"), -1);
+	return (display_all_env(get_minishell_env()));
 }
