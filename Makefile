@@ -66,4 +66,7 @@ fclean: clean
 test: all
 	@./$(NAME)
 
+valgrind: all
+	valgrind --leak-check=full --show-leak-kinds=all --suppressions=ignore_readline_leaks.supp ./minishell
+
 re: fclean all

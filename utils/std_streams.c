@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:46:47 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/22 15:02:09 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/23 12:20:39 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ static int	update_std_streams(int mode)
 			return (perror("dup2"), -1);
 		if (dup2(std_streams[STDOUT_FILENO], STDOUT_FILENO) == -1)
 			return (perror("dup2"), -1);
+		if (close(std_streams[STDIN_FILENO]) == -1)
+			return (perror("close"), -1);
+		if (close(std_streams[STDOUT_FILENO]) == -1)
+			return (perror("close"), -1);
 	}
 	return (0);
 }
