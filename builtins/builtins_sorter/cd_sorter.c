@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cd_sorter.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 13:49:16 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/22 15:08:18 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/23 14:41:33 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	cd_sorter(char	**args, char **new_env)
+int	cd_sorter(char	**args)
 {
 	int	count;
 
@@ -20,8 +20,6 @@ int	cd_sorter(char	**args, char **new_env)
 	while (args[count])
 		count++;
 	if (count != 2)
-		return (1);
-	change_directory(args[1]);
-	export_var("PWD", args[1], new_env);
-	return (0);
+		return (perror("cd: too many arguments"), 1);
+	return (change_directory(args[1]));
 }

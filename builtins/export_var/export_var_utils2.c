@@ -6,7 +6,7 @@
 /*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 18:44:34 by loicbaecher       #+#    #+#             */
-/*   Updated: 2025/01/22 18:33:19 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/23 14:56:45 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ static void	special_print_env(char *line)
 		printf("%s\n", line);
 }
 
-void	display_all_env(char **environ)
+int	display_all_env(char **environ)
 {
 	int		i;
 	char	**new_environ;
 
 	new_environ = malloc_copy_env(environ);
 	if (!new_environ)
-		return ;
+		return (-1);
 	i = 0;
 	while (new_environ[i])
 	{
@@ -62,6 +62,7 @@ void	display_all_env(char **environ)
 		i++;
 	}
 	free(new_environ);
+	return (0);
 }
 
 static void	special_print(char *line)
@@ -84,7 +85,7 @@ static void	special_print(char *line)
 	printf("%s", "\"\n");
 }
 
-void	display_all_export(char **environ)
+int	display_all_export(char **environ)
 {
 	int		i;
 	char	**new_environ;
@@ -92,7 +93,7 @@ void	display_all_export(char **environ)
 
 	new_environ = malloc_copy_env(environ);
 	if (!new_environ)
-		return ;
+		return (-1);
 	new_environ = env_bubble_sort(new_environ);
 	index_to_avoid = find_env_index(new_environ, "_");
 	i = 0;
@@ -109,4 +110,5 @@ void	display_all_export(char **environ)
 		i++;
 	}
 	free(new_environ);
+	return (0);
 }

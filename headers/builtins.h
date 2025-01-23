@@ -6,7 +6,7 @@
 /*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:22:22 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/23 13:46:33 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/23 15:05:55 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 # define BUILTINS_H
 
 void	ft_echo(int new_line_flag, char *str);
-void	change_directory(char	*str);
+int		change_directory(char *str);
 int		get_pwd(void);
-void	export_var(char	*var_name, char *value, char **envp);
-void	display_all_env(char **environ);
-void	display_all_export(char **environ);
+int		export_var(char *var_name, char *value, char **environ);
+int		display_all_env(char **environ);
+int		display_all_export(char **environ);
 char	**env_bubble_sort(char **new_env);
 char	**malloc_copy_env(char **envp);
 char	**malloc_add_var(char **envp, int *i);
@@ -31,14 +31,14 @@ char	**create_new_env(char **old_env);
 char	**malloc_copy_less(char **envp, int not_included);
 int		find_env_index(char **envp, char *var_name);
 int		echo_sorter(char **args);
-int		cd_sorter(char **args, char **new_env);
-void	export_sorter(char **args, char **new_env);
-void	unset_sorter(char **args, char **new_env);
+int		cd_sorter(char	**args);
+int		export_sorter(char **args);
+int		unset_sorter(char **args);
 void	exit_w_status(int status);
 char	*my_get_env(char *var_name);
-void	env_sorter(char **args, char **new_env);
-void	new_env_var_str(char *var, char *val, char **new_var);
-void	new_env_var_empty(char *var, char **new_var);
+int		env_sorter(char **args);
+int		new_env_var_str(char *var, char *val, char **new_var);
+int		new_env_var_empty(char *var, char **new_var);
 void	fill_env_str_empty(char *line, char **name_str);
 
 #endif

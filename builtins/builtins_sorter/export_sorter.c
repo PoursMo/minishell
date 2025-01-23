@@ -6,7 +6,7 @@
 /*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 08:46:48 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/22 17:47:08 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/23 15:04:51 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,14 @@ static void	fill_str(char *line, char **val_str, char **name_str)
 	(*val_str)[i] = '\0';
 }
 
-static void	export_splitter(char *line, char **new_env)
+static void val_name_free(char *name, char *val)
+{
+	if (val)
+		free(val);
+	free(name);
+}
+
+static int	export_splitter(char *line, char **new_env)
 {
 	int		len_val;
 	int		len_name;
@@ -70,12 +77,12 @@ static void	export_splitter(char *line, char **new_env)
 	var_len(line, &len_name, &len_val);
 	name = malloc(sizeof(char) * (len_name + 1));
 	if (!name)
-		return ;
+		return (perror("Malloc"), -1);
 	if (len_val)
 	{
 		value = malloc(sizeof(char) * (len_val + 1));
 		if (!value)
-			return ;
+			return (free(name), perror("Malloc"), -1);
 		fill_str(line, &value, &name);
 	}
 	else
@@ -83,13 +90,12 @@ static void	export_splitter(char *line, char **new_env)
 		value = NULL;
 		fill_env_str_empty(line, &name);
 	}
-	export_var(name, value, new_env);
-	if (value)
-		free(value);
-	free(name);
+	if (export_var(name, value, new_env) == -1)
+		return (val_name_free(name, value), -1);
+	return (val_name_free(name, value), 0);
 }
 
-void	export_sorter(char **args, char **new_env)
+int	export_sorter(char **args)
 {
 	int		count;
 	int		i;
@@ -97,10 +103,9 @@ void	export_sorter(char **args, char **new_env)
 	count = 0;
 	while (args[count])
 		count++;
-	if (count < 1)
-		return ;
 	if (count == 1)
-		return (display_all_export(new_env), (void) NULL);
+		return (display_all_export(get_minishell_env()));
 	i = 1;
-	export_splitter(args[i], new_env);
+	export_splitter(args[i], get_minishell_env());
+	return (0);
 }
