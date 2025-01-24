@@ -1,8 +1,6 @@
 CC = gcc
 SRCS = minishell.c	\
-<<<<<<< HEAD
-		signals/signals.c	\
-=======
+	signals/signals.c	\
     parsing/tokenization.c \
     parsing/parsing_utils.c \
     parsing/variable_expansion.c \
@@ -37,7 +35,6 @@ SRCS = minishell.c	\
 	builtins/builtins_sorter/export_sorter.c \
 	builtins/builtins_sorter/unset_sorter.c \
 	builtins/builtins_sorter/env_sorter.c \
->>>>>>> origin/main
 
 OBJSDIR = objects
 OBJS = $(SRCS:%.c=$(OBJSDIR)/%.o)
