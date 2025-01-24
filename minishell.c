@@ -6,7 +6,7 @@
 /*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/23 15:56:46 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/24 13:20:57 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void run_interactive_loop(void)
 	{
 		// set interactive signals
 		input = readline("minishell$ ");
+		add_history(input);
+		// When exiting, need to clean_history()
 		// set running signals
 		if (parse_input(input, &tokens) == -1)
 			continue ;
@@ -47,7 +49,6 @@ int setup_minishell(char **envp)
 	char_shlvl = my_get_env("SHLVL");
 	char_shlvl[0] += 1;
 	export_var("SHLVL", char_shlvl, get_minishell_env());
-	//Add history
 	return (0);
 }
 

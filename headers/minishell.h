@@ -31,6 +31,7 @@
 # include <term.h>
 
 # include "libft.h"
+# include "history.h"
 # include "builtins.h"
 # include "parsing.h"
 # include "utils.h"
