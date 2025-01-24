@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 12:58:40 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/23 15:11:38 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/23 17:25:51 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ void	set_minishell_env(char **new_env);
 
 int	save_std_streams(void);
 int	reset_std_streams(void);
+int *get_std_streams(void);
 
 #endif
