@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   get_pwd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
+/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/03 11:21:16 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/14 15:27:43 by aloubry          ###   ########.fr       */
+/*   Created: 2025/01/14 17:57:19 by lbaecher          #+#    #+#             */
+/*   Updated: 2025/01/23 17:33:16 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-t_list	*ft_lstnew(void *content)
+int	get_pwd(void)
 {
-	t_list	*new;
+	char	*str;
 
-	new = malloc(sizeof(t_list));
-	if (!new)
-		return (perror("ft_lstnew"), NULL);
-	new->content = content;
-	new->next = NULL;
-	return (new);
+	str = NULL;
+	str = getcwd(str, 0);
+	if (!str)
+		return (perror("Malloc"), -1);
+	printf("%s\n", str);
+	free(str);
+	return (0);
 }

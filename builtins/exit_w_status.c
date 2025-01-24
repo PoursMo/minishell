@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   exit_w_status.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/03 11:21:16 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/14 15:27:43 by aloubry          ###   ########.fr       */
+/*   Created: 2025/01/22 08:44:52 by lbaecher          #+#    #+#             */
+/*   Updated: 2025/01/22 09:19:09 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-t_list	*ft_lstnew(void *content)
+void	exit_w_status(int status)
 {
-	t_list	*new;
-
-	new = malloc(sizeof(t_list));
-	if (!new)
-		return (perror("ft_lstnew"), NULL);
-	new->content = content;
-	new->next = NULL;
-	return (new);
+	exit(status);
 }

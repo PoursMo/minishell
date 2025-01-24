@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 15:40:28 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/09 15:16:29 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/24 10:43:47 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,9 @@
 
 # include "libft.h"
 # include "signals_key.h"
+# include "builtins.h"
+# include "parsing.h"
+# include "utils.h"
+# include "execution.h"
 
 #endif

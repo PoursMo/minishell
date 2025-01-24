@@ -1,25 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   exit_code.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/03 11:21:16 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/14 15:27:43 by aloubry          ###   ########.fr       */
+/*   Created: 2025/01/14 17:38:20 by aloubry           #+#    #+#             */
+/*   Updated: 2025/01/22 12:23:04 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-t_list	*ft_lstnew(void *content)
+static int	update_exit_code(int new_code)
 {
-	t_list	*new;
+	static unsigned int	code;
 
-	new = malloc(sizeof(t_list));
-	if (!new)
-		return (perror("ft_lstnew"), NULL);
-	new->content = content;
-	new->next = NULL;
-	return (new);
+	if (new_code != -1)
+	{
+		code = new_code;
+	}
+	return (code);
+}
+
+int	get_exit_code(void)
+{
+	return (update_exit_code(-1));
+}
+
+void	set_exit_code(int code)
+{
+	update_exit_code(code);
+}
+
+int	get_exit_code_len(void)
+{
+	int	len;
+	int	code;
+
+	code = update_exit_code(-1);
+	len = 1;
+	while (code)
+	{
+		len++;
+		code /= 10;
+	}
+	return (len);
 }
