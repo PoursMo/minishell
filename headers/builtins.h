@@ -6,7 +6,7 @@
 /*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:22:22 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/23 15:05:55 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/24 13:39:42 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		echo_sorter(char **args);
 int		cd_sorter(char	**args);
 int		export_sorter(char **args);
 int		unset_sorter(char **args);
-void	exit_w_status(int status);
+int		exit_w_status(char **args);
 char	*my_get_env(char *var_name);
 int		env_sorter(char **args);
 int		new_env_var_str(char *var, char *val, char **new_var);
