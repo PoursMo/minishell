@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   new_environ.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/03 11:21:16 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/14 15:27:43 by aloubry          ###   ########.fr       */
+/*   Created: 2025/01/21 10:17:53 by lbaecher          #+#    #+#             */
+/*   Updated: 2025/01/21 11:28:01 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-t_list	*ft_lstnew(void *content)
+char	**create_new_env(char **old_env)
 {
-	t_list	*new;
+	char	**new_env;
 
-	new = malloc(sizeof(t_list));
-	if (!new)
-		return (perror("ft_lstnew"), NULL);
-	new->content = content;
-	new->next = NULL;
-	return (new);
+	new_env = malloc_copy_env(old_env);
+	return (new_env);
 }

@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   minishell_env.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/03 11:21:16 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/14 15:27:43 by aloubry          ###   ########.fr       */
+/*   Created: 2025/01/22 12:13:31 by aloubry           #+#    #+#             */
+/*   Updated: 2025/01/22 12:20:57 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-t_list	*ft_lstnew(void *content)
+static char	**update_minishell_env(char **new_env)
 {
-	t_list	*new;
+	static char	**minishell_env;
 
-	new = malloc(sizeof(t_list));
-	if (!new)
-		return (perror("ft_lstnew"), NULL);
-	new->content = content;
-	new->next = NULL;
-	return (new);
+	if (new_env)
+	{
+		minishell_env = new_env;
+	}
+	return (minishell_env);
+}
+
+char	**get_minishell_env(void)
+{
+	return (update_minishell_env(NULL));
+}
+
+void	set_minishell_env(char **new_env)
+{
+	update_minishell_env(new_env);
 }

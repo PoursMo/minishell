@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 11:29:42 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/03 19:35:12 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/15 13:26:40 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdint.h>
+# include <stdio.h>
 
 //libft
+
 typedef struct s_list
 {
 	void			*content;
@@ -67,7 +69,21 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
+//get_next_line
+
+# define GNL_MAX_FD 1024
+# define GNL_BUFF_SIZE 1024
+
+typedef struct s_buffer
+{
+	char	buffer[GNL_BUFF_SIZE + 1];
+	size_t	offset;
+}	t_buffer;
+
+char	*get_next_line(int fd);
+
 //extra
+
 int		ft_isspace(int c);
 int		ft_islower(int c);
 int		ft_isupper(int c);

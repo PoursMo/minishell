@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 11:21:41 by aloubry           #+#    #+#             */
-/*   Updated: 2024/10/03 11:30:23 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/14 16:16:17 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 
 	new = ft_calloc(sizeof(char), ft_strlen(s) + 1);
 	if (!new)
-		return (NULL);
+		return (perror("ft_strmapi"), NULL);
 	i = 0;
 	while (s[i])
 	{

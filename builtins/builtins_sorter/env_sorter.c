@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   env_sorter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
+/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/03 11:21:16 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/14 15:27:43 by aloubry          ###   ########.fr       */
+/*   Created: 2025/01/22 11:46:36 by lbaecher          #+#    #+#             */
+/*   Updated: 2025/01/23 14:57:09 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-t_list	*ft_lstnew(void *content)
+int	env_sorter(char **args)
 {
-	t_list	*new;
+	int	count;
 
-	new = malloc(sizeof(t_list));
-	if (!new)
-		return (perror("ft_lstnew"), NULL);
-	new->content = content;
-	new->next = NULL;
-	return (new);
+	count = 0;
+	while (args[count])
+		count++;
+	if (count != 1)
+		return (perror("env: too many arguments"), -1);
+	return (display_all_env(get_minishell_env()));
 }

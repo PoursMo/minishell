@@ -47,7 +47,9 @@ SRCS =	ft_isalpha.c		\
 		ft_isspace.c		\
 		ft_islower.c		\
 		ft_isupper.c		\
-		ft_isxdigit.c
+		ft_isxdigit.c		\
+		get_next_line.c		\
+
 OBJSDIR = objs/
 OBJS = $(patsubst %.c,$(OBJSDIR)%.o,$(SRCS))
 NAME = libft.a

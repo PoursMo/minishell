@@ -6,7 +6,11 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 15:40:28 by aloubry           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/01/06 18:09:43 by lbaecher         ###   ########.fr       */
+=======
+/*   Updated: 2025/01/09 17:47:47 by lbaecher         ###   ########.fr       */
+>>>>>>> origin/main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +35,13 @@
 # include <term.h>
 
 # include "libft.h"
+<<<<<<< HEAD
 # include "history.h"
+=======
+# include "builtins.h"
+# include "parsing.h"
+# include "utils.h"
+# include "execution.h"
+>>>>>>> origin/main
 
 #endif
