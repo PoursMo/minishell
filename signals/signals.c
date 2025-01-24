@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:14:07 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/09 15:30:38 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/24 17:20:06 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,58 @@
 // behaves properly
 
 #include "minishell.h"
+
+void handle_interactive_sigint(int signal)
+{
+	(void)signal;
+	write(STDOUT_FILENO, "\n", 1);
+	rl_on_new_line();
+	rl_redisplay();
+	set_exit_code(130);
+}
+
+void handle_running_sigint(int signal)
+{
+	(void)signal;
+	if (kill(0, SIGINT) == -1)
+		perror("kill");
+	set_exit_code(130);
+}
+
+void handle_running_sigquit(int signal)
+{
+	(void)signal;
+	set_exit_code(131);
+}
+
+int set_interactive_signals(void)
+{
+	struct sigaction sa_sigint;
+	struct sigaction sa_sigquit;
+
+	sa_sigint.sa_handler = handle_interactive_sigint;
+	sa_sigquit.sa_handler = SIG_IGN;
+	if (sigaction(SIGINT, &sa_sigint, NULL) == -1)
+		return (perror("sigaction"), -1);
+	if (sigaction(SIGQUIT, &sa_sigquit, NULL) == -1)
+		return (perror("sigaction"), -1);
+	return (0);
+}
+
+int set_running_signals(void)
+{
+	struct sigaction sa_sigint;
+	struct sigaction sa_sigquit;
+
+	sa_sigint.sa_handler = handle_running_sigint;
+	sa_sigquit.sa_handler = handle_running_sigquit;
+	if (sigaction(SIGINT, &sa_sigint, NULL) == -1)
+		return (perror("sigaction"), -1);
+	if (sigaction(SIGQUIT, &sa_sigquit, NULL) == -1)
+		return (perror("sigaction"), -1);
+	return (0);
+}
+
 
 static void	sig_interactive(int sig)
 {

@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/24 10:42:26 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/24 16:28:30 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "minishell.h"
 
@@ -22,9 +21,10 @@ void run_interactive_loop(void)
 	pids = NULL;
 	while(1)
 	{
-		// set interactive signals
+		set_interactive_signals();
 		input = readline("minishell$ ");
-		// set running signals
+		if (!input)
+			exit(EXIT_SUCCESS);
 		if (parse_input(input, &tokens) == -1)
 			continue ;
 		if (save_std_streams() == -1)
@@ -33,22 +33,23 @@ void run_interactive_loop(void)
 			continue ;
 		}
 		execute_tokens(tokens, &pids);
-		ft_lstclear(&tokens, free);
+		set_running_signals();
 		wait_for_processes(&pids);
 		if (reset_std_streams() == -1)
+		{
+			ft_lstclear(&tokens, free);
 			continue ;
+		}
+		ft_lstclear(&tokens, free);
 	}
 }
 
 int setup_minishell(char **envp)
 {
-	char	*char_shlvl;
-
-	set_minishell_env(create_new_env(envp));
-	char_shlvl = my_get_env("SHLVL");
-	char_shlvl[0] += 1;
-	export_var("SHLVL", char_shlvl, get_minishell_env());
-	//Add history
+	(void)envp;
+	// create env
+	// incr SHLVL
+	// history stuff
 	return (0);
 }
 
@@ -62,4 +63,3 @@ int main(int argc, char **argv, char **envp)
 }
 
 // remove -g from makefile
-// remove valgrind rule from makefile + ignore_readline_leaks.supp
