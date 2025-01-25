@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:14:07 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/25 12:59:24 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/25 13:05:21 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	handle_interactive_sigint(int signal)
 {
 	(void)signal;
-	write(get_std_streams()[STDOUT_FILENO], "\n", 1);
+	write(STDOUT_FILENO, "\n", 1);
 	rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();

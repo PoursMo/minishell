@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/25 13:00:48 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/25 13:14:12 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void run_interactive_loop(void)
 
 	while(1)
 	{
-		set_signals('i');
+		if (set_signals('i') == -1)
+			return ;
 		input = readline("minishell$ ");
-		add_history(input);
-		// When exiting, need to clean_history()
-		// set running signals
 		if (!input)
 			exit(EXIT_SUCCESS);
+		add_history(input);
+		// When exiting, need to clean_history()
 		if (parse_input(input, &tokens) == -1)
 			continue ;
 		if (save_std_streams() == -1)
@@ -33,16 +33,15 @@ void run_interactive_loop(void)
 			ft_lstclear(&tokens, free);
 			continue ;
 		}
-		set_sigquit();
+		if (set_sigquit() == -1)
+			return ;
 		execute_tokens(tokens, get_child_pids());
-		set_signals('r');
+		if (set_signals('r') == -1)
+			return ;
 		wait_for_processes(get_child_pids());
-		if (reset_std_streams() == -1)
-		{
-			ft_lstclear(&tokens, free);
-			continue ;
-		}
 		ft_lstclear(&tokens, free);
+		if (reset_std_streams() == -1)
+			continue ;
 	}
 }
 
@@ -52,7 +51,7 @@ int setup_minishell(char **envp)
 
 	set_minishell_env(create_new_env(envp));
 	char_shlvl = my_get_env("SHLVL");
-	char_shlvl[0] += 1;
+	char_shlvl[0] += 1; // need improvement atoi itoa
 	export_var("SHLVL", char_shlvl, get_minishell_env());
 	return (0);
 }
@@ -67,3 +66,4 @@ int main(int argc, char **argv, char **envp)
 }
 
 // remove -g from makefile
+// remove .supp and valgrind rule from makefile
