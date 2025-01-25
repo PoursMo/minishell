@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:14:07 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/25 13:05:21 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/25 13:17:33 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static void	handle_running_sigint(int signal)
 	pids = *get_child_pids();
 	while (pids)
 	{
+		printf("Sending SIGINT to PID %d\n", *(int *)pids->content);
 		kill(*(int *)pids->content, SIGINT);
 		pids = pids->next;
 	}
@@ -53,6 +54,7 @@ static void	handle_running_sigquit(int signal)
 	pids = *get_child_pids();
 	while (pids)
 	{
+		printf("Sending SIGQUIT to PID %d\n", *(int *)pids->content);
 		kill(*(int *)pids->content, SIGQUIT);
 		pids = pids->next;
 	}
