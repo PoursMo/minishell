@@ -6,7 +6,11 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 12:58:40 by aloubry           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/01/23 17:25:51 by aloubry          ###   ########.fr       */
+=======
+/*   Updated: 2025/01/25 12:54:25 by aloubry          ###   ########.fr       */
+>>>>>>> signals
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +26,7 @@ int		get_exit_code_len(void);
 // utils.c
 
 int get_biggest(int a, int b);
+t_list **get_child_pids(void);
 
 // minishell_env.c
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 15:40:28 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/09 17:47:47 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/25 12:55:53 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@
 # include <termios.h>
 # include <curses.h>
 # include <term.h>
+# include <signal.h>
 
 # include "libft.h"
 # include "history.h"
+# include "signals.h"
 # include "builtins.h"
 # include "parsing.h"
 # include "utils.h"

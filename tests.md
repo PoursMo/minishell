@@ -65,6 +65,7 @@ echo Hello World | cat
 cat minishell.c | wc -l > out.txt
 cat < minishell.c | awk '{print "42"}' | wc -l
 < minishell.c cat | >> out.txt wc -l
+cat /dev/random | cat
 cat > out minishell.c | wc -l
 cat minishell.c | << end cat 					# marche po
 cat nonexistant | ls

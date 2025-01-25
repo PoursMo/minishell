@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   signals.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/15 14:37:26 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/25 12:54:36 by aloubry          ###   ########.fr       */
+/*   Created: 2025/01/08 10:14:24 by lbaecher          #+#    #+#             */
+/*   Updated: 2025/01/25 12:56:03 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef SIGNALS_H
+# define SIGNALS_H
 
-int	get_biggest(int a, int b)
-{
-	if (a > b)
-		return (a);
-	else
-		return (b);
-}
+int	set_signals(char mode);
+int set_sigquit(void);
 
-t_list **get_child_pids(void)
-{
-	static t_list	*child_pids;
-
-	return (&child_pids);
-}
+#endif
