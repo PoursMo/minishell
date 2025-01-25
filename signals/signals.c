@@ -6,45 +6,84 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:14:07 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/24 17:20:06 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/25 12:46:17 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//The add_key_signals must be added when launching the shell so that ctrl-c
-// behaves properly
-
 #include "minishell.h"
 
-void handle_interactive_sigint(int signal)
+static void	handle_interactive_sigint(int signal)
 {
 	(void)signal;
-	write(STDOUT_FILENO, "\n", 1);
+	write(STDOUT_FILENO, "\n", 1); // send to stdout copy ?
+	rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
 	set_exit_code(130);
 }
 
-void handle_running_sigint(int signal)
+static void handle_heredoc_sigint(int signal)
 {
 	(void)signal;
-	if (kill(0, SIGINT) == -1)
-		perror("kill");
+	write(STDOUT_FILENO, "\n", 1); // send to stdout copy ?
+	rl_replace_line("", 0);
+	rl_on_new_line();
 	set_exit_code(130);
 }
 
-void handle_running_sigquit(int signal)
+static void	handle_running_sigint(int signal)
 {
+	t_list *pids;
+
 	(void)signal;
+	pids = *get_child_pids();
+	while (pids)
+	{
+		kill(*(int *)pids->content, SIGINT);
+		pids = pids->next;
+	}
+	set_exit_code(130);
+}
+
+static void	handle_running_sigquit(int signal)
+{
+	t_list *pids;
+
+	(void)signal;
+	pids = *get_child_pids();
+	while (pids)
+	{
+		kill(*(int *)pids->content, SIGQUIT);
+		pids = pids->next;
+	}
+	write(2, "Quit\n", 5);
 	set_exit_code(131);
 }
 
-int set_interactive_signals(void)
+int	set_signals(char mode)
 {
-	struct sigaction sa_sigint;
-	struct sigaction sa_sigquit;
+	struct sigaction	sa_sigint;
+	struct sigaction	sa_sigquit;
 
-	sa_sigint.sa_handler = handle_interactive_sigint;
-	sa_sigquit.sa_handler = SIG_IGN;
+	sa_sigint.sa_flags = 0;
+	sigemptyset(&sa_sigint.sa_mask);
+	sa_sigquit.sa_flags = 0;
+	sigemptyset(&sa_sigquit.sa_mask);
+	if (mode == 'i')
+	{
+		sa_sigint.sa_handler = handle_interactive_sigint;
+		sa_sigquit.sa_handler = SIG_IGN;
+	}
+	else if(mode == 'r')
+	{
+		sa_sigint.sa_handler = handle_running_sigint;
+		sa_sigquit.sa_handler = handle_running_sigquit;
+	}
+	else if(mode == 'h')
+	{
+		sa_sigint.sa_handler = handle_heredoc_sigint;
+		sa_sigquit.sa_handler = SIG_IGN;
+	}
 	if (sigaction(SIGINT, &sa_sigint, NULL) == -1)
 		return (perror("sigaction"), -1);
 	if (sigaction(SIGQUIT, &sa_sigquit, NULL) == -1)
@@ -52,45 +91,14 @@ int set_interactive_signals(void)
 	return (0);
 }
 
-int set_running_signals(void)
+int set_sigquit(void)
 {
-	struct sigaction sa_sigint;
-	struct sigaction sa_sigquit;
+	struct sigaction	sa_sigquit;
 
-	sa_sigint.sa_handler = handle_running_sigint;
-	sa_sigquit.sa_handler = handle_running_sigquit;
-	if (sigaction(SIGINT, &sa_sigint, NULL) == -1)
-		return (perror("sigaction"), -1);
+	sa_sigquit.sa_handler = SIG_DFL;
+	sa_sigquit.sa_flags = 0;
+	sigemptyset(&sa_sigquit.sa_mask);
 	if (sigaction(SIGQUIT, &sa_sigquit, NULL) == -1)
 		return (perror("sigaction"), -1);
 	return (0);
-}
-
-
-static void	sig_interactive(int sig)
-{
-	if (sig == SIGINT)
-	{
-		rl_replace_line("", 0);
-		rl_redisplay();
-		rl_on_new_line();
-		printf("\nTHIS MUST BE CHANGED TO GO TO NEWLINE:\n");
-		printf("Exiting minishell...\n");
-		usleep(200000);
-		exit (0);
-	}
-}
-
-void	add_signals(char c)
-{
-	struct sigaction	sig_sigint;
-	struct sigaction	sig_sigquit;
-
-	if (c == 'i')
-	{
-		sig_sigint.sa_handler = &sig_interactive;
-		sig_sigquit.sa_handler = SIG_IGN;
-		sigaction(SIGINT, &sig_sigint, NULL);
-		sigaction(SIGQUIT, &sig_sigquit, NULL);
-	}
 }

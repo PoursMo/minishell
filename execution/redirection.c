@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:46:38 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/23 14:00:16 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/25 12:11:30 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ static int	setup_heredoc(char *doc)
 
 	if (pipe(pipe_fds) == -1)
 		return (perror("pipe"), -1);
+	set_signals('h');
 	while (1)
 	{
 		line = get_next_line(STDIN_FILENO);

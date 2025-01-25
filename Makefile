@@ -13,6 +13,7 @@ SRCS = minishell.c	\
     utils/utils.c \
 	utils/minishell_env.c \
 	utils/std_streams.c \
+	utils/child_pids.c \
     execution/redirection.c \
     execution/execution.c \
     execution/command_checking.c \

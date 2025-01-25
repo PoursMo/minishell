@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/24 16:28:30 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/25 12:08:29 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,10 @@ void run_interactive_loop(void)
 {
 	char *input;
 	t_list *tokens;
-	t_list *pids;
 
-	pids = NULL;
 	while(1)
 	{
-		set_interactive_signals();
+		set_signals('i');
 		input = readline("minishell$ ");
 		if (!input)
 			exit(EXIT_SUCCESS);
@@ -32,9 +30,10 @@ void run_interactive_loop(void)
 			ft_lstclear(&tokens, free);
 			continue ;
 		}
-		execute_tokens(tokens, &pids);
-		set_running_signals();
-		wait_for_processes(&pids);
+		set_sigquit();
+		execute_tokens(tokens, get_child_pids());
+		set_signals('r');
+		wait_for_processes(get_child_pids());
 		if (reset_std_streams() == -1)
 		{
 			ft_lstclear(&tokens, free);

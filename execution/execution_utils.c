@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:37:08 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/22 16:40:58 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/25 12:51:58 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,8 @@ void	wait_for_processes(t_list **pids)
 	tmp = *pids;
 	while (tmp)
 	{
-		if (waitpid(*(int *)tmp->content, &status, 0) == -1)
-			perror("waitpid");
-		set_exit_code(WEXITSTATUS(status));
+		if (waitpid(*(int *)tmp->content, &status, 0) != -1)
+			set_exit_code(WEXITSTATUS(status));
 		tmp = tmp->next;
 	}
 	ft_lstclear(pids, free);
