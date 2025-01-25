@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:38:20 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/25 12:48:15 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/25 13:01:48 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	get_exit_code(void)
 
 void	set_exit_code(int code)
 {
-	fprintf(stderr, "setting exit code to %d\n", code);
 	update_exit_code(code);
 }
 

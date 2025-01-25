@@ -6,11 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/01/24 13:20:57 by loicbaecher      ###   ########.fr       */
-=======
-/*   Updated: 2025/01/25 12:08:29 by aloubry          ###   ########.fr       */
->>>>>>> signals
+/*   Updated: 2025/01/25 13:00:48 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +21,11 @@ void run_interactive_loop(void)
 	{
 		set_signals('i');
 		input = readline("minishell$ ");
-<<<<<<< HEAD
 		add_history(input);
 		// When exiting, need to clean_history()
 		// set running signals
-=======
 		if (!input)
 			exit(EXIT_SUCCESS);
->>>>>>> signals
 		if (parse_input(input, &tokens) == -1)
 			continue ;
 		if (save_std_streams() == -1)
@@ -55,19 +48,12 @@ void run_interactive_loop(void)
 
 int setup_minishell(char **envp)
 {
-<<<<<<< HEAD
 	char	*char_shlvl;
 
 	set_minishell_env(create_new_env(envp));
 	char_shlvl = my_get_env("SHLVL");
 	char_shlvl[0] += 1;
 	export_var("SHLVL", char_shlvl, get_minishell_env());
-=======
-	(void)envp;
-	// create env
-	// incr SHLVL
-	// history stuff
->>>>>>> signals
 	return (0);
 }
 
