@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/25 13:50:16 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/27 14:31:05 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,6 @@ void run_interactive_loop(void)
 int setup_minishell(char **envp)
 {
 	set_minishell_env(create_new_env(envp));
-	char_shlvl = my_get_env("SHLVL");
-	char_shlvl[0] += 1; // need improvement atoi itoa
-	export_var("SHLVL", char_shlvl, get_minishell_env());
 	return (0);
 }
 
