@@ -1,38 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   signals.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/14 12:58:40 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/25 13:01:01 by aloubry          ###   ########.fr       */
+/*   Created: 2025/01/08 10:14:24 by lbaecher          #+#    #+#             */
+/*   Updated: 2025/01/25 12:56:03 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#ifndef SIGNALS_H
+# define SIGNALS_H
 
-// exit_code.c
-
-int		get_exit_code(void);
-void	set_exit_code(int code);
-int		get_exit_code_len(void);
-
-// utils.c
-
-int get_biggest(int a, int b);
-t_list **get_child_pids(void);
-
-// minishell_env.c
-
-char	**get_minishell_env(void);
-void	set_minishell_env(char **new_env);
-
-// std_streams.c
-
-int	save_std_streams(void);
-int	reset_std_streams(void);
-int *get_std_streams(void);
+int	set_signals(char mode);
+int set_sigquit(void);
 
 #endif
