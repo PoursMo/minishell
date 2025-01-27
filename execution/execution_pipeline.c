@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:37:44 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/27 15:49:37 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/27 16:32:43 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ static int	setup_pipe_in_redirection(int pipe_fds[2])
 	return (0);
 }
 
-static void	handle_pipeline_child_exec(t_list *tokens, t_list *pipe_ptr, int pipe_fds[2])
+static void	handle_pipeline_child_exec(t_list *tokens,
+	t_list *pipe_ptr, int pipe_fds[2])
 {
 	t_list	*cmd_ptr;
 

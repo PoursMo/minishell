@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:41:57 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/27 15:48:25 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/27 16:31:44 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,25 +56,27 @@ char	**get_cmd_args(t_list *cmd, t_list *end)
 
 int	handle_builtin(t_list *cmd_ptr, t_list *pipe_ptr)
 {
-	size_t cmd_len;
+	size_t	cmd_len;
 	char	**cmd_args;
-	int code;
+	int		code;
+	char	*cmd;
 
 	cmd_args = get_cmd_args(cmd_ptr, pipe_ptr);
-	cmd_len = ft_strlen(cmd_ptr->content);
-	if (ft_strlen("echo") == cmd_len && !strncmp(cmd_ptr->content, "echo", cmd_len))
+	cmd = cmd_ptr->content;
+	cmd_len = ft_strlen(cmd);
+	if (ft_strlen("echo") == cmd_len && !strncmp(cmd, "echo", cmd_len))
 		code = echo_sorter(cmd_args);
-	if (ft_strlen("cd") == cmd_len && !strncmp(cmd_ptr->content, "cd", cmd_len))
+	if (ft_strlen("cd") == cmd_len && !strncmp(cmd, "cd", cmd_len))
 		code = cd_sorter(cmd_args);
-	if (ft_strlen("pwd") == cmd_len && !strncmp(cmd_ptr->content, "pwd", cmd_len))
+	if (ft_strlen("pwd") == cmd_len && !strncmp(cmd, "pwd", cmd_len))
 		code = get_pwd();
-	if (ft_strlen("export") == cmd_len && !strncmp(cmd_ptr->content, "export", cmd_len))
+	if (ft_strlen("export") == cmd_len && !strncmp(cmd, "export", cmd_len))
 		code = export_sorter(cmd_args);
-	if (ft_strlen("unset") == cmd_len && !strncmp(cmd_ptr->content, "unset", cmd_len))
+	if (ft_strlen("unset") == cmd_len && !strncmp(cmd, "unset", cmd_len))
 		code = unset_sorter(cmd_args);
-	if (ft_strlen("env") == cmd_len && !strncmp(cmd_ptr->content, "env", cmd_len))
+	if (ft_strlen("env") == cmd_len && !strncmp(cmd, "env", cmd_len))
 		code = env_sorter(cmd_args);
-	if (ft_strlen("exit") == cmd_len && !strncmp(cmd_ptr->content, "exit", cmd_len))
+	if (ft_strlen("exit") == cmd_len && !strncmp(cmd, "exit", cmd_len))
 		code = exit_w_status(cmd_args);
 	free(cmd_args);
 	return (code);

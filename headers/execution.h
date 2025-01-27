@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:18:32 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/27 15:48:39 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/27 18:23:33 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,42 @@
 
 // redirection.c
 
-int setup_redirections(t_list *start, t_list *end);
+int		setup_redirections(t_list *start, t_list *end);
+
+// heredoc.c
+
+int		setup_heredoc(char *doc);
 
 // command_checking.c
 
-char *find_cmd_path(char *cmd);
+char	*find_cmd_path(char *cmd);
+
+// command_checking_utils.c
+
+char	*check_access(char *cmd);
+char	**get_split_path(void);
+char	*find_in_path(char **split_path, char *cmd);
+void	free_split(char **split);
 
 // execution.c
 
-void execute_tokens(t_list *tokens, t_list **pids);
+void	execute_tokens(t_list *tokens, t_list **pids);
 
 // execution_pipeline.c
 
-int execute_pipeline(t_list *tokens, t_list *pipe_ptr, t_list **pids);
+int		execute_pipeline(t_list *tokens, t_list *pipe_ptr, t_list **pids);
 
 // execution_utils.c
 
-t_list *find_pipe_token(t_list *tokens);
-t_list *find_cmd_token(t_list *tokens, t_list *end);
-int is_builtin(char *cmd);
+t_list	*find_pipe_token(t_list *tokens);
+t_list	*find_cmd_token(t_list *tokens, t_list *end);
+int		is_builtin(char *cmd);
 void	wait_for_processes(t_list **pids);
 
 // execution2.c
 
-char **get_cmd_args(t_list *cmd, t_list *end);
-int handle_builtin(t_list *cmd_ptr, t_list *pipe_ptr);
-void handle_non_builtin(t_list *cmd_ptr, t_list *pipe_ptr);
+char	**get_cmd_args(t_list *cmd, t_list *end);
+int		handle_builtin(t_list *cmd_ptr, t_list *pipe_ptr);
+void	handle_non_builtin(t_list *cmd_ptr, t_list *pipe_ptr);
 
 #endif

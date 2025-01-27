@@ -16,8 +16,10 @@ SRCS = minishell.c	\
 	utils/std_streams.c \
 	utils/shlvl.c \
     execution/redirection.c \
+	execution/heredoc.c \
     execution/execution.c \
     execution/command_checking.c \
+    execution/command_checking_utils.c \
     execution/execution_pipeline.c \
     execution/execution_utils.c \
     execution/execution2.c \

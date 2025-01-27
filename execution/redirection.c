@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:46:38 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/25 13:01:34 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/27 16:29:24 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	setup_input_redirection(const char *file)
 	if (access(file, R_OK) == -1)
 	{
 		perror(file);
-		fd = open("/dev/null", O_RDONLY); // ?
+		fd = open("/dev/null", O_RDONLY);
 		if (fd == -1)
 			return (perror(file), -1);
 	}
@@ -53,34 +53,29 @@ static int	setup_output_redirection(const char *file, int mode)
 	return (0);
 }
 
-static int	setup_heredoc(char *doc)
+static int	handle_redirection(t_list *token)
 {
-	char	*line;
-	int		pipe_fds[2];
-
-	if (pipe(pipe_fds) == -1)
-		return (perror("pipe"), -1);
-	set_signals('h');
-	while (1)
+	remove_quotes(token->next->content);
+	if (!ft_strncmp(token->content, ">>", 2))
 	{
-		write(get_std_streams()[1], "> ", 2);
-		line = get_next_line(get_std_streams()[0]);
-		if(!line)
-			break ;
-		if (!ft_strncmp(line, doc, get_biggest(ft_strlen(line) - 1, ft_strlen(doc))))
-		{
-			free(line);
-			break ;
-		}
-		write(pipe_fds[1], line, ft_strlen(line));
-		free(line);
+		if (setup_output_redirection(token->next->content, 1) == -1)
+			return (-1);
 	}
-	if (close(pipe_fds[1]) == -1)
-		return (perror("close"), -1);
-	if (dup2(pipe_fds[0], STDIN_FILENO) == -1)
-		return (perror("dup2"), -1);
-	if (close(pipe_fds[0]) == -1)
-		return (perror("close"), -1);
+	else if (!ft_strncmp(token->content, ">", 1))
+	{
+		if (setup_output_redirection(token->next->content, 0) == -1)
+			return (-1);
+	}
+	else if (!ft_strncmp(token->content, "<<", 2))
+	{
+		if (setup_heredoc(token->next->content) == -1)
+			return (-1);
+	}
+	else if (!ft_strncmp(token->content, "<", 1))
+	{
+		if (setup_input_redirection(token->next->content) == -1)
+			return (-1);
+	}
 	return (0);
 }
 
@@ -90,27 +85,8 @@ int	setup_redirections(t_list *start, t_list *end)
 	{
 		if (is_operator_not_pipe(*(char *)start->content))
 		{
-			remove_quotes(start->next->content);
-			if (!ft_strncmp(start->content, ">>", 2))
-			{
-				if(setup_output_redirection(start->next->content, 1) == -1)
-					return (-1);
-			}
-			else if (!ft_strncmp(start->content, ">", 1))
-			{
-				if(setup_output_redirection(start->next->content, 0) == -1)
-					return (-1);
-			}
-			else if (!ft_strncmp(start->content, "<<", 2))
-			{
-				if(setup_heredoc(start->next->content) == -1)
-					return (-1);
-			}
-			else if (!ft_strncmp(start->content, "<", 1))
-			{
-				if(setup_input_redirection(start->next->content) == -1)
-					return (-1);
-			}
+			if (handle_redirection(start) == -1)
+				return (-1);
 		}
 		start = start->next;
 	}

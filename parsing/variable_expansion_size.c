@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 20:49:25 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/14 21:04:34 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/27 18:03:00 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	add_var_size(char **var_start, int *size)
 	var_name = get_var_name(*var_start + 1);
 	if (!var_name)
 		return (0);
-	var_value = getenv(var_name);
+	var_value = my_get_env(var_name);
 	free(var_name);
 	if (var_value)
 		*size += ft_strlen(var_value);
