@@ -6,11 +6,23 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 17:02:49 by loicbaecher       #+#    #+#             */
-/*   Updated: 2025/01/27 08:28:45 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/27 09:52:48 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	check_exportable(char *var)
+{
+	int	i;
+
+	i = 0;
+	while (var[i] && !(ft_isalpha(var[i])) && var[i] != '=')
+		i++;
+	if (var[i] == '=' || var[i] == '\0')
+		return (0);
+	return (1);
+}
 
 void	fill_env_str_empty(char *line, char **name_str)
 {

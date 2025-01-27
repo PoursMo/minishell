@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:22:22 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/27 08:51:29 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/27 09:52:59 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ int		env_sorter(char **args);
 int		new_env_var_str(char *var, char *val, char **new_var);
 int		new_env_var_empty(char *var, char **new_var);
 void	fill_env_str_empty(char *line, char **name_str);
+int		check_exportable(char *var);
 
 #endif

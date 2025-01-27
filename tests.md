@@ -1,31 +1,31 @@
 # empty inputs
 
-""										okay, return value 127
-""""									okay, return value 127
-''										okay, return value 127
-" "										okay, return value 127
-"	"									okay, return value 127
+""										okay, return value is 127
+""""									okay, return value is 127
+''										okay, return value is 127
+" "										okay, return value is 127
+"	"									okay, return value is 127
 # builtin commands
-echo									okay, return value 0
-echo ""									okay, return value 0
-echo Hello World						okay, return value 0
-echo "Hello World"						okay, return value 0
-echo -n Hello World						okay, return value 0
-echo -n -n Hello World					okay, return value 0
-echo -nnnnnnnnnnnnn Hello World
-echo Hello -n World
-cd
-cd ""
-cd " "
-cd Hello
-cd ..
-cd /home
-pwd
-pwd Hello World
-export
-export ""
-export TEST
-export TEST=Hello
+echo									okay, return value is 0
+echo ""									okay, return value is 0
+echo Hello World						okay, return value is 0
+echo "Hello World"						okay, return value is 0
+echo -n Hello World						okay, return value is 0
+echo -n -n Hello World					okay, return value is 0
+echo -nnnnnnnnnnnnn Hello World			okay, return value is 0
+echo Hello -n World						okay, return value is 0
+cd										okay, return value is 0
+cd ""									okay, return value is 0
+cd " "									okay, return value is different 0 for minishell, 1 for bash
+cd Hello								okay, return value is different 0 for minishell, 1 for bash
+cd ..									okay, return value is 0
+cd /home								okay, return value is 0
+pwd										okay, return value is 0
+pwd Hello World							okay, return value is 0
+export									okay, return value is 0
+export ""								not okay, should'nt be able to export empty or only numeric global values
+export TEST								okay, return value is differrent 0 for minishell, 1 for bash
+export TEST=Hello						okay, return value is 0
 export TEST+=World
 export TEST=Hello World
 export TEST="Hello World"
