@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:18:32 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/22 16:40:51 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/27 15:48:39 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	wait_for_processes(t_list **pids);
 // execution2.c
 
 char **get_cmd_args(t_list *cmd, t_list *end);
-void handle_builtin(t_list *cmd_ptr, t_list *pipe_ptr);
+int handle_builtin(t_list *cmd_ptr, t_list *pipe_ptr);
 void handle_non_builtin(t_list *cmd_ptr, t_list *pipe_ptr);
 
 #endif

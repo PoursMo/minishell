@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:42:07 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/27 14:44:04 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/27 15:28:06 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,20 @@ static int	check_shlvl(char *shlvl)
 	int	i;
 
 	i = 0;
-	while(shlvl[i])
+	while (shlvl[i])
 	{
-		if(!ft_isdigit(shlvl[i]))
+		if (!ft_isdigit(shlvl[i]))
 			return (1);
 		i++;
 	}
 	return (0);
 }
 
-void increment_shlvl(char *shlvl)
+void	increment_shlvl(char *shlvl)
 {
-	char *tmp;
-	
-	if(check_shlvl(shlvl) == 1)
+	char	*tmp;
+
+	if (check_shlvl(shlvl) == 1)
 	{
 		export_var("SHLVL", "1", get_minishell_env());
 		return ;

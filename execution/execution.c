@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:18:49 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/22 16:39:10 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/27 15:49:54 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@ int execute_no_pipeline(t_list *tokens, t_list **pids)
 		return (set_exit_code(EXIT_SUCCESS), -1);
 	remove_quotes(cmd_ptr->content);
 	if (is_builtin(cmd_ptr->content))
-	{
-		handle_builtin(cmd_ptr, NULL);
-		set_exit_code(EXIT_SUCCESS);
-	}
+		set_exit_code(handle_builtin(cmd_ptr, NULL));
 	else
 	{
 		pid = malloc(sizeof(int));

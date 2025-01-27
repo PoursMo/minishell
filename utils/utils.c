@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 14:37:26 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/25 12:54:36 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/27 15:27:37 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	get_biggest(int a, int b)
 		return (b);
 }
 
-t_list **get_child_pids(void)
+t_list	**get_child_pids(void)
 {
 	static t_list	*child_pids;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:41:57 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/24 15:00:12 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/27 15:48:25 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,28 +54,30 @@ char	**get_cmd_args(t_list *cmd, t_list *end)
 	return (args);
 }
 
-void	handle_builtin(t_list *cmd_ptr, t_list *pipe_ptr)
+int	handle_builtin(t_list *cmd_ptr, t_list *pipe_ptr)
 {
 	size_t cmd_len;
 	char	**cmd_args;
+	int code;
 
 	cmd_args = get_cmd_args(cmd_ptr, pipe_ptr);
 	cmd_len = ft_strlen(cmd_ptr->content);
 	if (ft_strlen("echo") == cmd_len && !strncmp(cmd_ptr->content, "echo", cmd_len))
-		echo_sorter(cmd_args);
+		code = echo_sorter(cmd_args);
 	if (ft_strlen("cd") == cmd_len && !strncmp(cmd_ptr->content, "cd", cmd_len))
-		cd_sorter(cmd_args);
+		code = cd_sorter(cmd_args);
 	if (ft_strlen("pwd") == cmd_len && !strncmp(cmd_ptr->content, "pwd", cmd_len))
-		get_pwd();
+		code = get_pwd();
 	if (ft_strlen("export") == cmd_len && !strncmp(cmd_ptr->content, "export", cmd_len))
-		export_sorter(cmd_args);
+		code = export_sorter(cmd_args);
 	if (ft_strlen("unset") == cmd_len && !strncmp(cmd_ptr->content, "unset", cmd_len))
-		unset_sorter(cmd_args);
+		code = unset_sorter(cmd_args);
 	if (ft_strlen("env") == cmd_len && !strncmp(cmd_ptr->content, "env", cmd_len))
-		env_sorter(cmd_args);
+		code = env_sorter(cmd_args);
 	if (ft_strlen("exit") == cmd_len && !strncmp(cmd_ptr->content, "exit", cmd_len))
-		exit_w_status(cmd_args);
+		code = exit_w_status(cmd_args);
 	free(cmd_args);
+	return (code);
 }
 
 void	handle_non_builtin(t_list *cmd_ptr, t_list *pipe_ptr)

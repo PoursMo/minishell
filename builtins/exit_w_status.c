@@ -37,7 +37,6 @@ static long	ft_atoi_long(const char *nptr)
 
 void	actual_exit(int status)
 {
-	printf("%d", status);
 	clear_history();
 	free_env(get_minishell_env());
 	free(get_minishell_env());
