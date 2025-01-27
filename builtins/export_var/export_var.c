@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 08:49:04 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/27 13:41:24 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/27 17:14:58 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	replace_env_var(char *var_name, char *val, char **environ)
 		return (0);
 	new_var = malloc(sizeof(char) * (ft_strlen(var_name) + ft_strlen(val) + 2));
 	if (!new_var)
-		return (perror("malloc"), -1);
+		return (perror("malloc"), 1);
 	new_var = fill_env_str(new_var, var_name, val);
 	free(environ[i]);
 	environ[i] = new_var;
@@ -60,16 +60,16 @@ static int	add_env_var(char *var, char *val, char **environ)
 	index = 0;
 	new_env = malloc_add_var(environ, &index);
 	if (new_env == NULL)
-		return (-1);
+		return (1);
 	if (val)
 	{
 		if (new_env_var_str(var, val, &new_var) == -1)
-			return (free_env(new_env), -1);
+			return (free_env(new_env), 1);
 	}
 	else
 	{
 		if (new_env_var_empty(var, &new_var) == -1)
-			return (free_env(new_env), -1);
+			return (free_env(new_env), 1);
 	}
 	new_env[index] = new_var;
 	new_env[index + 1] = NULL;

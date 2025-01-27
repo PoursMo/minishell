@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   append_plus_var.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:02:56 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/27 13:49:31 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/27 17:13:53 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	append_plus_env_var(char *var, char *val, char **environ)
 	new_var = malloc(sizeof(char) * (ft_strlen(environ[i])
 				+ ft_strlen(val) + 1));
 	if (!new_var)
-		return (perror("malloc"), -1);
+		return (perror("malloc"), 1);
 	new_var = fill_app_plus_env_str(new_var, environ[i], val);
 	free(environ[i]);
 	environ[i] = new_var;

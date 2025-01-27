@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_plus_var.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:16:40 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/27 13:49:25 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/27 17:14:21 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,16 @@ int	add_plus_env_var(char *var, char *val, char **environ)
 	index = 0;
 	new_env = malloc_add_var(environ, &index);
 	if (new_env == NULL)
-		return (-1);
+		return (1);
 	if (val)
 	{
 		if (new_plus_env_var_str(var, val, &new_var) == -1)
-			return (free_env(new_env), -1);
+			return (free_env(new_env), 1);
 	}
 	else
 	{
 		if (new_plus_env_var_empty(var, &new_var) == -1)
-			return (free_env(new_env), -1);
+			return (free_env(new_env), 1);
 	}
 	new_env[index] = new_var;
 	new_env[index + 1] = NULL;
