@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 08:44:52 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/27 09:20:55 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/27 14:45:21 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static long	ft_atoi_long(const char *nptr)
 	return (num * mult);
 }
 
-static void	actual_exit(int status)
+void	actual_exit(int status)
 {
 	clear_history();
 	free_env(get_minishell_env());
@@ -70,14 +70,12 @@ int	exit_w_status(char **args)
 	int	i;
 
 	i = 0;
-	printf("%ld\n", __LONG_MAX__);
 	while (args[i])
 		i++;
 	if (i == 1)
 		return (actual_exit(0), 0);
 	if (i == 2)
 	{
-		printf("EXIT CODE :%d\n", ft_atoi(args[1]) % 256);
 		if (!ft_is_all_num(args[1]))
 			return (perror("exit: numeric argument required"), -1);
 		else
