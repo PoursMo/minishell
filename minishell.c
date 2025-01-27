@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/24 13:20:57 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/27 12:57:55 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,7 @@ void run_interactive_loop(void)
 
 int setup_minishell(char **envp)
 {
-	char	*char_shlvl;
-
 	set_minishell_env(create_new_env(envp));
-	char_shlvl = my_get_env("SHLVL");
-	char_shlvl[0] += 1;
-	export_var("SHLVL", char_shlvl, get_minishell_env());
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:22:22 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/27 10:42:12 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/27 13:39:15 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int		new_env_var_str(char *var, char *val, char **new_var);
 int		new_env_var_empty(char *var, char **new_var);
 void	fill_env_str_empty(char *line, char **name_str);
 int		check_exportable(char *var);
-int		append_env_var(char *var_name, char *value, char **environ);
+int		append_plus_env_var(char *var, char *val, char **environ);
+int		add_plus_env_var(char *var, char *val, char **environ);
+int		check_plus_existing_var(char *var_name, char **environ);
 
 #endif
