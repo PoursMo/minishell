@@ -6,7 +6,7 @@
 /*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 08:44:52 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/27 17:05:22 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/27 17:41:51 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,11 +101,14 @@ int	exit_w_status(char **args)
 	if (i == 2)
 	{
 		if (!ft_is_all_num(args[1]))
-			return (perror("exit: numeric argument required"), 2);
+		{
+			printf("exit: numeric argument required\n");
+			return (actual_exit(2), 2);
+		}
 		else if (check_long_overflow(args[1]))
-			return (perror("exit: numeric argument required"), 2);
+			return (printf("exit: numeric argument required\n"), 2);
 		else
 			return (actual_exit(ft_atoi_long(args[1]) & 0xff), 0);
 	}
-	return (perror("exit: too many arguments"), 1);
+	return (printf("exit: too many arguments\n"), 2);
 }

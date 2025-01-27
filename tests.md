@@ -16,28 +16,28 @@ echo -nnnnnnnnnnnnn Hello World			okay, return value is 0
 echo Hello -n World						okay, return value is 0
 cd										okay, return value is 0
 cd ""									okay, return value is 0
-cd " "									okay, return value is different 0 for minishell, 1 for bash
-cd Hello								okay, return value is different 0 for minishell, 1 for bash
+cd " "									okay, return value is 1
+cd Hello								okay, return value is 1
 cd ..									okay, return value is 0
 cd /home								okay, return value is 0
 pwd										okay, return value is 0
 pwd Hello World							okay, return value is 0
 export									okay, return value is 0
-export ""								not okay, should'nt be able to export empty or only numeric global values
+export ""								okay, return value is 1
 export TEST								okay, return value is 0
 export TEST=Hello						okay, return value is 0
 export TEST+=World						okay, return value is 0
-export TEST++=World						okay, return value is different 0 for minishell, 1 for bash
-export TEST=Hello World					
-export TEST="Hello World"
-unset
-unset ""
-unset TEST
-env
-exit
-exit ""
-exit Hello World
-exit 42
+export TEST++=World						okay, return value is 1
+export TEST=Hello World					okay, return value is 0
+export TEST="Hello World"				okay, return value is 0
+unset									okay, return value is 0
+unset ""								okay, return value is 0
+unset TEST								okay, return value is 0
+env										okay, return value is 0
+exit									okay, exit value is 0
+exit ""									okay, exit value is 2
+exit Hello World						okay, exit value is 2
+exit 42									okay, exit value is 42
 # environment variables
 echo $HOME
 echo $ABCDEF
