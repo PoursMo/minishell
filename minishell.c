@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
 /*   Updated: 2025/01/27 14:47:36 by aloubry          ###   ########.fr       */
@@ -23,7 +23,7 @@ void run_interactive_loop(void)
 			return ;
 		input = readline("minishell$ ");
 		if (!input)
-			exit(EXIT_SUCCESS);
+			actual_exit(EXIT_SUCCESS);
 		add_history(input);
 		// When exiting, need to clean_history()
 		if (parse_input(input, &tokens) == -1)

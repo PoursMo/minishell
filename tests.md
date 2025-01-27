@@ -24,11 +24,11 @@ pwd										okay, return value is 0
 pwd Hello World							okay, return value is 0
 export									okay, return value is 0
 export ""								not okay, should'nt be able to export empty or only numeric global values
-export TEST								okay, return value is differrent 0 for minishell, 1 for bash
+export TEST								okay, return value is 0
 export TEST=Hello						okay, return value is 0
-export TEST+=World
-export TEST++=World
-export TEST=Hello World
+export TEST+=World						okay, return value is 0
+export TEST++=World						okay, return value is different 0 for minishell, 1 for bash
+export TEST=Hello World					
 export TEST="Hello World"
 unset
 unset ""
