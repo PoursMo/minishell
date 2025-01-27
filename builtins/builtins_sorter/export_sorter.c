@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 08:46:48 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/27 10:00:42 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/27 14:21:44 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ static void	var_len(char *line, int *name_len, int *val_len)
 	{
 		i++;
 		if (line[i] == '\0')
+		{
+			*name_len = i;
+			*val_len = 0;
 			return ;
+		}
 	}
 	*name_len = i;
 	count = 0;
