@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   change_directory.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:54:39 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/27 14:02:57 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/27 17:04:35 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

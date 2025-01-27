@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_w_status.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 08:44:52 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/27 15:27:11 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/27 17:05:22 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,11 +102,11 @@ int	exit_w_status(char **args)
 	if (i == 2)
 	{
 		if (!ft_is_all_num(args[1]))
-			return (perror("exit: numeric argument required"), -1);
+			return (perror("exit: numeric argument required"), 2);
 		else if (check_long_overflow(args[1]))
-			return (perror("exit: numeric argument required"), -1);
+			return (perror("exit: numeric argument required"), 2);
 		else
 			return (actual_exit(ft_atoi_long(args[1]) & 0xff), 0);
 	}
-	return (perror("exit: too many arguments"), -1);
+	return (perror("exit: too many arguments"), 1);
 }
