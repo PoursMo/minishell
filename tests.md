@@ -27,6 +27,7 @@ export ""								not okay, should'nt be able to export empty or only numeric glo
 export TEST								okay, return value is differrent 0 for minishell, 1 for bash
 export TEST=Hello						okay, return value is 0
 export TEST+=World
+export TEST++=World
 export TEST=Hello World
 export TEST="Hello World"
 unset

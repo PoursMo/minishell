@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 08:49:04 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/27 08:28:47 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/27 10:40:47 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,45 @@ static int	add_env_var(char *var, char *val, char **environ)
 	return (0);
 }
 
+static char	*remove_plus_sign(char *str)
+{
+	int		i;
+	char	*new_str;
+
+	i = 0;
+	while (str[i] != '+')
+		i++;
+	new_str = malloc(sizeof(char) * (i + 1));
+	if (!new_str)
+		return (NULL);
+	i = 0;
+	while (str[i] != '+')
+	{
+		new_str[i] = str[i];
+		i++;
+	}
+	new_str[i] = '\0';
+	free(*str);
+	return (new_str);
+}
+
 int	export_var(char *var_name, char *value, char **environ)
 {
-	if (check_existing_var(var_name, environ))
+	if (var_name[ft_strlen(var_name) - 1] == '+')
 	{
-		return (replace_env_var(var_name, value, environ));
+		var_name = remove_plus_sign(var_name);
+		if (!var_name)
+			return (perror("malloc:"), 1);
+		if (check_existing_var(var_name, environ))
+			return (append_env_var(var_name, value, environ));
+		else
+			return (add_env_var(var_name, value, environ));
 	}
 	else
-		return (add_env_var(var_name, value, environ));
+	{
+		if (check_existing_var(var_name, environ))
+			return (replace_env_var(var_name, value, environ));
+		else
+			return (add_env_var(var_name, value, environ));
+	}
 }
