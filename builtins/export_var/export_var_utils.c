@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_var_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:06:40 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/23 14:55:57 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/27 08:28:42 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	**malloc_copy_env(char **envp)
 		last_index++;
 	new_tab = malloc(sizeof(char *) * (last_index + 1));
 	if (!new_tab)
-		return (perror("Malloc"), NULL);
+		return (perror("malloc"), NULL);
 	i = 0;
 	while (i < last_index)
 	{
@@ -76,7 +76,7 @@ char	**malloc_add_var(char **envp, int *pass_index)
 		len++;
 	new_var = malloc(sizeof(char *) * (len + 2));
 	if (!new_var)
-		return (perror("Malloc"), NULL);
+		return (perror("malloc"), NULL);
 	i = 0;
 	while (i < len)
 	{
@@ -85,7 +85,7 @@ char	**malloc_add_var(char **envp, int *pass_index)
 		{
 			while (--i >= 0)
 				free(new_var[i]);
-			return (perror("Malloc"), free(new_var), NULL);
+			return (perror("malloc"), free(new_var), NULL);
 		}
 		i++;
 	}

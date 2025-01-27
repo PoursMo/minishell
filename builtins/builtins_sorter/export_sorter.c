@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_sorter.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 08:46:48 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/23 15:53:22 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/27 10:00:42 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,12 @@ static int	export_splitter(char *line, char **new_env)
 	var_len(line, &len_name, &len_val);
 	name = malloc(sizeof(char) * (len_name + 1));
 	if (!name)
-		return (perror("Malloc"), -1);
+		return (perror("malloc"), -1);
 	if (len_val)
 	{
 		value = malloc(sizeof(char) * (len_val + 1));
 		if (!value)
-			return (free(name), perror("Malloc"), -1);
+			return (free(name), perror("malloc"), -1);
 		fill_str(line, &value, &name);
 	}
 	else
@@ -99,13 +99,25 @@ int	export_sorter(char **args)
 {
 	int		count;
 	int		i;
+	int		return_val;
 
 	count = 0;
+	return_val = 0;
 	while (args[count])
 		count++;
 	if (count == 1)
 		return (display_all_export(get_minishell_env()));
 	i = 1;
-	export_splitter(args[i], get_minishell_env());
-	return (0);
+	while (args[i])
+	{
+		if (check_exportable(args[i]))
+			export_splitter(args[i], get_minishell_env());
+		else
+		{
+			printf("export: `%s': not a valid identifier\n", args[i]);
+			return_val = 1;
+		}
+		i++;
+	}
+	return (return_val);
 }

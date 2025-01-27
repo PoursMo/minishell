@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:22:22 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/23 15:05:55 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/27 13:39:15 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUILTINS_H
 # define BUILTINS_H
 
-void	ft_echo(int new_line_flag, char *str);
+void	ft_echo(int new_line_flag, char *str, int last);
 int		change_directory(char *str);
 int		get_pwd(void);
 int		export_var(char *var_name, char *value, char **environ);
@@ -34,11 +34,15 @@ int		echo_sorter(char **args);
 int		cd_sorter(char	**args);
 int		export_sorter(char **args);
 int		unset_sorter(char **args);
-void	exit_w_status(int status);
+int		exit_w_status(char **args);
 char	*my_get_env(char *var_name);
 int		env_sorter(char **args);
 int		new_env_var_str(char *var, char *val, char **new_var);
 int		new_env_var_empty(char *var, char **new_var);
 void	fill_env_str_empty(char *line, char **name_str);
+int		check_exportable(char *var);
+int		append_plus_env_var(char *var, char *val, char **environ);
+int		add_plus_env_var(char *var, char *val, char **environ);
+int		check_plus_existing_var(char *var_name, char **environ);
 
 #endif
