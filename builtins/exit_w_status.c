@@ -6,7 +6,7 @@
 /*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 08:44:52 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/27 19:13:49 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/27 19:30:24 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,8 @@ static int	check_long_overflow(char *nb)
 
 int	exit_w_status(t_list *tokens, char **args)
 {
-	int	i;
+	int		i;
+	long	store;
 
 	i = 0;
 	while (args[i])
@@ -105,15 +106,15 @@ int	exit_w_status(t_list *tokens, char **args)
 		if (!ft_is_all_num(args[1]))
 		{
 			printf("exit: numeric argument required\n");
-			free(args);
-			return (actual_exit(2, tokens), 2);
+			return (free(args), actual_exit(2, tokens), 2);
 		}
 		else if (check_long_overflow(args[1]))
 			return (printf("exit: numeric argument required\n"), 2);
 		else
 		{
+			store = ft_atoi_long(args[1]);
 			free(args);
-			return (actual_exit(ft_atoi_long(args[1]) & 0xff, tokens), 0);
+			return (actual_exit(store & 0xff, tokens), 0);
 		}
 	}
 	return (printf("exit: too many arguments\n"), 2);
