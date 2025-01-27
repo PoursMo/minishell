@@ -47,8 +47,6 @@ void run_interactive_loop(void)
 
 int setup_minishell(char **envp)
 {
-	char	*char_shlvl;
-
 	set_minishell_env(create_new_env(envp));
 	char_shlvl = my_get_env("SHLVL");
 	increment_shlvl(char_shlvl);

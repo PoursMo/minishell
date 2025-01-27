@@ -36,6 +36,8 @@ SRCS = minishell.c	\
 	builtins/builtins_sorter/export_sorter.c \
 	builtins/builtins_sorter/unset_sorter.c \
 	builtins/builtins_sorter/env_sorter.c \
+	builtins/export_var/append_plus_var.c \
+	builtins/export_var/add_plus_var.c \
 	history/minishell_history.c
 
 OBJSDIR = objects
