@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:16:40 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/27 13:46:46 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/27 13:49:25 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int	add_plus_env_var(char *var, char *val, char **environ)
 	char	*new_var;
 	int		index;
 
-	printf("I AM ADDDING\n");
 	index = 0;
 	new_env = malloc_add_var(environ, &index);
 	if (new_env == NULL)

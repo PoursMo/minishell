@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:02:56 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/27 13:46:41 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/27 13:49:31 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ int	append_plus_env_var(char *var, char *val, char **environ)
 	int		i;
 	char	*new_var;
 
-	printf("I AM APPENDING\n");
 	i = 0;
 	while (environ[i])
 	{
