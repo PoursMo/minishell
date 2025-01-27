@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
+/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:41:57 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/27 16:31:44 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/27 19:03:34 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	**get_cmd_args(t_list *cmd, t_list *end)
 	return (args);
 }
 
-int	handle_builtin(t_list *cmd_ptr, t_list *pipe_ptr)
+int	handle_builtin(t_list *tokens, t_list *cmd_ptr, t_list *pipe_ptr)
 {
 	size_t	cmd_len;
 	char	**cmd_args;
@@ -77,7 +77,7 @@ int	handle_builtin(t_list *cmd_ptr, t_list *pipe_ptr)
 	if (ft_strlen("env") == cmd_len && !strncmp(cmd, "env", cmd_len))
 		code = env_sorter(cmd_args);
 	if (ft_strlen("exit") == cmd_len && !strncmp(cmd, "exit", cmd_len))
-		code = exit_w_status(cmd_args);
+		code = exit_w_status(tokens, cmd_args);
 	free(cmd_args);
 	return (code);
 }

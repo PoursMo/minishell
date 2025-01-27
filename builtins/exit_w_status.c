@@ -6,7 +6,7 @@
 /*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 08:44:52 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/27 17:41:51 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/27 19:13:49 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,13 @@ static long	ft_atoi_long(const char *nptr)
 	return (num * mult);
 }
 
-void	actual_exit(int status)
+void	actual_exit(int status, t_list *tokens)
 {
 	clear_history();
 	free_env(get_minishell_env());
 	free(get_minishell_env());
+	if (tokens)
+		ft_lstclear(&tokens, free);
 	exit(status);
 }
 
@@ -89,7 +91,7 @@ static int	check_long_overflow(char *nb)
 	return (0);
 }
 
-int	exit_w_status(char **args)
+int	exit_w_status(t_list *tokens, char **args)
 {
 	int	i;
 
@@ -97,18 +99,22 @@ int	exit_w_status(char **args)
 	while (args[i])
 		i++;
 	if (i == 1)
-		return (actual_exit(0), 0);
+		return (free(args), actual_exit(0, tokens), 0);
 	if (i == 2)
 	{
 		if (!ft_is_all_num(args[1]))
 		{
 			printf("exit: numeric argument required\n");
-			return (actual_exit(2), 2);
+			free(args);
+			return (actual_exit(2, tokens), 2);
 		}
 		else if (check_long_overflow(args[1]))
 			return (printf("exit: numeric argument required\n"), 2);
 		else
-			return (actual_exit(ft_atoi_long(args[1]) & 0xff), 0);
+		{
+			free(args);
+			return (actual_exit(ft_atoi_long(args[1]) & 0xff, tokens), 0);
+		}
 	}
 	return (printf("exit: too many arguments\n"), 2);
 }

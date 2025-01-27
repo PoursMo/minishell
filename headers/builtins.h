@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:22:22 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/27 14:45:33 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/27 19:13:15 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		echo_sorter(char **args);
 int		cd_sorter(char	**args);
 int		export_sorter(char **args);
 int		unset_sorter(char **args);
-int		exit_w_status(char **args);
+int		exit_w_status(t_list *tokens, char **args);
 char	*my_get_env(char *var_name);
 int		env_sorter(char **args);
 int		new_env_var_str(char *var, char *val, char **new_var);
@@ -44,6 +44,6 @@ int		check_exportable(char *var);
 int		append_plus_env_var(char *var, char *val, char **environ);
 int		add_plus_env_var(char *var, char *val, char **environ);
 int		check_plus_existing_var(char *var_name, char **environ);
-void	actual_exit(int status);
+void	actual_exit(int status, t_list *tokens);
 
 #endif

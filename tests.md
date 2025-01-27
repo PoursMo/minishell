@@ -1,40 +1,40 @@
 # empty inputs
 
-""										okay, return value is 127	LEAKS because of env, normal
-""""									okay, return value is 127
-''										okay, return value is 127
-" "										okay, return value is 127
-"	"									okay, return value is 127
+""										okay, return value is 127	Leaks because of env, normal
+""""									okay, return value is 127	Leaks because of env, normal
+''										okay, return value is 127	Leaks because of env, normal
+" "										okay, return value is 127	Leaks because of env, normal
+"	"									okay, return value is 127	Leaks because of env, normal
 # builtin commands
-echo									okay, return value is 0
-echo ""									okay, return value is 0
-echo Hello World						okay, return value is 0
-echo "Hello World"						okay, return value is 0
-echo -n Hello World						okay, return value is 0
-echo -n -n Hello World					okay, return value is 0
-echo -nnnnnnnnnnnnn Hello World			okay, return value is 0
-echo Hello -n World						okay, return value is 0
-cd										okay, return value is 0
-cd ""									okay, return value is 0
-cd " "									okay, return value is 1
-cd Hello								okay, return value is 1
-cd ..									okay, return value is 0
-cd /home								okay, return value is 0
-pwd										okay, return value is 0
-pwd Hello World							okay, return value is 0
-export									okay, return value is 0
-export ""								okay, return value is 1
-export TEST								okay, return value is 0
-export TEST=Hello						okay, return value is 0
-export TEST+=World						okay, return value is 0
-export TEST++=World						okay, return value is 1
-export TEST=Hello World					okay, return value is 0
-export TEST="Hello World"				okay, return value is 0
-unset									okay, return value is 0
-unset ""								okay, return value is 0
-unset TEST								okay, return value is 0
-env										okay, return value is 0
-exit									okay, exit value is 0
+echo									okay, return value is 0		No leaks
+echo ""									okay, return value is 0		No leaks
+echo Hello World						okay, return value is 0		No leaks
+echo "Hello World"						okay, return value is 0		No leaks
+echo -n Hello World						okay, return value is 0		No leaks
+echo -n -n Hello World					okay, return value is 0		No leaks
+echo -nnnnnnnnnnnnn Hello World			okay, return value is 0		No leaks
+echo Hello -n World						okay, return value is 0		No leaks
+cd										okay, return value is 0		No leaks
+cd ""									okay, return value is 0		No leaks
+cd " "									okay, return value is 1		No leaks
+cd Hello								okay, return value is 1		No leaks
+cd ..									okay, return value is 0		No leaks
+cd /home								okay, return value is 0		No leaks
+pwd										okay, return value is 0		No leaks
+pwd Hello World							okay, return value is 0		No leaks
+export									okay, return value is 0		No leaks
+export ""								okay, return value is 1		No leaks
+export TEST								okay, return value is 0		No leaks
+export TEST=Hello						okay, return value is 0		No leaks
+export TEST+=World						okay, return value is 0		No leaks
+export TEST++=World						okay, return value is 1		No leaks
+export TEST=Hello World					okay, return value is 0		No leaks
+export TEST="Hello World"				okay, return value is 0		No leaks
+unset									okay, return value is 0		No leaks
+unset ""								okay, return value is 0		No leaks
+unset TEST								okay, return value is 0		No leaks
+env										okay, return value is 0		No leaks
+exit									okay, exit value is 0		Leaks in tokens
 exit ""									okay, exit value is 2
 exit Hello World						okay, exit value is 2
 exit 42									okay, exit value is 42

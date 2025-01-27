@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_pipeline.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
+/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:37:44 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/27 16:32:43 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/27 18:39:51 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	handle_pipeline_child_exec(t_list *tokens,
 		exit(EXIT_SUCCESS);
 	remove_quotes(cmd_ptr->content);
 	if (is_builtin(cmd_ptr->content))
-		exit(handle_builtin(cmd_ptr, pipe_ptr));
+		exit(handle_builtin(tokens, cmd_ptr, pipe_ptr));
 	else
 		handle_non_builtin(cmd_ptr, pipe_ptr);
 }

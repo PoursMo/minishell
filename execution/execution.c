@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
+/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:18:49 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/27 18:01:11 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/27 18:38:45 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	execute_no_pipeline(t_list *tokens, t_list **pids)
 		return (set_exit_code(EXIT_SUCCESS), -1);
 	remove_quotes(cmd_ptr->content);
 	if (is_builtin(cmd_ptr->content))
-		set_exit_code(handle_builtin(cmd_ptr, NULL));
+		set_exit_code(handle_builtin(tokens, cmd_ptr, NULL));
 	else
 		if (handle_no_pipeline_non_builtin(cmd_ptr, pids) == -1)
 			return (-1);

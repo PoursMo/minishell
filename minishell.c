@@ -6,7 +6,7 @@
 /*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/27 17:55:43 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/27 19:04:50 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void run_interactive_loop(void)
 			return ;
 		input = readline("minishell$ ");
 		if (!input)
-			actual_exit(EXIT_SUCCESS);
+			actual_exit(EXIT_SUCCESS, NULL);
 		add_to_history(input);
 		// When exiting, need to clean_history()
 		if (parse_input(input, &tokens) == -1)
