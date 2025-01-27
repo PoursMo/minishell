@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_var_utils3.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 17:02:49 by loicbaecher       #+#    #+#             */
-/*   Updated: 2025/01/23 14:36:36 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/27 08:28:45 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	new_env_var_empty(char *var, char **new_var)
 	tot_len = ft_strlen(var);
 	(*new_var) = malloc(sizeof(char) * (tot_len + 1));
 	if (!(*new_var))
-		return (perror("Malloc"), -1);
+		return (perror("Malmallocloc"), -1);
 	i = 0;
 	while (var[i])
 	{

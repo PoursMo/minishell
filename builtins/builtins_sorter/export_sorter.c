@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_sorter.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 08:46:48 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/23 15:53:22 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/27 08:28:35 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,12 @@ static int	export_splitter(char *line, char **new_env)
 	var_len(line, &len_name, &len_val);
 	name = malloc(sizeof(char) * (len_name + 1));
 	if (!name)
-		return (perror("Malloc"), -1);
+		return (perror("malloc"), -1);
 	if (len_val)
 	{
 		value = malloc(sizeof(char) * (len_val + 1));
 		if (!value)
-			return (free(name), perror("Malloc"), -1);
+			return (free(name), perror("malloc"), -1);
 		fill_str(line, &value, &name);
 	}
 	else

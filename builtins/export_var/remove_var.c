@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   remove_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 16:07:13 by loicbaecher       #+#    #+#             */
-/*   Updated: 2025/01/23 15:14:50 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/27 08:28:53 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	malloc_loop(char **envp, int n_i, char ***new_var)
 			{
 				while (--i >= 0)
 					free((*new_var)[i--]);
-				return (free((*new_var)), perror("Malloc"), -1);
+				return (free((*new_var)), perror("malloc"), -1);
 			}
 			i++;
 			y++;
@@ -65,7 +65,7 @@ char	**malloc_copy_less(char **envp, int not_included)
 		last_index++;
 	new_var = malloc(sizeof(char *) * (last_index));
 	if (!new_var)
-		return (perror("Malloc"), NULL);
+		return (perror("malloc"), NULL);
 	i = malloc_loop(envp, not_included, &new_var);
 	if (i == -1)
 		return (NULL);

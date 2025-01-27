@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_w_status.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 08:44:52 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/24 15:07:26 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/27 09:20:55 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	ft_is_all_num(char *str)
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]) && !((str[i] >= 9 && str[i] <= 13)
-		|| !(str[i] == 32)))
+				|| !(str[i] == 32)))
 			return (0);
 		i++;
 	}
@@ -74,7 +74,7 @@ int	exit_w_status(char **args)
 	while (args[i])
 		i++;
 	if (i == 1)
-		return(actual_exit(0), 0);
+		return (actual_exit(0), 0);
 	if (i == 2)
 	{
 		printf("EXIT CODE :%d\n", ft_atoi(args[1]) % 256);

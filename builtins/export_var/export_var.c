@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 08:49:04 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/23 14:41:09 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/27 08:28:47 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	replace_env_var(char *var_name, char *val, char **environ)
 		return (0);
 	new_var = malloc(sizeof(char) * (ft_strlen(var_name) + ft_strlen(val) + 2));
 	if (!new_var)
-		return (perror("Malloc"), -1);
+		return (perror("malloc"), -1);
 	new_var = fill_env_str(new_var, var_name, val);
 	free(environ[i]);
 	environ[i] = new_var;

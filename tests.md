@@ -1,17 +1,17 @@
 # empty inputs
 
-""
-""""
-''
-" "
-"	"
+""										okay, return value 127
+""""									okay, return value 127
+''										okay, return value 127
+" "										okay, return value 127
+"	"									okay, return value 127
 # builtin commands
-echo
-echo ""
-echo Hello World
-echo "Hello World"
-echo -n Hello World
-echo -n -n Hello World
+echo									okay, return value 0
+echo ""									okay, return value 0
+echo Hello World						okay, return value 0
+echo "Hello World"						okay, return value 0
+echo -n Hello World						okay, return value 0
+echo -n -n Hello World					okay, return value 0
 echo -nnnnnnnnnnnnn Hello World
 echo Hello -n World
 cd
