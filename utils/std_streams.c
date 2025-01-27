@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:46:47 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/23 17:24:59 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/27 15:28:15 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	*update_std_streams(int mode)
 	return (std_streams);
 }
 
-int *get_std_streams(void)
+int	*get_std_streams(void)
 {
 	return (update_std_streams(-1));
 }

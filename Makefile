@@ -1,6 +1,7 @@
 CC = gcc
 SRCS = minishell.c	\
-	signals/signals.c	\
+	signals/signals.c \
+	signals/signals2.c \
     parsing/tokenization.c \
     parsing/parsing_utils.c \
     parsing/variable_expansion.c \

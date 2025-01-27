@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:14:07 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/25 13:17:33 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/27 15:30:06 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	handle_interactive_sigint(int signal)
 	set_exit_code(130);
 }
 
-static void handle_heredoc_sigint(int signal)
+static void	handle_heredoc_sigint(int signal)
 {
 	(void)signal;
 	write(get_std_streams()[STDOUT_FILENO], "\n", 1);
@@ -33,7 +33,7 @@ static void handle_heredoc_sigint(int signal)
 
 static void	handle_running_sigint(int signal)
 {
-	t_list *pids;
+	t_list	*pids;
 
 	(void)signal;
 	pids = *get_child_pids();
@@ -48,7 +48,7 @@ static void	handle_running_sigint(int signal)
 
 static void	handle_running_sigquit(int signal)
 {
-	t_list *pids;
+	t_list	*pids;
 
 	(void)signal;
 	pids = *get_child_pids();
@@ -76,12 +76,12 @@ int	set_signals(char mode)
 		sa_sigint.sa_handler = handle_interactive_sigint;
 		sa_sigquit.sa_handler = SIG_IGN;
 	}
-	else if(mode == 'r')
+	else if (mode == 'r')
 	{
 		sa_sigint.sa_handler = handle_running_sigint;
 		sa_sigquit.sa_handler = handle_running_sigquit;
 	}
-	else if(mode == 'h')
+	else if (mode == 'h')
 	{
 		sa_sigint.sa_handler = handle_heredoc_sigint;
 		sa_sigquit.sa_handler = SIG_IGN;
@@ -93,14 +93,3 @@ int	set_signals(char mode)
 	return (0);
 }
 
-int set_sigquit(void)
-{
-	struct sigaction	sa_sigquit;
-
-	sa_sigquit.sa_handler = SIG_DFL;
-	sa_sigquit.sa_flags = 0;
-	sigemptyset(&sa_sigquit.sa_mask);
-	if (sigaction(SIGQUIT, &sa_sigquit, NULL) == -1)
-		return (perror("sigaction"), -1);
-	return (0);
-}

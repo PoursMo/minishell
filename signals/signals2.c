@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   signals2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/15 14:37:26 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/27 15:27:37 by aloubry          ###   ########.fr       */
+/*   Created: 2025/01/27 15:30:08 by aloubry           #+#    #+#             */
+/*   Updated: 2025/01/27 15:32:19 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	get_biggest(int a, int b)
+int	set_sigquit(void)
 {
-	if (a > b)
-		return (a);
-	else
-		return (b);
-}
+	struct sigaction	sa_sigquit;
 
-t_list	**get_child_pids(void)
-{
-	static t_list	*child_pids;
-
-	return (&child_pids);
+	sa_sigquit.sa_handler = SIG_DFL;
+	sa_sigquit.sa_flags = 0;
+	sigemptyset(&sa_sigquit.sa_mask);
+	if (sigaction(SIGQUIT, &sa_sigquit, NULL) == -1)
+		return (perror("sigaction"), -1);
+	return (0);
 }
