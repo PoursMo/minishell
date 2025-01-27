@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/27 14:45:50 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/27 14:47:36 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void run_interactive_loop(void)
 int setup_minishell(char **envp)
 {
 	set_minishell_env(create_new_env(envp));
+	increment_shlvl(my_get_env("SHLVL"));
 	return (0);
 }
 
