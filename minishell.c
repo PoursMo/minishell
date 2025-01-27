@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/27 14:47:36 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/27 17:55:43 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void run_interactive_loop(void)
 		input = readline("minishell$ ");
 		if (!input)
 			actual_exit(EXIT_SUCCESS);
-		add_history(input);
+		add_to_history(input);
 		// When exiting, need to clean_history()
 		if (parse_input(input, &tokens) == -1)
 			continue ;
