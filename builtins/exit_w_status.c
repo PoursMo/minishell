@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_w_status.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 08:44:52 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/27 15:27:11 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/27 15:36:25 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static long	ft_atoi_long(const char *nptr)
 
 void	actual_exit(int status)
 {
-	printf("%d", status);
 	clear_history();
 	free_env(get_minishell_env());
 	free(get_minishell_env());
