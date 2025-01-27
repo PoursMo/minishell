@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 08:44:52 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/27 14:45:21 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/27 15:27:11 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static long	ft_atoi_long(const char *nptr)
 
 void	actual_exit(int status)
 {
+	printf("%d", status);
 	clear_history();
 	free_env(get_minishell_env());
 	free(get_minishell_env());
@@ -48,6 +49,8 @@ static int	ft_is_all_num(char *str)
 	int	i;
 
 	i = 0;
+	if (str[i] == '-')
+		i++;
 	while (!ft_isdigit(str[i]))
 	{
 		i++;
@@ -65,6 +68,28 @@ static int	ft_is_all_num(char *str)
 	return (1);
 }
 
+static int	check_long_overflow(char *nb)
+{
+	int	sign;
+
+	sign = 1;
+	if (*nb == '-')
+	{
+		nb++;
+		sign = -1;
+	}
+	if (ft_strlen(nb) > 19)
+		return (1);
+	if (ft_strlen(nb) == 19)
+	{
+		if (sign == 1 && ft_strncmp(nb, "9223372036854775807", 19) > 0)
+			return (1);
+		if (sign == -1 && ft_strncmp(nb, "9223372036854775808", 19) > 0)
+			return (1);
+	}
+	return (0);
+}
+
 int	exit_w_status(char **args)
 {
 	int	i;
@@ -77,6 +102,8 @@ int	exit_w_status(char **args)
 	if (i == 2)
 	{
 		if (!ft_is_all_num(args[1]))
+			return (perror("exit: numeric argument required"), -1);
+		else if (check_long_overflow(args[1]))
 			return (perror("exit: numeric argument required"), -1);
 		else
 			return (actual_exit(ft_atoi_long(args[1]) & 0xff), 0);
