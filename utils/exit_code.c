@@ -6,9 +6,11 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:38:20 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/22 12:23:04 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/25 13:01:48 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "minishell.h"
 
 static int	update_exit_code(int new_code)
 {

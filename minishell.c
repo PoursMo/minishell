@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/27 12:57:55 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/25 13:50:16 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@ void run_interactive_loop(void)
 {
 	char *input;
 	t_list *tokens;
-	t_list *pids;
 
-	pids = NULL;
 	while(1)
 	{
-		// set interactive signals
+		if (set_signals('i') == -1)
+			return ;
 		input = readline("minishell$ ");
+		if (!input)
+			exit(EXIT_SUCCESS);
 		add_history(input);
 		// When exiting, need to clean_history()
-		// set running signals
 		if (parse_input(input, &tokens) == -1)
 			continue ;
 		if (save_std_streams() == -1)
@@ -33,9 +33,13 @@ void run_interactive_loop(void)
 			ft_lstclear(&tokens, free);
 			continue ;
 		}
-		execute_tokens(tokens, &pids);
+		if (set_sigquit() == -1)
+			return ;
+		execute_tokens(tokens, get_child_pids());
+		if (set_signals('r') == -1)
+			return ;
+		wait_for_processes(get_child_pids());
 		ft_lstclear(&tokens, free);
-		wait_for_processes(&pids);
 		if (reset_std_streams() == -1)
 			continue ;
 	}
@@ -44,6 +48,9 @@ void run_interactive_loop(void)
 int setup_minishell(char **envp)
 {
 	set_minishell_env(create_new_env(envp));
+	char_shlvl = my_get_env("SHLVL");
+	char_shlvl[0] += 1; // need improvement atoi itoa
+	export_var("SHLVL", char_shlvl, get_minishell_env());
 	return (0);
 }
 
@@ -57,4 +64,4 @@ int main(int argc, char **argv, char **envp)
 }
 
 // remove -g from makefile
-// remove valgrind rule from makefile + ignore_readline_leaks.supp
+// remove .supp and valgrind rule from makefile

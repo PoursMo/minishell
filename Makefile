@@ -1,5 +1,6 @@
 CC = gcc
 SRCS = minishell.c	\
+	signals/signals.c	\
     parsing/tokenization.c \
     parsing/parsing_utils.c \
     parsing/variable_expansion.c \
@@ -71,5 +72,10 @@ test: all
 
 valgrind: all
 	valgrind --leak-check=full --show-leak-kinds=all --suppressions=ignore_readline_leaks.supp ./minishell
+
+test_wsl: ${LIBFT} ${OBJS}
+	$(CC) -o $(NAME) $(OBJS) $(LIBFT)  $(LFLAGS)
+	./$(NAME)
+
 
 re: fclean all
