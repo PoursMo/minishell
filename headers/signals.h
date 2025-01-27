@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:14:24 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/27 15:32:49 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/27 15:46:59 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 
 //signal.c
 
-int	set_signals(char mode);
+void	make_sigactions(char mode, struct sigaction *sa_sigint, struct sigaction *sa_sigquit);
 
 //signal2.c
 
 int set_sigquit(void);
+int	set_signals(char mode);
 
 #endif

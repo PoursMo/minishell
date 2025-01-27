@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:37:44 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/23 16:23:21 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/27 15:49:37 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,7 @@ static void	handle_pipeline_child_exec(t_list *tokens, t_list *pipe_ptr, int pip
 		exit(EXIT_SUCCESS);
 	remove_quotes(cmd_ptr->content);
 	if (is_builtin(cmd_ptr->content))
-	{
-		handle_builtin(cmd_ptr, pipe_ptr);
-		exit(EXIT_SUCCESS);
-	}
+		exit(handle_builtin(cmd_ptr, pipe_ptr));
 	else
 		handle_non_builtin(cmd_ptr, pipe_ptr);
 }
