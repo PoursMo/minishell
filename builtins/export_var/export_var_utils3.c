@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_var_utils3.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 17:02:49 by loicbaecher       #+#    #+#             */
-/*   Updated: 2025/01/27 17:16:32 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/28 14:47:41 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,13 @@ int	check_exportable(char *var)
 	int	i;
 
 	i = 0;
-	while (var[i] && !(ft_isalpha(var[i])) && var[i] != '=')
-		i++;
-	if (var[i] == '=' || var[i] == '\0')
+	if (var[i] != '_' && !(var[i] >= 'a' && var[i] <= 'z')
+		&& !(var[i] >= 'A' && var[i] <= 'Z'))
 		return (0);
-	i = 0;
-	while (var[i])
+	i++;
+	while (var[i] && var[i] != '=' && var[i] != '+')
 	{
-		if (var[i] == '+' && (!var[i + 1] || !(var[i + 1] == '=')))
+		if (!(ft_isalnum(var[i])))
 			return (0);
 		i++;
 	}
