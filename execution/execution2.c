@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:41:57 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/27 19:03:34 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/28 14:01:38 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	handle_non_builtin(t_list *cmd_ptr, t_list *pipe_ptr)
 	cmd_args = get_cmd_args(cmd_ptr, pipe_ptr);
 	if (!cmd_args)
 		exit(EXIT_FAILURE);
-	if (execve(cmd, cmd_args, __environ) == -1)
+	if (execve(cmd, cmd_args, get_minishell_env()) == -1)
 	{
 		perror("execve");
 		exit(EXIT_FAILURE);

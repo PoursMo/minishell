@@ -57,6 +57,7 @@ echo ||| Hello World
 # non-builtin command
 ls
 ls -l
+/bin/ls -l
 # redirections
 cat minishell.c > out.txt
 < minishell.c awk '{print "42"}' >> out.txt
@@ -69,7 +70,7 @@ cat minishell.c | wc -l > out.txt
 cat < minishell.c | awk '{print "42"}' | wc -l
 < minishell.c cat | >> out.txt wc -l
 cat /dev/random | cat
-cat > out minishell.c | wc -l
+cat > out.txt minishell.c | wc -l
 cat minishell.c | << end cat
 cat nonexistant | ls
 # errors (exit code 1)
@@ -77,6 +78,6 @@ ls "-l -a"
 cat nonexistant
 ls | cat nonexistant
 # no path || no env
-
+env -i ./minishell
 # command not found (exit code 127)
 # command found but not executable (exit code 126)

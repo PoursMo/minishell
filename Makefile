@@ -75,7 +75,7 @@ test: all
 	@./$(NAME)
 
 valgrind: all
-	valgrind --leak-check=full --show-leak-kinds=all --suppressions=ignore_readline_leaks.supp ./minishell
+	valgrind --leak-check=full --show-leak-kinds=all --suppressions=ignore_readline_leaks.supp --log-file="log.txt" ./minishell
 
 test_wsl: ${LIBFT} ${OBJS}
 	$(CC) -o $(NAME) $(OBJS) $(LIBFT)  $(LFLAGS)

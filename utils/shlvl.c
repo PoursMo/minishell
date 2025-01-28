@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:42:07 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/27 15:28:06 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/28 14:00:28 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	increment_shlvl(char *shlvl)
 {
 	char	*tmp;
 
-	if (check_shlvl(shlvl) == 1)
+	if (!shlvl || check_shlvl(shlvl) == 1)
 	{
 		export_var("SHLVL", "1", get_minishell_env());
 		return ;

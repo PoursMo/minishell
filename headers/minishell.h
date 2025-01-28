@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 15:40:28 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/25 12:55:53 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/28 14:08:48 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,7 @@
 # include "parsing.h"
 # include "utils.h"
 # include "execution.h"
+
+# define PROMPT "\033[1;33mminishell$ \033[0;0m"
 
 #endif
