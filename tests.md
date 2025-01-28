@@ -30,6 +30,8 @@ export TEST+=World						okay, return value is 0		No leaks
 export TEST++=World						okay, return value is 1		No leaks
 export TEST=Hello World					okay, return value is 0		No leaks
 export TEST="Hello World"				okay, return value is 0		No leaks
+export TEST??							should fail
+export TEST??="Hello World"				should fail
 unset									okay, return value is 0		No leaks
 unset ""								okay, return value is 0		No leaks
 unset TEST								okay, return value is 0		No leaks
@@ -41,7 +43,7 @@ exit 42									okay, exit value is 42		No leaks
 # environment variables
 echo $HOME								okay, return value is 0		No leaks
 echo $ABCDEF							okay, return value is 0		No leaks
-echo $42								NOT OKAY, return value is 0	No leaks
+echo $42								okay, return value is 0		No leaks
 echo $%+								okay, return value is 0		No leaks
 echo $?									okay, return value is 0		No leaks
 echo '$HOME'							okay, return value is 0		No leaks
