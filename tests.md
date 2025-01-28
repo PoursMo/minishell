@@ -34,18 +34,18 @@ unset									okay, return value is 0		No leaks
 unset ""								okay, return value is 0		No leaks
 unset TEST								okay, return value is 0		No leaks
 env										okay, return value is 0		No leaks
-exit									okay, exit value is 0		Leaks in tokens
-exit ""									okay, exit value is 2
-exit Hello World						okay, exit value is 2
-exit 42									okay, exit value is 42
+exit									okay, exit value is 0		No leaks
+exit ""									okay, exit value is 2		No leaks
+exit Hello World						okay, exit value is 2		No leaks
+exit 42									okay, exit value is 42		No leaks
 # environment variables
-echo $HOME
-echo $ABCDEF
-echo $42
-echo $%+
-echo $?
-echo '$HOME'
-echo "$HOME"
+echo $HOME								okay, return value is 0		No leaks
+echo $ABCDEF							okay, return value is 0		No leaks
+echo $42								NOT OKAY, return value is 0	No leaks
+echo $%+								okay, return value is 0		No leaks
+echo $?									okay, return value is 0		No leaks
+echo '$HOME'							okay, return value is 0		No leaks
+echo "$HOME"							okay, return value is 0		No leaks
 # syntax errors (exit code 2)
 | echo Hello World
 echo Hello World |									# bash diff
