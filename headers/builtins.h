@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:22:22 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/27 19:13:15 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/28 14:09:33 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ int		append_plus_env_var(char *var, char *val, char **environ);
 int		add_plus_env_var(char *var, char *val, char **environ);
 int		check_plus_existing_var(char *var_name, char **environ);
 void	actual_exit(int status, t_list *tokens);
+int		create_small_env(void);
 
 #endif
