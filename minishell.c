@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/28 09:19:11 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/01/28 09:20:38 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 static int	loop_scnd_part(t_list *tokens)
 {
 	if (set_sigquit() == -1)
-		return ;
+		return (0);
 	execute_tokens(tokens, get_child_pids());
 	if (set_signals('r') == -1)
-		return ;
+		return (0);
+	return (1);
 }
 
 void	run_interactive_loop(void)
@@ -41,7 +42,8 @@ void	run_interactive_loop(void)
 			ft_lstclear(&tokens, free);
 			continue ;
 		}
-		loop_scnd_part(tokens);
+		if (loop_scnd_part(tokens) == 0)
+			return ;
 		wait_for_processes(get_child_pids());
 		ft_lstclear(&tokens, free);
 		if (reset_std_streams() == -1)
