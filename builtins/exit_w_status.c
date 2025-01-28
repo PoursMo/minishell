@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_w_status.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 08:44:52 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/27 19:30:24 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/28 09:28:51 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,9 +113,9 @@ int	exit_w_status(t_list *tokens, char **args)
 		else
 		{
 			store = ft_atoi_long(args[1]);
-			free(args);
-			return (actual_exit(store & 0xff, tokens), 0);
+			return (free(args), actual_exit(store & 0xff, tokens), 0);
 		}
 	}
-	return (printf("exit: too many arguments\n"), 2);
+	printf("exit: too many arguments\n");
+	return (free(args), actual_exit(2, tokens), 2);
 }
