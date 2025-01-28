@@ -60,21 +60,21 @@ ls -l
 /bin/ls -l
 # redirections
 cat minishell.c > out.txt
-< minishell.c awk '{print "42"}' >> out.txt
+< minishell.c awk '{print "42"}' >> out.txt						?????
 cat > out.txt minishell.c
-cat > nopermout.txt
-cat > out.txt > out2.txt minishell.c
+cat > out.txt > out2.txt minishell.c							?????
 # pipes
 echo Hello World | cat
-cat minishell.c | wc -l > out.txt
-cat < minishell.c | awk '{print "42"}' | wc -l
-< minishell.c cat | >> out.txt wc -l
+cat minishell.c | wc -l > out.txt								?????
+cat < minishell.c | awk '{print "42"}' | wc -l					?????
+< minishell.c cat | >> out.txt wc -l							?????
 cat /dev/random | cat
-cat > out.txt minishell.c | wc -l
-cat minishell.c | << end cat
+cat > out.txt minishell.c | wc -l								?????
+cat minishell.c | << end cat									?????
 cat nonexistant | ls
 # errors (exit code 1)
 ls "-l -a"
+cat > nopermout.txt
 cat nonexistant
 ls | cat nonexistant
 # no path || no env
