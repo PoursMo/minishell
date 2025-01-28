@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_history.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:53:05 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/27 17:57:47 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/28 09:10:56 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,21 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:44:35 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/27 19:04:50 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/28 09:19:11 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void run_interactive_loop(void)
+static int	loop_scnd_part(t_list *tokens)
 {
-	char *input;
-	t_list *tokens;
+	if (set_sigquit() == -1)
+		return ;
+	execute_tokens(tokens, get_child_pids());
+	if (set_signals('r') == -1)
+		return ;
+}
 
-	while(1)
+void	run_interactive_loop(void)
+{
+	char	*input;
+	t_list	*tokens;
+
+	while (1)
 	{
 		if (set_signals('i') == -1)
 			return ;
@@ -25,7 +34,6 @@ void run_interactive_loop(void)
 		if (!input)
 			actual_exit(EXIT_SUCCESS, NULL);
 		add_to_history(input);
-		// When exiting, need to clean_history()
 		if (parse_input(input, &tokens) == -1)
 			continue ;
 		if (save_std_streams() == -1)
@@ -33,11 +41,7 @@ void run_interactive_loop(void)
 			ft_lstclear(&tokens, free);
 			continue ;
 		}
-		if (set_sigquit() == -1)
-			return ;
-		execute_tokens(tokens, get_child_pids());
-		if (set_signals('r') == -1)
-			return ;
+		loop_scnd_part(tokens);
 		wait_for_processes(get_child_pids());
 		ft_lstclear(&tokens, free);
 		if (reset_std_streams() == -1)
@@ -45,14 +49,14 @@ void run_interactive_loop(void)
 	}
 }
 
-int setup_minishell(char **envp)
+int	setup_minishell(char **envp)
 {
 	set_minishell_env(create_new_env(envp));
 	increment_shlvl(my_get_env("SHLVL"));
 	return (0);
 }
 
-int main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
 	(void)argc;
 	(void)argv;
