@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 18:19:38 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/27 18:20:51 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/30 15:51:22 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@ char	*check_access(char *cmd)
 {
 	if (access(cmd, F_OK) == 0)
 	{
-		if (access(cmd, X_OK) == 0)
+		if (access(cmd, X_OK) == 0 && !is_directory(cmd))
 			return (cmd);
-		perror(cmd);
+		if (access(cmd, X_OK) == -1)
+			perror(cmd);
+		else
+			print_is_a_directory(cmd);
 		exit(126);
 	}
 	return (NULL);
@@ -74,9 +77,12 @@ char	*find_in_path(char **split_path, char *cmd)
 		if (access(result, F_OK) == 0)
 		{
 			free_split(split_path);
-			if (access(result, X_OK) == 0)
+			if (access(result, X_OK) == 0 && !is_directory(result))
 				return (result);
-			perror(cmd);
+			if (access(result, X_OK) == -1)
+				perror(cmd);
+			else
+				print_is_a_directory(result);
 			free(result);
 			exit(126);
 		}

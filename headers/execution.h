@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:18:32 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/27 18:37:42 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/30 15:39:53 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int		setup_heredoc(char *doc);
 // command_checking.c
 
 char	*find_cmd_path(char *cmd);
+int		is_directory(char *path);
+void	print_is_a_directory(char *path);
 
 // command_checking_utils.c
 

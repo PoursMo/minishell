@@ -6,7 +6,7 @@
 /*   By: aloubry <aloubry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 13:16:22 by aloubry           #+#    #+#             */
-/*   Updated: 2025/01/27 18:22:07 by aloubry          ###   ########.fr       */
+/*   Updated: 2025/01/30 15:45:22 by aloubry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,17 @@ static void	print_cmd_not_found(char *cmd)
 	char	*err;
 
 	err = ft_strjoin(cmd, ": command not found\n");
+	if (!err)
+		return ;
+	write(2, err, ft_strlen(err));
+	free(err);
+}
+
+void	print_is_a_directory(char *path)
+{
+	char	*err;
+
+	err = ft_strjoin(path, ": Is a directory\n");
 	if (!err)
 		return ;
 	write(2, err, ft_strlen(err));
@@ -61,4 +72,16 @@ char	*find_cmd_path(char *cmd)
 	free_split(split_path);
 	print_cmd_not_found(cmd);
 	exit(127);
+}
+
+int	is_directory(char *path)
+{
+	struct stat	stat_buf;
+
+	if (stat(path, &stat_buf) == -1)
+	{
+		perror("stat");
+		return (0);
+	}
+	return (S_ISDIR(stat_buf.st_mode));
 }
