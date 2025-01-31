@@ -6,7 +6,7 @@
 /*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 13:39:48 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/27 17:21:22 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/01/31 09:34:18 by loicbaecher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	echo_sorter(char **args)
 	if (!(ft_strncmp(args[1], "-n", 2)) && only_n(args[1]))
 	{
 		i = 2;
+		if (!args[2])
+			return (0);
 		while (!(ft_strncmp(args[i], "-n", 2)))
 			i++;
 		while (args[i + 1])

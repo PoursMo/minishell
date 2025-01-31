@@ -11,7 +11,7 @@ echo ""									okay, return value is 0		No leaks
 echo Hello World						okay, return value is 0		No leaks
 echo "Hello World"						okay, return value is 0		No leaks
 echo -n Hello World						okay, return value is 0		No leaks
-echo -n
+echo -n									okay, return valus is 0		No leaks
 echo -n -n Hello World					okay, return value is 0		No leaks
 echo -nnnnnnnnnnnnn Hello World			okay, return value is 0		No leaks
 echo Hello -n World						okay, return value is 0		No leaks
@@ -39,7 +39,7 @@ unset TEST								okay, return value is 0		No leaks
 env										okay, return value is 0		No leaks
 exit									okay, exit value is 0		No leaks
 exit ""									okay, exit value is 2		No leaks
-exit 42abc
+exit 42abc								okay, exit value is 2		No leaks
 exit Hello World						okay, exit value is 2		No leaks
 exit 42									okay, exit value is 42		No leaks
 # environment variables
