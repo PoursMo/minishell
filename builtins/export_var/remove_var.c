@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 16:07:13 by loicbaecher       #+#    #+#             */
-/*   Updated: 2025/02/03 08:45:21 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/02/03 10:51:49 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	find_env_index(char **envp, char *var_name)
 	while (envp[i])
 	{
 		if (ft_strncmp(envp[i], var_name, ft_strlen(var_name)) == 0)
-			if (envp[i][ft_strlen(var_name)] == '=')
+			if (envp[i][ft_strlen(var_name)] == '='
+				|| envp[i][ft_strlen(var_name)] == '\0')
 				return (i);
 		i++;
 	}

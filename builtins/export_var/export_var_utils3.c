@@ -6,7 +6,7 @@
 /*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 17:02:49 by loicbaecher       #+#    #+#             */
-/*   Updated: 2025/02/03 08:45:06 by lbaecher         ###   ########.fr       */
+/*   Updated: 2025/02/03 10:33:13 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,12 @@ int	check_exportable(char *var)
 	i++;
 	while (var[i] && var[i] != '=' && var[i] != '+')
 	{
-		if (!(ft_isalnum(var[i])))
+		if (!(ft_isalnum(var[i]) || var[i] == '_'))
 			return (0);
 		i++;
 	}
+	if (var[i] == '+' && ((!var[i + 1] || var[i + 1] != '=')))
+		return (0);
 	return (1);
 }
 

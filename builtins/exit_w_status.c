@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_w_status.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loicbaecher <loicbaecher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lbaecher <lbaecher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 08:44:52 by lbaecher          #+#    #+#             */
-/*   Updated: 2025/01/31 09:36:20 by loicbaecher      ###   ########.fr       */
+/*   Updated: 2025/02/03 11:25:50 by lbaecher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,18 +104,17 @@ int	exit_w_status(t_list *tokens, char **args)
 	if (i == 2)
 	{
 		if (!ft_is_all_num(args[1]))
-		{
-			printf("exit: numeric argument required\n");
-			return (free(args), actual_exit(2, tokens), 2);
-		}
+			return (printf("exit: %s: numeric argument required\n", args[1]),
+				free(args), actual_exit(2, tokens), 2);
 		else if (check_long_overflow(args[1]))
-			return (printf("exit: numeric argument required\n"), 2);
+			return (printf("exit: %s: numeric argument required\n", args[1]),
+				free(args), actual_exit(2, tokens), 2);
 		else
-		{
-			store = ft_atoi_long(args[1]);
-			return (free(args), actual_exit(store & 0xff, tokens), 0);
-		}
+			return (store = ft_atoi_long(args[1])
+				, free(args), actual_exit(store & 0xff, tokens), 0);
 	}
-	printf("exit: too many arguments\n");
-	return (free(args), actual_exit(2, tokens), 2);
+	if (!ft_is_all_num(args[1]))
+		return (printf("exit: %s: numeric argument required\n", args[1])
+			, free(args), actual_exit(2, tokens), 2);
+	return (printf("exit\nexit: too many arguments\n"), 1);
 }
